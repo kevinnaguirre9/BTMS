@@ -1,0 +1,68 @@
+<%- include('include/_header')%>
+
+<!-- BTMs list -->
+
+<header id="header">
+     <nav>
+          <div class="container">
+               <div class="text-center">
+                    <h1 class="nav-brand text-dark">Mediciones de Temperatura Corporal</h1>
+               </div>
+          </div>
+     </nav>
+</header>
+
+<main id="site-main">
+     <div class="container">
+          <div class="box-nav d-flex justify-between">
+               <div class="filter">
+                    <a href="/user/dashboard"><i class="fas fa-angle-double-left"></i> Home</a>
+               </div>
+          </div>
+          <br>
+          
+          <!-- Form handling -->
+          <form>   
+               <table class="table">
+                    <thead class="thead-dark">
+                         <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Profile</th>
+                              <th scope="col">Nombres</th>
+                              <th scope="col">Apellidos</th>
+                              <th scope="col">Fecha</th>
+                              <th scope="col">Hora</th>
+                              <th scope="col">°C</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <% if(locals.btms){ %>  
+                              <% for(var i=0; i < btms.length; i++) { %>
+                                   <tr>
+                                        <th scope="row"><%= i+1 %></th>
+                                        <td><img src="<%= btms[i].uPhotoURL %>" class="rounded-circle" title="<%= btms[i].uNombres %> <%= btms[i].uApellidos %>" style="width: 100px; height: 100px;"/></td>
+                                        <td><%= btms[i].uNombres %></td>
+                                        <td><%= btms[i].uApellidos %></td>
+                                        <td><%= btms[i].mFecha%></td>
+                                        <td><%= btms[i].mHora %></td>
+                                        <td><%= btms[i].bTemp %></td>
+                                   </tr>
+                                   <% } %>
+                         <% } %>
+                         
+                    </tbody>
+               </table>
+          </form>
+
+
+          <!-- /Form handling -->
+
+     </div>
+</main>
+
+<!-- /BTMs list -->
+
+
+<%- include('include/_footer')%>
+
+

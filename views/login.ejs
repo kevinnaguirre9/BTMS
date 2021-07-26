@@ -1,0 +1,31 @@
+<!-- include header -->
+<%- include('include/_header')%>
+<!-- /include header -->
+
+
+<div class="text-center center-div" id="login">
+     <div class="container w-25 border py-5">
+          <div class="title pb-5">
+               <h2 class="font-weight-bold">Inicia sesión</h2>
+               <span>Sistema de Mediciones de Temperatura Corporal</span>
+          </div>
+          <form action="/user/login" method="POST">
+               <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" name="email" autofocus required>
+                    <!--<small class="form-text text-muted text-left">Register email address</small>-->
+               </div>
+               <br>
+               <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="password" required> 
+               </div>
+               <br>
+               <button type="submit" class="btn btn-success">iniciar sesión</button>
+          </form>
+     </div>
+
+</div>
+
+
+<!-- include footer -->
+<%- include('include/_footer')%>
+<!-- /include footer -->

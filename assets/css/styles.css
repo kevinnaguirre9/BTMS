@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Dosis:300,400,700,800&family=Open+Sans&family=PT+Sans&display=swap');
+
+:root{
+  --dark: #2b2d42;
+  --light: #adb5bd;
+  --border: #dee2e6;
+  --border-btn: #edf2f4;
+}
+
+#header nav{
+  background-color: #06d6a0;
+  padding: 1em 0;
+  width: 100%;
+}
+
+#site-main{
+  margin-top: 4em;
+}
+
+.table tr:hover{
+  background-color: whitesmoke;
+}
+
+.table .thead-dark th{
+  color: #fff;
+  background-color: var(--dark);
+  border-color: #32383e;
+}
+
+
+/* Css configs for login page*/
+body{
+     font-family: 'Open Sans', sans-serif;
+}
+
+.center-div{
+     padding-top: 10%;
+}
+
+.btn.btn-success{
+     padding: .4em 2em;
+}
+
+form{
+     padding: 0 2em;
+}
+
+#login .title > span{
+     font-size: .8em;
+}
+
+
+/* Css configs for dashboard*/
+.sidebar-container {
+     position: fixed;
+     width: 220px;
+     height: 100%;
+     left: 0;
+     overflow-x: hidden;
+     overflow-y: auto;
+     background: #1a1a1a;
+     color: #fff;
+   }
+   
+.content-container {
+  padding-top: 20px;
+}
+
+.sidebar-logo {
+  padding: 10px 15px 10px 30px;
+  font-size: 20px;
+  background-color: #2574A9;
+}
+
+.sidebar-navigation {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.sidebar-navigation li {
+  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  line-height: 20px;
+}
+
+.sidebar-navigation li a {
+  padding: 10px 15px 10px 30px;
+  display: block;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sidebar-navigation li .fa {
+  margin-right: 10px;
+}
+
+.sidebar-navigation li a:active,
+.sidebar-navigation li a:hover,
+.sidebar-navigation li a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.sidebar-navigation li::before {
+  background-color: #2574A9;
+  position: absolute;
+  content: '';
+  height: 100%;
+  left: 0;
+  top: 0;
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 3px;
+  z-index: -1;
+}
+
+.sidebar-navigation li:hover::before {
+  width: 100%;
+}
+
+.sidebar-navigation .header {
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #151515;
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-navigation .header::before {
+  background-color: transparent;
+}
+
+.content-container {
+  padding-left: 220px;
+}
+
+/* Css configs for addUser and updateUser page*/
+
+.form-title{
+  margin-top: 2em;
+}
+
+.form-title > h2{
+  padding: .5em 0;
+}
+
+
+#add_user .form-group,
+#update_user .form-group{
+  max-width: 786px;
+  margin: auto;
+  margin: .4em 0;
+  width: 100%;
+  padding: .6em 1em;
+  margin: .5em 0;
+}
+
+#img_uploaded{
+  width: 150px; 
+  height: 150px;
+  object-fit: contain;
+}
+
+#label_uphoto{
+  background-color: #2574A9;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/** Styles for the 403 Page **/
+
+.particle-error,
+.permission_denied,
+#particles-js {
+  width: 100%;
+  height: 100%;
+  margin: 0px !important;
+}
+
+#particles-js {
+  position: fixed !important;
+  opacity: 0.23;
+}
+
+.permission_denied {
+  background: #24344c !important;
+}
+
+.permission_denied a {
+  text-decoration: none;
+}
+
+.denied__wrapper {
+  max-width: 300px;
+  width: 100%;
+  height: 390px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 8vh;
+}
+
+.permission_denied h1 {
+  text-align: center;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+  font-size: 100px;
+  margin-bottom: 0px;
+  font-weight: 800;
+}
+
+.permission_denied h3 {
+  text-align: center;
+  color: #fff;
+  font-size: 19px;
+  line-height: 23px;
+  max-width: 330px;
+  margin: 0px auto 30px auto;
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+}
+
+.permission_denied h3 span {
+  position: relative;
+  width: 65px;
+  display: inline-block;
+}
+
+.permission_denied h3 span:after {
+  content: "";
+  border-bottom: 3px solid #ffbb39;
+  position: absolute;
+  left: 0;
+  top: 43%;
+  width: 100%;
+}
+
+.denied__link {
+  background: none;
+  color: #fff;
+  padding: 12px 0px 10px 0px;
+  border: 1px solid #fff;
+  outline: none;
+  border-radius: 7px;
+  width: 150px;
+  font-size: 15px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 40px;
+  margin-top: 25px;
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+}
+
+.denied__link:hover {
+  color: #ffbb39;
+  border-color: #ffbb39;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.permission_denied .stars {
+  animation: sparkle 1.6s infinite ease-in-out alternate;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+#astronaut {
+  width: 43px;
+  position: absolute;
+  right: 20px;
+  top: 210px;
+  animation: spin 4.5s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .permission_denied h1 {
+    font-size: 75px;
+  }
+  .permission_denied h3 {
+    font-size: 16px;
+    width: 200px;
+    margin: 0 auto;
+    line-height: 23px;
+  }
+  .permission_denied h3 span {
+    width: 60px;
+  }
+  #astronaut {
+    width: 35px;
+    right: 40px;
+    top: 170px;
+  }
+}
+
+.saturn,
+.saturn-2,
+.hover {
+  animation: hover 2s infinite ease-in-out alternate;
+}
+
+@keyframes hover {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+

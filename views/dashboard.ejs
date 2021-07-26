@@ -1,0 +1,60 @@
+<%- include('include/_header')%>
+
+<div class="sidebar-container">
+     <div class="sidebar-logo">
+       BTMS
+     </div>
+     <ul class="sidebar-navigation">
+       <li class="header">Navegación</li>
+       <li>
+         <a href="/btm/btms">
+           <i class="fa fa-temperature-low" aria-hidden="true"></i>Mediciones de temperatura
+         </a>
+       </li>
+       <li>
+         <a href="/user/users">
+           <i class="fa fa-users" aria-hidden="true"></i>Usuarios
+         </a>
+       </li>
+       <li class="header">Acerca de</li>
+       <li>
+         <a href="https://www.ups.edu.ec/" target="_blank">
+           <i class="fa fa-door-open" aria-hidden="true"></i>UPS
+         </a>
+       </li>
+       <li>
+         <a href="#">
+           <i class="fa fa-cog" aria-hidden="true"></i>Configuración
+         </a>
+       </li>
+       <li>
+         <a href="#">
+           <i class="fa fa-info-circle" aria-hidden="true"></i>Información
+         </a>
+       </li>
+     </ul>
+   </div>
+   
+   <div class="content-container">
+   
+     <div class="container-fluid">
+   
+       <!-- Main component for a primary marketing message or call to action -->
+       <div class="jumbotron">
+          <div class="text-center center-div mt5" id="login">
+               <div class="container w-25 border py-5 mt-5">
+                    <h3>Bienvenido</h3>
+                    <h5><%= locals.user ? user: "User" %></h4>
+                    <a href="/user/logout">Cerrar sesión</a>
+               </div>
+          </div>
+       </div>
+   
+     </div>
+   </div>
+
+
+
+
+
+<%- include('include/_footer')%>

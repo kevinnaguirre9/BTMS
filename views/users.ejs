@@ -1,0 +1,80 @@
+<%- include('include/_header')%>
+
+<!-- Users list -->
+
+<header id="header">
+     <nav>
+          <div class="container">
+               <div class="text-center">
+                    <h1 class="nav-brand text-dark">Administración de Usuarios</h1>
+               </div>
+          </div>
+     </nav>
+</header>
+
+<main id="site-main">
+     <div class="container">
+          <div class="box-nav d-flex justify-between">
+               <div class="filter">
+                    <a href="/user/dashboard"><i class="fas fa-angle-double-left"></i> Home</a>
+               </div>
+          </div>
+          <br>
+          <div class="box-nav d-flex justify-between">
+               <a href="/user/add-user" class="border-shadow">
+                    <span class="text-gradient">Nuevo usuario <i class="fas fa-user-plus"></i></span>
+               </a>
+          </div>
+          <br>
+          
+          <!-- Form handling -->
+          <form>   
+               <table class="table">
+                    <thead class="thead-dark">
+                         <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Nombres</th>
+                              <th scope="col">Apellidos</th>
+                              <th scope="col">Born data</th>
+                              <th scope="col">Sexo</th>
+                              <th scope="col">Celular</th>
+                              <th scope="col">Direccion</th>
+                              <!-- <th scope="col">Status</th> -->
+                              <th scope="col">Operaciones</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <% if(locals.users){ %>  
+                              <% for(var i=0; i < users.length; i++) { %>
+                                   <tr>
+                                        <!-- <th scope="row"><%= users[i].id %></th> -->
+                                        <th scope="row"><%= i+1 %></th>
+                                        <td><%= users[i].nombres %></td>
+                                        <td><%= users[i].apellidos %></td>
+                                        <td><%= users[i].fecha_nacimiento %></td>
+                                        <td><%= users[i].sexo %></td>
+                                        <td><%= users[i].num_celular %></td>
+                                        <td><%= users[i].direccion %></td>
+                                        <!-- <td><%= users[i].status %></td> -->
+                                        <td>
+                                             <a href="/user/getUser/<%= users[i].id %>" class="btn border-shadow update">
+                                                  <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                             </a>
+                                        </td>
+                                   </tr>
+                                   <% } %>
+                         <% } %>
+                    </tbody>
+               </table>
+          </form>
+
+
+          <!-- /Form handling -->
+
+     </div>
+</main>
+
+<!-- /Users list -->
+
+     
+<%- include('include/_footer')%>

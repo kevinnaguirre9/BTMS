@@ -1,0 +1,97 @@
+<%- include('include/_header')%>
+
+<!-- Users list -->
+
+<header id="header">
+     <nav>
+          <div class="container">
+               <div class="text-center">
+                    <h1 class="nav-brand text-dark">Administración de Usuarios</h1>
+               </div>
+          </div>
+     </nav>
+</header>
+
+<main id="site-main">
+     <div class="container">
+          <div class="box-nav d-flex justify-between">
+               <div class="filter">
+                    <a href="/user/dashboard"><i class="fas fa-angle-double-left"></i> Home</a>
+                    <a href="/user/users"><i class="fas fa-angle-double-left"></i> Usuarios</a>
+               </div>
+          </div>
+          <div class="form-title text-center">
+               <h2 class="text-dark">Editar usuario</h2>
+               <span>Actualiza la información de un usuario</span>
+          </div>
+
+           <!-- Form handling -->
+           <form method="POST" id="update_user" enctype="multipart/form-data">   
+               <div>
+                    <div class="form-group">    
+                         <label for="nombres">Nombres</label>
+                         <input type="hidden" name="id" value="<%= uid %>">
+                         <input type="hidden" name="photo_path" value="<%= userData.photo_path %>">
+                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
+                         value="<%= userData.nombres %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="apellidos">Apellidos</label>
+                         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= userData.apellidos %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="user_photo" id="label_uphoto">Cambiar foto</label>
+                         <input type="file" name="user_photo" id="user_photo" class="box" 
+                         accept="image/jpeg, image/png" hidden/>
+                         <img class="rounded-circle" src="<%= userData.photo_download_url %>" id="img_uploaded" />
+                    </div>
+                    <div class="form-group">
+                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                         <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" 
+                         value="<%= userData.fecha_nacimiento %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="sexo">Sexo</label>
+                         <select class="form-control" name="sexo" id="sexo" required>
+                              <option value="Hombre" <%= userData.sexo == "Hombre" ? 'selected' : '' %>>Hombre</option>
+                              <option value="Mujer" <%= userData.sexo == "Mujer" ? 'selected' : '' %>>Mujer</option>
+                              <option value="Otro" <%= userData.sexo == "Otro" ? 'selected' : '' %>>Otro</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <label for="num_celular">Celular</label>
+                         <input type="text" name="num_celular" id="num_celular" placeholder="Numero celular" class="form-control" value="<%= userData.num_celular %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="direccion">Direccion</label>
+                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" value="<%= userData.address %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="is_admin">Rol</label>
+                         <select class="form-control" name="is_admin" id="is_admin" required>
+                              <option value="false" <%= userData.status == false ? 'selected' : '' %>>Usuario normal</option>
+                              <option value="true" <%= userData.status == true ? 'selected' : '' %>>Administrador</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <label for="status">Estatus</label>
+                         <select class="form-control" name="status" id="status" required>
+                              <option value="Activo" <%= userData.status == 'Activo' ? 'selected' : '' %>>Activo</option>
+                              <option value="Inactivo" <%= userData.status == 'Inactivo' ? 'selected' : '' %>>Inactivo</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <button type="submit" class="btn btn-success">Actualizar</button>
+                    </div>
+               </div>
+               
+          </form>
+          <!-- /Form handling -->
+          
+     </div>
+</main>
+
+<!-- /Users list -->
+
+<%- include('include/_footer')%>
+

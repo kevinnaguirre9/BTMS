@@ -1,0 +1,101 @@
+<%- include('include/_header')%>
+
+<!-- Users list -->
+
+<header id="header">
+     <nav>
+          <div class="container">
+               <div class="text-center">
+                    <h1 class="nav-brand text-dark">Administración de Usuarios</h1>
+               </div>
+          </div>
+     </nav>
+</header>
+
+<main id="site-main">
+     <div class="container">
+          <div class="box-nav d-flex justify-between">
+               <div class="filter">
+                    <a href="/user/dashboard"><i class="fas fa-angle-double-left"></i> Home</a>
+                    <a href="/user/users"><i class="fas fa-angle-double-left"></i> Usuarios</a>
+               </div>
+          </div>
+          <div class="form-title text-center">
+               <h2 class="text-dark">Nuevo usuario</h2>
+               <span>Cree un nuevo usuario a partir de los siguientes datos</span>
+          </div>
+
+           <!-- Form handling -->
+           <form action="/user/addUser" method="POST" id="add_user" enctype="multipart/form-data">   
+               <div>
+                    <div class="form-group">
+                         <label for="email">Email</label>
+                         <input type="email" name="email" id="email" placeholder="example@gmail.com" class="form-control" autofocus required>
+                    </div>
+                    <div class="form-group">
+                         <label for="cedula">Cedula</label>
+                         <input type="password" name="cedula" id="cedula" placeholder="Este campo será la contraseña del usuario" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="user_photo" id="label_uphoto">Subir foto</label>
+                         <input type="file" name="user_photo" id="user_photo" class="form-control" 
+                         accept="image/jpeg, image/png" hidden required/>
+                         <img src="/img/user-avatar.png" id="img_uploaded"/>
+                    </div>
+                    <div class="form-group">
+                         <label for="nombres">Nombres</label>
+                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="apellidos">Apellidos</label>
+                         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                         <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="sexo">Sexo</label>
+                         <select class="form-control" name="sexo" id="sexo" required>
+                              <option value="Hombre">Hombre</option>
+                              <option value="Mujer">Mujer</option>
+                              <option value="Otro">Otro</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <label for="num_celular">Celular</label>
+                         <input type="text" name="num_celular" id="num_celular" placeholder="Numero celular" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="direccion">Direccion</label>
+                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="is_admin">Rol</label>
+                         <select class="form-control" name="is_admin" id="is_admin" required>
+                              <option value="false">Usuario normal</option>
+                              <option value="true">Administrador</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <label for="status">Estatus</label>
+                         <select class="form-control" name="status" id="status" required>
+                              <option value="Activo">Activo</option>
+                              <option value="Inactivo">Inactivo</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
+                         <button class="btn btn-success" type="submit" value="Submit" id="submit">Guardar</button>
+                    </div>
+               </div>
+               
+          </form>
+          <!-- /Form handling -->
+          
+     </div>
+</main>
+
+<!-- /Users list -->
+
+<%- include('include/_footer')%>
+
