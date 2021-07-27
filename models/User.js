@@ -1,6 +1,6 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const Schema = moongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
      nombres: String,
@@ -11,9 +11,14 @@ const userSchema = new Schema({
      celular: String,
      imgUrl: String,
      estatus: String,
+     rol: {
+          type: Schema.Types.ObjectId,
+          ref: "roles" 
+     }
 }, {
      timestamps: true,
      versionKey: false
 })
 
-module.exports = userSchema;
+const User = mongoose.model('users', userSchema);
+module.exports = User;

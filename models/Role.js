@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const roleSchema = new Schema({
-    nombre: String
+    nombre: {
+        type: String,
+        unique: true 
+   }
 }, {
      timestamps: true,
      versionKey: false

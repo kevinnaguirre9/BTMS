@@ -1,9 +1,9 @@
-//const User = require('../models/user');
-const fs = require('fs');
-const path = require('path'); 
+const User = require('../models/user');
+//const fs = require('fs');
+//const path = require('path'); 
 
 const createUser = (req, res) => {
-
+     res.json('creating user')
 }
 
 const getUsers = (req, res) => {
