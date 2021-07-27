@@ -14,16 +14,22 @@ const getRoles = async (req, res) => {
      res.json(roles);
 }
 
-const getRoleById = (req, res) => {
-     
+const getRoleById = async (req, res) => {
+     const role = await Role.findById(req.params.roleId);
+     res.status(200).json(role);
 }
 
-const updateRoleById = (req, res) => {
-     
+const updateRoleById = async (req, res) => {
+     const updatedRole = await Role.findByIdAndUpdate(req.params.roleId, req.body, {
+          new: true
+     });
+     res.status(200).json(updatedRole); //podría ser 204 pero como quiero imprimir el nuevo registro lo dejo en 200
 }
 
-const deleteRoleById = (req, res) => {
-     
+const deleteRoleById = async (req, res) => {
+     const {roleId} = req.params;
+     await Role.findByIdAndDelete(roleId);
+     res.status(204).json();
 }
 
 module.exports = {
