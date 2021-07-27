@@ -13,8 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-//app.use(express.static('public'));
-app.use(express.urlencoded({extended: true}))     //parse request to express
+app.use(express.urlencoded({extended: true}));    //parse request to express
 
 
 //set view engine
