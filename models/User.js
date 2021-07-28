@@ -10,7 +10,7 @@ const userSchema = new Schema({
      sexo: String,
      celular: String,
      imgUrl: String,
-     estatus: String,
+     activo: Boolean,
      rol: {
           type: Schema.Types.ObjectId,
           ref: "roles" 

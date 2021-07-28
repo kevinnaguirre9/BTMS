@@ -30,54 +30,50 @@
                <div>
                     <div class="form-group">    
                          <label for="nombres">Nombres</label>
-                         <input type="hidden" name="id" value="<%= uid %>">
-                         <input type="hidden" name="photo_path" value="<%= userData.photo_path %>">
+                         <input type="hidden" name="id" value="<%= user._id %>">
                          <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
-                         value="<%= userData.nombres %>" required>
+                         value="<%= user.nombres %>" required>
                     </div>
                     <div class="form-group">
                          <label for="apellidos">Apellidos</label>
-                         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= userData.apellidos %>" required>
+                         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>" required>
                     </div>
                     <div class="form-group">
-                         <label for="user_photo" id="label_uphoto">Cambiar foto</label>
-                         <input type="file" name="user_photo" id="user_photo" class="box" 
-                         accept="image/jpeg, image/png" hidden/>
-                         <img class="rounded-circle" src="<%= userData.photo_download_url %>" id="img_uploaded" />
-                    </div>
-                    <div class="form-group">
-                         <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                         <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" 
-                         value="<%= userData.fecha_nacimiento %>" required>
+                         <label for="fechaNacimiento">Fecha de nacimiento</label>
+                         <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" 
+                         value="<%= new Date(user.fechaNacimiento) %>" required>
                     </div>
                     <div class="form-group">
                          <label for="sexo">Sexo</label>
                          <select class="form-control" name="sexo" id="sexo" required>
-                              <option value="Hombre" <%= userData.sexo == "Hombre" ? 'selected' : '' %>>Hombre</option>
-                              <option value="Mujer" <%= userData.sexo == "Mujer" ? 'selected' : '' %>>Mujer</option>
-                              <option value="Otro" <%= userData.sexo == "Otro" ? 'selected' : '' %>>Otro</option>
+                              <option value="Hombre" <%= user.sexo == "Hombre" ? 'selected' : '' %>>Hombre</option>
+                              <option value="Mujer" <%= user.sexo == "Mujer" ? 'selected' : '' %>>Mujer</option>
+                              <option value="Otro" <%= user.sexo == "Otro" ? 'selected' : '' %>>Otro</option>
                          </select>
                     </div>
                     <div class="form-group">
-                         <label for="num_celular">Celular</label>
-                         <input type="text" name="num_celular" id="num_celular" placeholder="Numero celular" class="form-control" value="<%= userData.num_celular %>" required>
+                         <label for="celular">Celular</label>
+                         <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" value="<%= user.celular %>" required>
                     </div>
                     <div class="form-group">
                          <label for="direccion">Direccion</label>
-                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" value="<%= userData.address %>" required>
+                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" value="<%= user.direccion %>" required>
                     </div>
                     <div class="form-group">
-                         <label for="is_admin">Rol</label>
-                         <select class="form-control" name="is_admin" id="is_admin" required>
-                              <option value="false" <%= userData.status == false ? 'selected' : '' %>>Usuario normal</option>
-                              <option value="true" <%= userData.status == true ? 'selected' : '' %>>Administrador</option>
+                         <label for="rol">Rol</label>
+                         <select class="form-control" name="rol" id="rol" required>
+                              <% if(locals.roles){ %>  
+                                   <% for(var i=0; i < roles.length; i++) { %>
+                                        <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
+                                        <% } %>
+                              <% } %>
                          </select>
                     </div>
                     <div class="form-group">
-                         <label for="status">Estatus</label>
-                         <select class="form-control" name="status" id="status" required>
-                              <option value="Activo" <%= userData.status == 'Activo' ? 'selected' : '' %>>Activo</option>
-                              <option value="Inactivo" <%= userData.status == 'Inactivo' ? 'selected' : '' %>>Inactivo</option>
+                         <label for="estatus">Estatus</label>
+                         <select class="form-control" name="estatus" id="estatus" required>
+                              <option value="true" <%= user.activo == true ? 'selected' : '' %>>Activo</option>
+                              <option value="false" <%= user.activo == false ? 'selected' : '' %>>Inactivo</option>
                          </select>
                     </div>
                     <div class="form-group">
