@@ -42,5 +42,4 @@ userCredentialsSchema.statics.comparePassword = async (receivedPassword, userPas
      }
 }
 
-const UserCredential = mongoose.model('user_credentials', userCredentialsSchema);
-module.exports = UserCredential;
+module.exports = mongoose.model('user_credentials', userCredentialsSchema);

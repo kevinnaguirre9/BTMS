@@ -8,7 +8,8 @@ const {
      PORT, 
      HOST,
      HOST_URL,
-     MONGO_URI
+     MONGO_URI,
+     JWT_SECRET
 } = process.env;
 
 assert(PORT, 'Port is required');
@@ -18,5 +19,6 @@ module.exports = {
      port: PORT,
      host: HOST,
      url: HOST_URL,
-     mongoURI: MONGO_URI
+     mongoURI: MONGO_URI,
+     SECRET: JWT_SECRET
 }

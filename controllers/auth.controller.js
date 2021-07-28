@@ -1,5 +1,6 @@
+const config = require('../config');
 const UserCredential = require('../models/UserCredentials');
-const Role = require('../models/Role');
+const jwt = require('jsonwebtoken');
 
 const logIn = async (req, res) => {
      // Check if user exists
@@ -11,9 +12,13 @@ const logIn = async (req, res) => {
      const matchPassword = await UserCredential.comparePassword(req.body.password, userCredentialsFound.password);
 
      if(!matchPassword) return res.status(400).json({message: 'Invalid Password'});
+ 
+     const token = jwt.sign({id: userCredentialsFound._id}, config.SECRET, {
+          expiresIn: 86400 // 24 hours
+     })
 
      console.log(userCredentialsFound);
-     res.json({token: 'new.token'});
+     res.status(200).json({token});
 }
 
 module.exports = {

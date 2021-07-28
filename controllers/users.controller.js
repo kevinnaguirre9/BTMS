@@ -18,6 +18,8 @@ const createUser = async (req, res) => {
           rol: data.rol
      });
 
+     //newUser.imgUrl = url to aws s3
+
      const userSaved = await newUser.save();
 
      // If email and password are sent to server, admin data is saved
