@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const {verifyToken} = require('../middlewares/authJwt')
 const {createUser, getUsers, getUserById, updateUserById, deleteUserById} = require('../controllers/users.controller');
 
 const router = express.Router();
@@ -36,6 +37,18 @@ var upload = multer({
 */
 router.get('/create-user', (req, res) => {
      res.render('add_user', {title: "Register new user"});
+}); 
+
+/**
+ * @description Get user dashboard
+ * @method GET /dashboard
+*/
+router.get('/home', verifyToken, (req, res) => {
+     res.render('dashboard', {
+          title: 'BTMS dashboard',
+          user: req.email,
+          userId: req.userId
+     });
 }); 
 
 

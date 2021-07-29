@@ -3,6 +3,7 @@
 const express = require('express');
 const path = require('path'); 
 const cors = require('cors');
+const cookiePrser = require('cookie-parser');
 const database = require('./database');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended: true}));    //parse request to express
+app.use(cookiePrser());
 
 
 //set view engine

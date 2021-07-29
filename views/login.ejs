@@ -11,14 +11,22 @@
           </div>
           <form action="/auth/login" method="POST">
                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" name="email" autofocus required>
+                    <input type="email" class="form-control" placeholder="Email" name="email" 
+                    autofocus required value= <%= locals.email ? email : '' %>>
                     <!--<small class="form-text text-muted text-left">Register email address</small>-->
                </div>
                <br>
                <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="password" required> 
+                    <input type="password" class="form-control" name="password" placeholder="password" 
+                    required value=<%= locals.password ? password : '' %>>
                </div>
                <br>
+               <% if(locals.message){ %>  
+                    <div class="errors">
+                         <h7><%= message %></h6>
+                    </div>
+                    <br>
+                <% } %>
                <button type="submit" class="btn btn-success">iniciar sesión</button>
           </form>
      </div>

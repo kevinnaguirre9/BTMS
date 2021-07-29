@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {logIn} = require('../controllers/auth.controller')
+const {logIn, logOut} = require('../controllers/auth.controller')
 
 /**
  * @description Render Login Route
@@ -14,7 +14,13 @@ router.get('/login', (req, res) => {
  * @description Login Route
  * @method POST /login
  */
-router.post('/login', logIn)
+router.post('/login', logIn);
+
+/**
+ * @description Logout Route
+ * @method POST /logout
+ */
+ router.get('/logout', logOut);
 
 
 module.exports = {

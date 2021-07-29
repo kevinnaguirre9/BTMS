@@ -44,8 +44,10 @@
           <div class="text-center center-div mt5" id="login">
                <div class="container w-25 border py-5 mt-5">
                     <h3>Bienvenido</h3>
-                    <h5><%= locals.user ? user: "User" %></h4>
-                    <a href="/user/logout">Cerrar sesión</a>
+                    <h5><%= locals.user ? user : "Admin" %></h4>
+                    <a href="/user/<%= userId %>">Perfil</a>
+                    <br>
+                    <a href="/auth/logout">Cerrar sesión</a>
                </div>
           </div>
        </div>
