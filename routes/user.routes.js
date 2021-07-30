@@ -35,7 +35,7 @@ var upload = multer({
  * @description Get Users form
  * @method GET /allUsers
 */
-router.get('/create-user', (req, res) => {
+router.get('/create-user', verifyToken, (req, res) => {
      res.render('add_user', {title: "Register new user"});
 }); 
 
@@ -56,7 +56,7 @@ router.get('/home', verifyToken, (req, res) => {
  * @description Create a new User Route
  * @method POST /
 */
-router.post('/createUser', upload.single('user_photo'), createUser);  
+router.post('/createUser', upload.single('user_photo'), createUser);
 
 /**
  * @description Get All Users Route

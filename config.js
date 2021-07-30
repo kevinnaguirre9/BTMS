@@ -9,7 +9,11 @@ const {
      HOST,
      HOST_URL,
      MONGO_URI,
-     JWT_SECRET
+     JWT_SECRET,
+     AWS_BUCKET_NAME,
+     AWS_BUCKET_REGION,
+     AWS_ACCESS_KEY,
+     AWS_SECRET_KEY
 } = process.env;
 
 assert(PORT, 'Port is required');
@@ -20,5 +24,9 @@ module.exports = {
      host: HOST,
      url: HOST_URL,
      mongoURI: MONGO_URI,
-     SECRET: JWT_SECRET
+     SECRET: JWT_SECRET,
+     AWS_BUCKET_NAME,
+     AWS_BUCKET_REGION,
+     AWS_ACCESS_KEY,
+     AWS_SECRET_KEY
 }

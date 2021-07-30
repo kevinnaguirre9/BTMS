@@ -39,6 +39,10 @@
                          <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>" required>
                     </div>
                     <div class="form-group">
+                         <label for="cedula">Cédula</label>
+                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
+                    </div>
+                    <div class="form-group">
                          <label for="fechaNacimiento">Fecha de nacimiento</label>
                          <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" 
                          value="<%= user.fechaNacimiento.toISOString().slice(0, 10) %>" required>

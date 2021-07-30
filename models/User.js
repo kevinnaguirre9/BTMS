@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
      nombres: String,
      apellidos: String,
+     cedula: {
+          type: String,
+          unique: true 
+     },
      fechaNacimiento: Date,
      direccion: String,
      sexo: String,

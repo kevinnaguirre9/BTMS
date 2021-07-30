@@ -1,15 +1,18 @@
 const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
+const {uploadFile} = require('../awsS3');
 //const fs = require('fs');
 //const path = require('path'); 
 
 const createUser = async (req, res) => {
      const data = req.body;
+     const file = req.file;
      
      const newUser = new User({
           nombres: data.nombres, 
           apellidos: data.apellidos,
+          cedula: data.cedula,
           fechaNacimiento: new Date(data.fechaNacimiento),
           direccion: data.direccion,
           sexo: data.sexo,
@@ -19,7 +22,11 @@ const createUser = async (req, res) => {
           rol: data.rol
      });
 
-     //newUser.imgUrl = url to aws s3
+     //Upload user photo to AWS S3
+     const result = await uploadFile(file, newUser._id);
+     console.log(result);
+
+     newUser.imgUrl = result.Location;
 
      const userSaved = await newUser.save();
 
