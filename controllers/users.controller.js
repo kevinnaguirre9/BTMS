@@ -7,6 +7,9 @@ const {uploadFile} = require('../awsS3');
 
 const createUser = async (req, res) => {
      const data = req.body;
+
+     if(!req.file) return res.status(400).json('No file received or invalid file type');
+     
      const file = req.file;
      
      const newUser = new User({
@@ -24,8 +27,7 @@ const createUser = async (req, res) => {
 
      //Upload user photo to AWS S3
      const result = await uploadFile(file, newUser._id);
-     console.log(result);
-
+     
      newUser.imgUrl = result.Location;
 
      const userSaved = await newUser.save();
@@ -39,10 +41,8 @@ const createUser = async (req, res) => {
           });
 
           const userCredentialsSaved = await newUserCredentials.save();
-          console.log(userCredentialsSaved);
      }
 
-     console.log(userSaved);
      res.json('Creating user');
 }
 

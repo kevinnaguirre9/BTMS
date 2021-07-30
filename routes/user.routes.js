@@ -19,7 +19,7 @@ const fileFilter = (req, file, cb) => {
      if(file.mimetype.startsWith('image')) {
           cb(null, true);
      }else{
-          cb(new Error('Just jpeg or png files are accepted'), false);
+          cb(null, false);
      }
 };
     
