@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const {verifyToken} = require('../middlewares/authJwt')
-const {createUser, getUsers, getUserById, updateUserById, deleteUserById} = require('../controllers/users.controller');
+const {createUser, getUsers, getUserById, getUserImage, updateUserById, deleteUserById} = require('../controllers/users.controller');
 
 const router = express.Router();
 
@@ -68,7 +68,13 @@ router.get('/allUsers', getUsers);
  * @description Get user by ID route
  * @method GET /:userId
 */
-router.get('/:userId', getUserById);  
+router.get('/:userId', verifyToken, getUserById);  
+
+/**
+ * @description Get user photo route
+ * @method GET /:userId
+*/
+router.get('/images/:imgKey', verifyToken, getUserImage); 
 
 /**
  * @description Update user by ID route

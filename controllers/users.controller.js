@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
-const {uploadFile} = require('../awsS3');
+const {uploadFile, getFileStream} = require('../awsS3');
 //const fs = require('fs');
 //const path = require('path'); 
 
@@ -20,7 +20,7 @@ const createUser = async (req, res) => {
           direccion: data.direccion,
           sexo: data.sexo,
           celular: data.celular,
-          imgUrl: '',
+          imgKey: '',
           activo: data.estatus === 'true',
           rol: data.rol
      });
@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
      //Upload user photo to AWS S3
      const result = await uploadFile(file, newUser._id);
      
-     newUser.imgUrl = result.Location;
+     newUser.imgKey = result.key;
 
      const userSaved = await newUser.save();
 
@@ -56,15 +56,33 @@ const getUsers = async (req, res) => {
 
 
 const getUserById = async (req, res) => {
-     const user = await User.findById(req.params.userId);
+     const userId = req.params.userId;
+
+     const user = await User.findById(userId);
      const roles = await Role.find();
-     //console.log(new Date(user.fechaNacimiento).toLocaleDateString())
+     const userCredentials = await UserCredential.findOne({userId: userId});
+
+     if(userCredentials) {
+          return res.status(200).render('update_user', {
+               title: 'Update user', 
+               user,  
+               roles,
+               userCredentials
+          });
+     }  
+
      res.status(200).render('update_user', 
                          {title: 'Update user', 
                          user,  
                          roles});
      
-     //res.status(200).json(user);
+}
+
+const getUserImage = async (req, res) => {
+     const imgKey = req.params.imgKey;
+     const readStream = getFileStream(imgKey);
+     
+     readStream.pipe(res);
 }
 
 
@@ -81,6 +99,7 @@ module.exports = {
      createUser,
      getUsers,
      getUserById,
+     getUserImage,
      updateUserById,
      deleteUserById
 }

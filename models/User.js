@@ -13,7 +13,7 @@ const userSchema = new Schema({
      direccion: String,
      sexo: String,
      celular: String,
-     imgUrl: String,
+     imgKey: String,
      activo: Boolean,
      rol: {
           type: Schema.Types.ObjectId,

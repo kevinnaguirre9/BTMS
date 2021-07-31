@@ -26,8 +26,9 @@
           </div>
 
            <!-- Form handling -->
-           <form method="POST" id="update_user" enctype="multipart/form-data">   
+           <form method="POST" id="user_info" enctype="multipart/form-data">   
                <div>
+                    <h4>Información del usuario</h4>
                     <div class="form-group">    
                          <label for="nombres">Nombres</label>
                          <input type="hidden" name="id" value="<%= user._id %>">
@@ -41,6 +42,12 @@
                     <div class="form-group">
                          <label for="cedula">Cédula</label>
                          <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
+                    </div>
+                    <div class="form-group">
+                         <label for="user_photo" id="label_uphoto">Cambiar foto</label>
+                         <input type="file" name="user_photo" id="user_photo" class="box" 
+                         accept="image/jpeg, image/png" hidden/>
+                         <img class="rounded-circle" id="img_uploaded" src="/user/images/<%= user.imgKey %>"/>
                     </div>
                     <div class="form-group">
                          <label for="fechaNacimiento">Fecha de nacimiento</label>
@@ -66,10 +73,8 @@
                     <div class="form-group">
                          <label for="rol">Rol</label>
                          <select class="form-control" name="rol" id="rol" required>
-                              <% if(locals.roles){ %>  
-                                   <% for(var i=0; i < roles.length; i++) { %>
-                                        <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
-                                        <% } %>
+                              <% for(var i=0; i < roles.length; i++) { %>
+                                   <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
                               <% } %>
                          </select>
                     </div>
@@ -84,8 +89,50 @@
                          <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
                </div>
-               
           </form>
+
+          <% if(locals.userCredentials){ %>  
+               <form method="POST" id="user_email" enctype="multipart/form-data">   
+                    <div>
+                         <div>
+                              <h4>Información de Cuenta</h4>
+                         </div>
+                         <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="email" name="email" id="email" placeholder="example@gmail.com" class="form-control" value="<%= userCredentials.email %> " required>
+                         </div>
+                         <div class="form-group">
+                              <button type="submit" class="btn btn-success">Actualizar email</button>
+                         </div>
+                    </div>
+               </form>
+               <br>
+               <form method="POST" id="user_password" enctype="multipart/form-data">   
+                    <div>
+                         <div>
+                              <h4>Cambiar contraseña</h4>
+                         </div>
+                         <div class="form-group">    
+                              <label for="oldPasswd">Contraseña antigua</label>
+                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="text" name="oldPasswd" id="oldPasswd" class="form-control" required>
+                         </div>
+                         <div class="form-group">
+                              <label for="newPasswd">Nueva contraseña</label>
+                              <input type="text" name="newPasswd" id="newPasswd" class="form-control" required>
+                         </div>
+                         <div class="form-group">
+                              <label for="confPasswd">Confirmar nueva contraseña</label>
+                              <input type="text" name="confPasswd" id="confPasswd" class="form-control" required>
+                         </div>
+                         <div class="form-group">
+                              <button type="submit" class="btn btn-success">Actualizar contraseña</button>
+                         </div>
+                    </div>
+               </form>
+          <% } %>
+
           <!-- /Form handling -->
           
      </div>
