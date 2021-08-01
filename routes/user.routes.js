@@ -1,8 +1,8 @@
 const express = require('express');
 const multer = require('multer');
-const {verifyToken} = require('../middlewares/authJwt');
+const {home, create_user} = require('../services/render');
+const {authJwt, verifyUser} = require('../middlewares/index');
 const {createUser, getUsers, getUserById, getUserImage, updateUserProfile, updateUserAccount, deleteUserById} = require('../controllers/users.controller');
-const { json } = require('express');
 
 const router = express.Router();
 
@@ -37,64 +37,67 @@ var upload = multer({
  * @description Get Users form
  * @method GET /allUsers
 */
-router.get('/create-user', verifyToken, (req, res) => {
-     res.render('create_user', {title: "Register new user"});
-}); 
+router.get('/create-user', authJwt.verifyToken, create_user); 
 
 /**
- * @description Get user dashboard
+ * @description Get user dashboard home
  * @method GET /dashboard
 */
-router.get('/home', verifyToken, (req, res) => {
-     res.render('dashboard', {
-          title: 'BTMS dashboard',
-          user: req.email,
-          userId: req.userId
-     });
-}); 
+router.get('/home', authJwt.verifyToken, home); 
 
 
 /**
  * @description Create a new User Route
  * @method POST /
 */
-router.post('/createUser', upload.single('user_photo'), createUser);
+router.post('/createUser', [
+     authJwt.verifyToken, 
+     verifyUser.checkDuplicateIdentityCard,
+     verifyUser.checkDuplicateEmail
+], upload.single('user_photo'), createUser);
 
 /**
  * @description Get All Users Route
  * @method GET /allUsers
 */
-router.get('/allUsers', getUsers);  
+router.get('/allUsers', authJwt.verifyToken, getUsers);  
 
 /**
  * @description Get user by ID route
  * @method GET /:userId
 */
-router.get('/:userId', verifyToken, getUserById);  
+router.get('/:userId', authJwt.verifyToken, getUserById);  
 
 /**
  * @description Get user photo route
  * @method GET /:userId
 */
-router.get('/images/:imgKey', verifyToken, getUserImage); 
+router.get('/images/:imgKey', authJwt.verifyToken, getUserImage); 
 
 /**
  * @description Update user profile route
  * @method PUT /getUser/:id
 */
-router.put('/profile/:userId', updateUserProfile);  
+router.put('/profile/:userId', [
+     authJwt.verifyToken, 
+     verifyUser.checkDuplicateIdentityCard,
+     verifyUser.checkDuplicateEmail
+], upload.single('user_photo'), updateUserProfile);  
 
 /**
  * @description Update user account route
  * @method PUT /getUser/:id
 */
-router.put('/account/:userId', updateUserAccount);  
+router.put('/account/:userId', [
+     authJwt.verifyToken, 
+     verifyUser.checkDuplicateEmail
+], updateUserAccount);  
 
 /**
  * @description Delete user by ID route
  * @method DELETE /:userId
 */
-router.delete('/:userId', deleteUserById);  
+router.delete('/:userId', authJwt.verifyToken, deleteUserById);  
 
 
 module.exports = {

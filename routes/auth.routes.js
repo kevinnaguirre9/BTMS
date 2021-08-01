@@ -1,26 +1,27 @@
 const express = require('express');
+const {logIn, logOut} = require('../controllers/auth.controller');
+const {login} = require('../services/render');
+const {authJwt} = require('../middlewares/index');
+
 const router = express.Router();
-const {logIn, logOut} = require('../controllers/auth.controller')
 
 /**
  * @description Render Login Route
  * @method GET /login
  */
-router.get('/login', (req, res) => {
-     res.render('login', {title: "BTM System"});
-}); 
+router.get('/login', login); 
 
 /**
- * @description Login Route
+ * @description LogIn Route
  * @method POST /login
  */
 router.post('/login', logIn);
 
 /**
- * @description Logout Route
+ * @description LogOut Route
  * @method POST /logout
  */
- router.get('/logout', logOut);
+ router.get('/logout', authJwt.verifyToken, logOut);
 
 
 module.exports = {
