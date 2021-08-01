@@ -2,14 +2,10 @@ const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
 const {uploadFile, getFileStream} = require('../awsS3');
-//const fs = require('fs');
-//const path = require('path'); 
 
 const createUser = async (req, res) => {
      const data = req.body;
-
-     if(!req.file) return res.status(400).json('No file received or invalid file type');
-     
+   
      const file = req.file;
      
      const newUser = new User({
@@ -49,8 +45,8 @@ const createUser = async (req, res) => {
 
 
 const getUsers = async (req, res) => {
-     const users = await User.find().limit(10);
-     res.json(users);
+     const users = await User.find().sort({ createdAt: -1 }).limit(2);
+     res.render('users', {title: 'Users', users})
 }
 
 
@@ -87,7 +83,11 @@ const getUserImage = async (req, res) => {
 
 
 
-const updateUserById = async (req, res) => {
+const updateUserProfile = async (req, res) => {
+     
+}
+
+const updateUserAccount = async (req, res) => {
      
 }
 
@@ -100,6 +100,7 @@ module.exports = {
      getUsers,
      getUserById,
      getUserImage,
-     updateUserById,
+     updateUserProfile,
+     updateUserAccount,
      deleteUserById
 }

@@ -33,11 +33,6 @@ $(document).ready(function(){
   });
 });
 
-$("#add_user").submit(function(event){
-     alert("Data inserted successfully");
-     console.log("Data inserted successfully");
-})
-
 
 $("#update_user").submit(function(event){
      event.preventDefault();

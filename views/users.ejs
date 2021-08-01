@@ -25,7 +25,9 @@
                     <span class="text-gradient">Nuevo usuario <i class="fas fa-user-plus"></i></span>
                </a>
           </div>
-          <br>
+          <div class="form-title text-center">
+               <h3 class="text-dark">Últimos usuarios agregados</h3>
+          </div>
           
           <!-- Form handling -->
           <form>   
@@ -35,12 +37,12 @@
                               <th scope="col">#</th>
                               <th scope="col">Nombres</th>
                               <th scope="col">Apellidos</th>
-                              <th scope="col">Born data</th>
+                              <th scope="col">Nacimiento</th>
+                              <th scope="col">Direccion</th>
                               <th scope="col">Sexo</th>
                               <th scope="col">Celular</th>
-                              <th scope="col">Direccion</th>
                               <!-- <th scope="col">Status</th> -->
-                              <th scope="col">Operaciones</th>
+                              <th scope="col">Acciones</th>
                          </tr>
                     </thead>
                     <tbody>
@@ -51,13 +53,13 @@
                                         <th scope="row"><%= i+1 %></th>
                                         <td><%= users[i].nombres %></td>
                                         <td><%= users[i].apellidos %></td>
-                                        <td><%= users[i].fecha_nacimiento %></td>
-                                        <td><%= users[i].sexo %></td>
-                                        <td><%= users[i].num_celular %></td>
+                                        <td><%= users[i].fechaNacimiento.toISOString().slice(0, 10) %></td>
                                         <td><%= users[i].direccion %></td>
+                                        <td><%= users[i].sexo %></td>
+                                        <td><%= users[i].celular %></td>
                                         <!-- <td><%= users[i].status %></td> -->
                                         <td>
-                                             <a href="/user/getUser/<%= users[i].id %>" class="btn border-shadow update">
+                                             <a href="/user/<%= users[i]._id %>" class="btn border-shadow update">
                                                   <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                                              </a>
                                         </td>

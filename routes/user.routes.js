@@ -1,7 +1,8 @@
 const express = require('express');
 const multer = require('multer');
-const {verifyToken} = require('../middlewares/authJwt')
-const {createUser, getUsers, getUserById, getUserImage, updateUserById, deleteUserById} = require('../controllers/users.controller');
+const {verifyToken} = require('../middlewares/authJwt');
+const {createUser, getUsers, getUserById, getUserImage, updateUserProfile, updateUserAccount, deleteUserById} = require('../controllers/users.controller');
+const { json } = require('express');
 
 const router = express.Router();
 
@@ -15,12 +16,13 @@ var storage = multer.diskStorage({
 });
    
 const fileFilter = (req, file, cb) => {
-     // reject a file
-     if(file.mimetype.startsWith('image')) {
-          cb(null, true);
-     }else{
-          cb(null, false);
+     if(!file.mimetype.startsWith('image')) {
+          return cb(JSON.stringify({
+               success: false,
+               message: 'Invalid file type. Only jpg, png image files are allowed.'
+           }), false);  // reject a file if it's not an image
      }
+     cb(null, true);
 };
     
 var upload = multer({
@@ -36,7 +38,7 @@ var upload = multer({
  * @method GET /allUsers
 */
 router.get('/create-user', verifyToken, (req, res) => {
-     res.render('add_user', {title: "Register new user"});
+     res.render('create_user', {title: "Register new user"});
 }); 
 
 /**
@@ -77,10 +79,16 @@ router.get('/:userId', verifyToken, getUserById);
 router.get('/images/:imgKey', verifyToken, getUserImage); 
 
 /**
- * @description Update user by ID route
+ * @description Update user profile route
  * @method PUT /getUser/:id
 */
-router.put('/:userId', updateUserById);  
+router.put('/profile/:userId', updateUserProfile);  
+
+/**
+ * @description Update user account route
+ * @method PUT /getUser/:id
+*/
+router.put('/account/:userId', updateUserAccount);  
 
 /**
  * @description Delete user by ID route
