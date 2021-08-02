@@ -1,5 +1,6 @@
 const config = require('./config');
 const fs = require('fs');
+const path = require('path');
 const S3 = require('aws-sdk/clients/s3');
 
 const bucketName = config.AWS_BUCKET_NAME;
@@ -19,15 +20,14 @@ function uploadFile(file, file_name) {
      const fileStream = fs.createReadStream(file.path);
 
      //get file extension and file name
-     let file_ext = file.originalname.split('.');
-     file_ext = `.${file_ext[file_ext.length-1]}`;     
+     const ext = path.extname(file.originalname).toLowerCase();   
 
-     const fname = `${file_name.toString()}${file_ext}`;
+     const fileKey = `${file_name.toString()}${ext}`;
 
      const uploadParams = {
           Bucket: bucketName,
           Body: fileStream,
-          Key: fname
+          Key: fileKey
      };
 
      fs.unlinkSync(file.path); // delete file from the server

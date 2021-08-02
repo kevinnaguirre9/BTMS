@@ -60,7 +60,7 @@ $("#update_user").submit(function(event){
 
 
 // User profile photo
-$("#user_photo").change(function(e) {
+$("#userPhoto").change(function(e) {
      for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
           var file = e.originalEvent.srcElement.files[i];
           
@@ -77,7 +77,7 @@ $("#user_photo").change(function(e) {
                img.src = reader.result;
           }
           reader.readAsDataURL(file);
-          $("#user_photo").after(img);
+          $("#userPhoto").after(img);
      }
  })
 

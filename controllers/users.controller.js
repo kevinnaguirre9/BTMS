@@ -5,7 +5,6 @@ const {uploadFile, getFileStream} = require('../awsS3');
 
 const createUser = async (req, res) => {
      const data = req.body;
-   
      const file = req.file;
      
      const newUser = new User({
@@ -26,7 +25,7 @@ const createUser = async (req, res) => {
      
      newUser.imgKey = result.key;
 
-     const userSaved = await newUser.save();
+     await newUser.save();
 
      // If email and password are sent to server, admin data is saved
      if(data.email && data.password) {
@@ -36,10 +35,10 @@ const createUser = async (req, res) => {
                userId: newUser._id
           });
 
-          const userCredentialsSaved = await newUserCredentials.save();
+          await newUserCredentials.save();
      }
 
-     res.json('Creating user');
+     res.redirect('/user/allUsers');
 }
 
 
