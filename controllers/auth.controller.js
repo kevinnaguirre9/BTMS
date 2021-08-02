@@ -22,9 +22,9 @@ const logIn = async (req, res) => {
           message: 'Contraseña incorrecta'
      });
      
-     const maxAge = 60 * 60 * 24;
+     const maxAge = 60 * 60 * 8;
      const token = jwt.sign({id: userCredentialsFound.userId}, config.SECRET, {
-          expiresIn: maxAge // 24 hours valid token
+          expiresIn: maxAge // 8 hours valid token
      })
 
      res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000}); //one day valid token

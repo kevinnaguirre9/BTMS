@@ -96,7 +96,17 @@ const updateUserAccount = async (req, res) => {
 }
 
 const deleteUserById = async (req, res) => {
-     
+     const userId = req.params.userId;
+
+     const userCredentials = await UserCredential.findOne({userId: userId});
+     console.log
+
+     if(userCredentials) {
+          await UserCredential.deleteOne({userId: userId});
+          await User.findByIdAndDelete(userId);
+     }
+
+     await User.findByIdAndDelete(userId);
 }
 
 module.exports = {

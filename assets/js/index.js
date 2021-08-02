@@ -64,6 +64,24 @@ $("#update_user").submit(function(event){
      $.ajax(request);
 })
 
+// Delete user 
+if(window.location.pathname == '/user/allUsers') {
+     $ondelete = $(".table tbody td a.delete");
+     $ondelete.click(function(){
+          var id = $(this).attr("data-id");
+
+          var request = {
+               "url": `http://localhost:4000/user/${id}`,
+               "method": "DELETE"
+          }
+
+          if(confirm("¿Está seguro de que desea eliminar este usuario?")) {
+               $.ajax(request);
+               location.reload();
+          }
+     })
+}
+
 
 // User profile photo
 $("#userPhoto").change(function(e) {
