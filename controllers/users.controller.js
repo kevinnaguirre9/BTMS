@@ -77,6 +77,11 @@ const getUserImage = async (req, res) => {
      const imgKey = req.params.imgKey;
      const readStream = getFileStream(imgKey);
      
+     // catch errors
+     readStream.on('error',(e) => {
+          res.status(404).render('errors/404', {title: "Error 404"});
+     });
+     
      readStream.pipe(res);
 }
 
