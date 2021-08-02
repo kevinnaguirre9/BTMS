@@ -1,39 +1,45 @@
 // Show email and password div based on role option selected
 $(document).ready(function(){
-  $('#rol').on('change', function() {
-    if ( $(this).children("option:selected").text() === 'Administrador') {
-      //$("#adminCredentials").show();
-      if(!document.getElementById('adminCredentials')){
-        var div = document.createElement("div");
-        div.className = "form-group";
-        div.id = "adminCredentials";
-        var emailInput = document.createElement("input");
-        var passwordInput = document.createElement("input");
-        emailInput.type = "email";
-        emailInput.name = "email";
-        emailInput.id = "email";
-        emailInput.placeholder = "Email"
-        emailInput.className = "form-control";
-        passwordInput.type = "password";
-        passwordInput.name = "password";
-        passwordInput.id = "password";
-        passwordInput.placeholder = "Password"
-        passwordInput.className = "form-control";
-        div.appendChild(emailInput);
-        div.appendChild(passwordInput);
-        $("#roles").after(div);
-      }
-    }
-    else {
-      if(document.getElementById('adminCredentials')){
-        var el = document.getElementById('adminCredentials');
-        el.remove();   
-      }
-    }
-  });
+     $('#rol').on('change', function() {
+          if ( $(this).children("option:selected").text() === 'Administrador') {
+               var divEmail = document.getElementById('input_email');
+               var divPasswd = document.getElementById('input_password');
+               var emailInput = document.createElement("input");
+               var passwdInput = document.createElement("input");
+               emailInput.type = "email";
+               emailInput.name = "email";
+               emailInput.id = "email";
+               emailInput.placeholder = "Email"
+               emailInput.className = "form-control";
+               emailInput.required = true;
+               passwdInput.type = "password";
+               passwdInput.name = "password";
+               passwdInput.id = "password";
+               passwdInput.placeholder = "Password"
+               passwdInput.className = "form-control";
+               passwdInput.required = true;
+               divEmail.appendChild(emailInput);
+               divPasswd.appendChild(passwdInput);
+               $("#adminCredentials").show();   
+          }else {
+               if(document.getElementById('email') || document.getElementById('password')){
+                    const data = ['email', 'password'];
+                    data.forEach((inputName) => {
+                         let input = document.getElementById(inputName);
+                         input.remove();   
+                    });             
+               }
+               $("#adminCredentials").hide();   
+          }
+     });
 });
 
 
+//<input type="email" name="email" id="email" placeholder="example@gmail.com" class="form-control" required>
+//<input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+
+
+// Update user 
 $("#update_user").submit(function(event){
      event.preventDefault();
 

@@ -179,4 +179,8 @@ a {
   margin-top: 1rem;
 }
 
+#adminCredentials {
+  display: none;
+}
+
 
