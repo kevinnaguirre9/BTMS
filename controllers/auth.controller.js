@@ -27,7 +27,7 @@ const logIn = async (req, res) => {
           expiresIn: maxAge // 8 hours valid token
      })
 
-     res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000}); //one day valid token
+     res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000}); //8 hours valid token
 
      //console.log(userCredentialsFound);
      res.status(201).redirect('/user/home');

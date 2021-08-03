@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
-const {uploadFile, getFileStream} = require('../awsS3');
+const {uploadFile, getFileStream, deleteFile} = require('../awsS3');
 
 const createUser = async (req, res) => {
      const data = req.body;
@@ -99,14 +99,18 @@ const deleteUserById = async (req, res) => {
      const userId = req.params.userId;
 
      const userCredentials = await UserCredential.findOne({userId: userId});
-     console.log
 
-     if(userCredentials) {
+     if(userCredentials) {    // delete credentials if user is an admin
           await UserCredential.deleteOne({userId: userId});
-          await User.findByIdAndDelete(userId);
      }
 
-     await User.findByIdAndDelete(userId);
+     const userDeleted = await User.findByIdAndDelete(userId);   // delete user data
+     
+     // Delete user image from AWS S3
+     const deletedFile = await deleteFile(userDeleted.imgKey);
+     console.log(deletedFile);
+
+     return res.status(200).send({result: 'redirect', url:'/user/allUsers'});
 }
 
 module.exports = {

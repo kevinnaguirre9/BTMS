@@ -34,11 +34,31 @@ $(document).ready(function(){
      });
 });
 
+// Show User image uploaded
+$("#userPhoto").change(function(e) {
+     for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+          var file = e.originalEvent.srcElement.files[i];
+          
+          if(document.getElementById('img_uploaded')){
+               var el = document.getElementById('img_uploaded');
+               el.remove();   
+          }
 
-//<input type="email" name="email" id="email" placeholder="example@gmail.com" class="form-control" required>
-//<input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+          var img = document.createElement("img");
+          img.id = "img_uploaded";
+          img.className = "rounded-circle";
+          var reader = new FileReader();
+          reader.onloadend = function() {
+               img.src = reader.result;
+          }
+          reader.readAsDataURL(file);
+          $("#userPhoto").after(img);
+     }
+ })
 
 
+
+/*
 // Update user 
 $("#update_user").submit(function(event){
      event.preventDefault();
@@ -63,8 +83,9 @@ $("#update_user").submit(function(event){
 
      $.ajax(request);
 })
+*/
 
-// Delete user 
+// Delete user from users table
 if(window.location.pathname == '/user/allUsers') {
      $ondelete = $(".table tbody td a.delete");
      $ondelete.click(function(){
@@ -72,37 +93,32 @@ if(window.location.pathname == '/user/allUsers') {
 
           var request = {
                "url": `http://localhost:4000/user/${id}`,
-               "method": "DELETE"
+               "method": "DELETE",
+               "success": function(response) {
+                    if (response.result == 'redirect') {
+                         window.location.replace(response.url);
+                    }
+               }
           }
 
-          if(confirm("¿Está seguro de que desea eliminar este usuario?")) {
-               $.ajax(request);
-               location.reload();
-          }
-     })
+          Swal.fire({
+               title: '¿Está seguro?',
+               text: "No será capáz de revertir esto",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Sí, eliminar!'
+             }).then((result) => {
+                  if (result.isConfirmed) {
+                       $.ajax(request);
+                    }
+             });
+
+     });
 }
 
 
-// User profile photo
-$("#userPhoto").change(function(e) {
-     for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-          var file = e.originalEvent.srcElement.files[i];
-          
-          if(document.getElementById('img_uploaded')){
-               var el = document.getElementById('img_uploaded');
-               el.remove();   
-          }
 
-          var img = document.createElement("img");
-          img.id = "img_uploaded";
-          img.className = "rounded-circle";
-          var reader = new FileReader();
-          reader.onloadend = function() {
-               img.src = reader.result;
-          }
-          reader.readAsDataURL(file);
-          $("#userPhoto").after(img);
-     }
- })
 
  
