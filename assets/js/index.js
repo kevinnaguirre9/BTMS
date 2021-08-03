@@ -54,10 +54,9 @@ $("#userPhoto").change(function(e) {
           reader.readAsDataURL(file);
           $("#userPhoto").after(img);
      }
- })
+})
 
-
-
+ 
 /*
 // Update user 
 $("#update_user").submit(function(event){
@@ -94,8 +93,15 @@ if(window.location.pathname == '/user/allUsers') {
           var request = {
                "url": `http://localhost:4000/user/${id}`,
                "method": "DELETE",
-               "success": function(response) {
+               "success": async (response) => {
                     if (response.result == 'redirect') {
+                         await Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: `Usuario eliminado!`,
+                              showConfirmButton: false,
+                              timer: 1500
+                         });
                          window.location.replace(response.url);
                     }
                }
@@ -109,12 +115,11 @@ if(window.location.pathname == '/user/allUsers') {
                confirmButtonColor: '#3085d6',
                cancelButtonColor: '#d33',
                confirmButtonText: 'Sí, eliminar!'
-             }).then((result) => {
-                  if (result.isConfirmed) {
-                       $.ajax(request);
-                    }
-             });
-
+          }).then((result) => {
+               if (result.isConfirmed) {
+                    $.ajax(request);
+               }
+          });
      });
 }
 
