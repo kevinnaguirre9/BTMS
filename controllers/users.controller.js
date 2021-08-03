@@ -109,7 +109,7 @@ const deleteUserById = async (req, res) => {
      // Delete user image from AWS S3
      await deleteFile(userDeleted.imgKey);
 
-     return res.status(200).send({result: 'redirect', url:'/user/allUsers?success=true&message=Usuario eliminado'});
+     return res.status(200).send({result: 'redirect', url:'/user/allUsers'});
 }
 
 module.exports = {
