@@ -38,7 +38,7 @@ const createUser = async (req, res) => {
           await newUserCredentials.save();
      }
 
-     res.redirect('/user/allUsers');
+     res.redirect('/user/allUsers?success=true&message=Usuario agregado');
 }
 
 
@@ -107,10 +107,9 @@ const deleteUserById = async (req, res) => {
      const userDeleted = await User.findByIdAndDelete(userId);   // delete user data
      
      // Delete user image from AWS S3
-     const deletedFile = await deleteFile(userDeleted.imgKey);
-     console.log(deletedFile);
+     await deleteFile(userDeleted.imgKey);
 
-     return res.status(200).send({result: 'redirect', url:'/user/allUsers'});
+     return res.status(200).send({result: 'redirect', url:'/user/allUsers?success=true&message=Usuario eliminado'});
 }
 
 module.exports = {
