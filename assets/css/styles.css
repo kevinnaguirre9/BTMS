@@ -51,13 +51,12 @@ body{
 .container-log:before{
   content: "";
   position: absolute;
-  height: 2000px;
+  height: 2150px;
   width: 2000px;
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
   background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
-  transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
  
@@ -87,7 +86,7 @@ body{
   border-radius: 50px;
   display: grid;
   grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
+  padding: 0 0.1rem;
 
 }
 .input-field i{
@@ -106,6 +105,9 @@ body{
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  border-top-right-radius:50px ;
+  border-bottom-right-radius:50px ;
+  
 
 }
 
@@ -175,21 +177,13 @@ body{
   padding: 0.7rem 0;
 }
 
-.left-panel {
-  pointer-events: all;
-  padding: 3rem 17% 2rem 12%;
-}
+
 .panel .content {
   color: #fff;
   
 }
  .image {
   width: 800px;
-  transform: translateY(-10px);
- 
-  
-  
- 
 }
 .container-log.signin {
   left: 25%;
