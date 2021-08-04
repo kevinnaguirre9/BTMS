@@ -29,8 +29,6 @@ function uploadFile(file, file_name) {
           Body: fileStream,
           Key: fileKey
      };
-
-     fs.unlinkSync(file.path); // delete file from the server
      
      return s3.upload(uploadParams).promise()
 }

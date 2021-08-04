@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
 const {uploadFile, getFileStream, deleteFile} = require('../awsS3');
+const fs = require('fs');
 
 const createUser = async (req, res) => {
      const data = req.body;
@@ -38,7 +39,9 @@ const createUser = async (req, res) => {
           await newUserCredentials.save();
      }
 
-     res.redirect('/user/allUsers?success=true&message=Usuario agregado');
+     fs.unlinkSync(file.path); // delete file from the server
+
+     res.redirect('/user/create-user?success=true&message=Usuario agregado');
 }
 
 
