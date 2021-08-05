@@ -6,11 +6,13 @@ const Schema = mongoose.Schema;
 const userCredentialsSchema = new Schema({
      email: {
           type: String,
-          unique: true 
+          required: true,
+          unique: true,
+          lowercase: true
      },
      password: {
           type: String,
-          required: true
+          required: true,
      },
      userId: {
           type: Schema.Types.ObjectId,

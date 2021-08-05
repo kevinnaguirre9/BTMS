@@ -25,7 +25,7 @@ router.get('/home', authJwt.verifyToken, home);
 router.post('/createUser', [
      authJwt.verifyToken, 
      multerUpload.imgUpload,
-     verifyUser.checkDuplicateIdentityCard,
+     verifyUser.checkDuplicatePublicData,
      verifyUser.checkDuplicateEmail,
 ], createUser);
 
@@ -54,7 +54,7 @@ router.get('/images/:imgKey', authJwt.verifyToken, getUserImage);
 router.put('/profile/:userId', [
      authJwt.verifyToken, 
      multerUpload.imgUpload,
-     verifyUser.checkDuplicateIdentityCard,
+     verifyUser.checkDuplicatePublicData,
      verifyUser.checkDuplicateEmail
 ], updateUserProfile);  
 
