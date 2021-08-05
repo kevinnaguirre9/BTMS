@@ -56,6 +56,42 @@ $("#userPhoto").change(function(e) {
      }
 })
 
+
+// Create user
+$("#add_user").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     
+     var request = {
+          "url": `http://localhost:4000/user/createUser`,
+          "method": "POST",
+          "data": data,
+          "processData": false,
+          "contentType": false,
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    await Swal.fire({
+                         position: 'center',
+                         icon: 'success',
+                         title: `Usuario agregado!`,
+                         showConfirmButton: false,
+                         timer: 1500
+                    });
+                    window.location.replace(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
+                         title: 'Oops...',
+                         text: response.message
+                    });
+
+               }
+          }
+     }
+
+     $.ajax(request);
+})
  
 /*
 // Update user 
@@ -94,7 +130,7 @@ if(window.location.pathname == '/user/allUsers') {
                "url": `http://localhost:4000/user/${id}`,
                "method": "DELETE",
                "success": async (response) => {
-                    if (response.result == 'redirect') {
+                    if (response.status == 'success') {
                          await Swal.fire({
                               position: 'center',
                               icon: 'success',

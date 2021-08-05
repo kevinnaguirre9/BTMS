@@ -41,7 +41,7 @@ const createUser = async (req, res) => {
 
      fs.unlinkSync(file.path); // delete file from the server
 
-     res.redirect('/user/create-user?success=true&message=Usuario agregado');
+     res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
 
 
@@ -112,7 +112,7 @@ const deleteUserById = async (req, res) => {
      // Delete user image from AWS S3
      await deleteFile(userDeleted.imgKey);
 
-     return res.status(200).send({result: 'redirect', url:'/user/allUsers'});
+     res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
 
 module.exports = {

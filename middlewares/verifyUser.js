@@ -13,12 +13,12 @@ const checkDuplicatePublicData = async (req, res, next) => {
           if(req.file) {
                fs.unlinkSync(req.file.path); // delete file from the server
           }
-          return res.status(400).json({message: `Usuario con cédula ${data.cedula} ya registrado`});
+          return res.send({status: 'error', message: `Usuario con cédula ${data.cedula} ya registrado`});
      } else if(phoneExists) {
           if(req.file) {
                fs.unlinkSync(req.file.path); // delete file from the server
           }
-          return res.status(400).json({message: `Usuario con celular ${data.celular} ya registrado`});
+          return res.send({status: 'error', message: `Usuario con celular ${data.celular} ya registrado`});
      }
 
      next();
@@ -32,7 +32,7 @@ const checkDuplicateEmail = async (req, res, next) => {
                if(req.file) {
                     fs.unlinkSync(req.file.path); // delete file from the server
                }
-               return res.status(400).json({message: 'Email en uso'});
+               return res.status(400).send({message: 'Email en uso'});
           }
      }
 
