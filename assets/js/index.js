@@ -1,7 +1,7 @@
-// Show email and password div based on role option selected
+// Show email and password div based on role option selected in create-user form
 $(document).ready(function(){
      $('#rol').on('change', function() {
-          if ( $(this).children("option:selected").text() === 'Administrador') {
+          if ($(this).children("option:selected").text() === 'Administrador' && !document.getElementById('user_email')) {
                var divEmail = document.getElementById('input_email');
                var divPasswd = document.getElementById('input_password');
                var emailInput = document.createElement("input");
@@ -33,6 +33,29 @@ $(document).ready(function(){
           }
      });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Show User image uploaded
 $("#userPhoto").change(function(e) {

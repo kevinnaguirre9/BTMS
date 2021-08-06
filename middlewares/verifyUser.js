@@ -32,7 +32,7 @@ const checkDuplicateEmail = async (req, res, next) => {
                if(req.file) {
                     fs.unlinkSync(req.file.path); // delete file from the server
                }
-               return res.status(400).send({message: 'Email en uso'});
+               return res.send({status: 'error', message: 'Email en uso'});
           }
      }
 

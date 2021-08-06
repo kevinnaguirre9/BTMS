@@ -6,7 +6,7 @@ exports.imgUpload = (req, res, next) => {
                const allowedMimes = ['image/png', 'image/jpg', 'image/jpeg'];
 
                if(!allowedMimes.includes(file.mimetype)) {// reject a file if it's not an image
-                    res.send({message: 'Invalid file type. Only jpg and png image files are supported.'});
+                    res.send({status: 'error', message: 'Sólo imágenes son aceptadas.'})
                     return false;
                }
                
@@ -25,7 +25,7 @@ exports.imgUpload = (req, res, next) => {
         
      upload(req, res, function(err) {
           if(err) {
-               return res.end("Error uploading the file.");
+               return res.send({status: 'error', message: err});
           }
           next();
      });

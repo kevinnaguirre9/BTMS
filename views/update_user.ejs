@@ -71,6 +71,13 @@
                          <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" value="<%= user.direccion %>" required>
                     </div>
                     <div class="form-group">
+                         <label for="estatus">Estatus</label>
+                         <select class="form-control" name="estatus" id="estatus" required>
+                              <option value="true" <%= user.activo == true ? 'selected' : '' %>>Activo</option>
+                              <option value="false" <%= user.activo == false ? 'selected' : '' %>>Inactivo</option>
+                         </select>
+                    </div>
+                    <div class="form-group">
                          <label for="rol">Rol</label>
                          <select class="form-control" name="rol" id="rol" required>
                               <% for(var i=0; i < roles.length; i++) { %>
@@ -78,13 +85,14 @@
                               <% } %>
                          </select>
                     </div>
-                    <div class="form-group">
-                         <label for="estatus">Estatus</label>
-                         <select class="form-control" name="estatus" id="estatus" required>
-                              <option value="true" <%= user.activo == true ? 'selected' : '' %>>Activo</option>
-                              <option value="false" <%= user.activo == false ? 'selected' : '' %>>Inactivo</option>
-                         </select>
-                    </div>
+                    <div class="form-group" id="adminCredentials">
+                         <br>
+                         <div>
+                              <h5>Provea email y contraseña para el Administrador</h5>
+                         </div>
+                         <div class="form-group" id="input_email"></div>
+                         <div class="form-group" id="input_password"></div>
+                    </div>               
                     <div class="form-group">
                          <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
@@ -99,7 +107,7 @@
                          </div>
                          <div class="form-group">
                               <label for="userEmail">Email</label>
-                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="hidden" name="ueId" value="<%= user._id %>">
                               <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" class="form-control" value="<%= userCredentials.email %> " required>
                          </div>
                          <div class="form-group">
@@ -115,7 +123,7 @@
                          </div>
                          <div class="form-group">    
                               <label for="oldPasswd">Contraseña antigua</label>
-                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="hidden" name="ucId" value="<%= user._id %>">
                               <input type="text" name="oldPasswd" id="oldPasswd" class="form-control" required>
                          </div>
                          <div class="form-group">
