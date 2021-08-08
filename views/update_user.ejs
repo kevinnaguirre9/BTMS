@@ -32,6 +32,7 @@
                     <div class="form-group">    
                          <label for="nombres">Nombres</label>
                          <input type="hidden" name="id" value="<%= user._id %>">
+                         <input type="hidden" name="imgKey" value="<%= user.imgKey %>">
                          <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
                          value="<%= user.nombres %>" required>
                     </div>
@@ -44,10 +45,10 @@
                          <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
                     </div>
                     <div class="form-group">
-                         <label for="user_photo" id="label_uphoto">Cambiar foto</label>
-                         <input type="file" name="user_photo" id="user_photo" class="box" 
-                         accept="image/jpeg, image/png" hidden/>
-                         <img class="rounded-circle" id="img_uploaded" src="/user/images/<%= user.imgKey %>"/>
+                         <label for="userPhoto">Cambiar foto</label>
+                         <input type="file" name="userPhoto" id="userPhoto" class="form-control" 
+                         accept="image/jpeg, image/png"/>
+                         <img src="/user/images/<%= user.imgKey %>" id="img_uploaded" class="rounded-circle"/>
                     </div>
                     <div class="form-group">
                          <label for="fechaNacimiento">Fecha de nacimiento</label>

@@ -92,7 +92,7 @@ const getUserImage = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
      const data = req.body;
-     console.log(data);
+     const file = req.file;
 
      const update = {
           nombres: data.nombres, 
@@ -105,10 +105,17 @@ const updateUserProfile = async (req, res) => {
           activo: data.estatus === 'true',
           rol: data.rol
      }
-     const updatedProfile = await User.findByIdAndUpdate(req.params.userId, update, {
+     
+     // Update public info
+     const updatedUser = await User.findByIdAndUpdate(req.params.userId, update, {
           new: true
      });
-     console.log(updatedProfile);
+
+     // if new image is send, update aws object
+     if(file) {
+          await deleteFile(data.imgKey);   // delete previous image
+          await uploadFile(file, updatedUser._id); // upload new image
+     }
 
      res.status(200).send({status: 'success', url:'/user/allUsers'}); 
      //podría ser 204 pero como quiero imprimir el nuevo registro lo dejo en 200

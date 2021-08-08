@@ -322,9 +322,9 @@ a {
 
 
 #add_user .form-group,
-#user_info .form-group,
-#user_email .form-group,
-#user_password .form-group{
+#updateUserInfo .form-group,
+#updateUserEmail .form-group,
+#updateUserPasswd .form-group{
   max-width: 700px;
   margin: auto;
   margin: .4em 0;
