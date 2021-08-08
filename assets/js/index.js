@@ -116,32 +116,45 @@ $("#add_user").submit(function(event){
      $.ajax(request);
 })
  
-/*
-// Update user 
-$("#update_user").submit(function(event){
+
+//Update user 
+$("#updateUserInfo").submit(function(event){
      event.preventDefault();
 
      var data = new FormData(this);
      var uid = data.get('id');
      
      var request = {
-          "url": `http://localhost:8080/user/updateUserProfile/${uid}`,
+          "url": `http://localhost:4000/user/profile/${uid}`,
           "method": "PUT",
           "data": data,
           "processData": false,
           "contentType": false,
-          "success": function(response) {
-               alert('User updated successfully')
-               if (response.result == 'redirect') {
-                    //redirecting to sers page from here.
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    await Swal.fire({
+                         position: 'center',
+                         icon: 'success',
+                         title: `Usuario actualizado!`,
+                         showConfirmButton: false,
+                         timer: 1500
+                    });
                     window.location.replace(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
+                         title: 'Oops...',
+                         text: response.message
+                    });
+
                }
           }
      }
 
      $.ajax(request);
 })
-*/
+
+
 
 // Delete user from users table
 if(window.location.pathname == '/user/allUsers') {

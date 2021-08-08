@@ -91,12 +91,35 @@ const getUserImage = async (req, res) => {
 
 
 const updateUserProfile = async (req, res) => {
-     
+     const data = req.body;
+     console.log(data);
+
+     const update = {
+          nombres: data.nombres, 
+          apellidos: data.apellidos,
+          cedula: data.cedula,
+          fechaNacimiento: new Date(data.fechaNacimiento),
+          direccion: data.direccion,
+          sexo: data.sexo,
+          celular: data.celular,
+          activo: data.estatus === 'true',
+          rol: data.rol
+     }
+     const updatedProfile = await User.findByIdAndUpdate(req.params.userId, update, {
+          new: true
+     });
+     console.log(updatedProfile);
+
+     res.status(200).send({status: 'success', url:'/user/allUsers'}); 
+     //podría ser 204 pero como quiero imprimir el nuevo registro lo dejo en 200
 }
+
 
 const updateUserAccount = async (req, res) => {
      
 }
+
+
 
 const deleteUserById = async (req, res) => {
      const userId = req.params.userId;

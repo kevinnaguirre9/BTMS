@@ -6,8 +6,16 @@ const fs = require('fs');
 const checkDuplicatePublicData = async (req, res, next) => {
      const data = req.body;
 
-     const cedulaExists = await User.findOne({cedula: data.cedula});
-     const phoneExists = await User.findOne({celular: data.celular});
+     let cedulaExists;
+     let phoneExists;
+
+     if (data.id) {
+          cedulaExists = await User.findOne( {_id: {$ne: data.id}, cedula: data.cedula} );
+          phoneExists = await User.findOne( {_id: {$ne: data.id}, celular: data.celular} );
+     } else {
+          cedulaExists = await User.findOne( {cedula: data.cedula} );
+          phoneExists = await User.findOne( {celular: data.celular} );
+     }
 
      if(cedulaExists) {
           if(req.file) {
@@ -24,9 +32,18 @@ const checkDuplicatePublicData = async (req, res, next) => {
      next();
 }
 
+
 const checkDuplicateEmail = async (req, res, next) => {
-     if(req.body.email) {
-          const emailExists = await UserCredential.findOne({email: req.body.email});
+     const data = req.body;
+
+     if(data.email) {
+          let emailExists;
+
+          if (data.id) {
+               emailExists = await UserCredential.findOne( {_id: {$ne: data.id}, email: req.body.email} );
+          }else{
+               emailExists = await UserCredential.findOne({email: req.body.email});
+          }
           
           if(emailExists) {
                if(req.file) {
