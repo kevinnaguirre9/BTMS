@@ -1,7 +1,16 @@
 const express = require('express');
 const {home, create_user} = require('../services/render');
 const {authJwt, verifyUser, multerUpload} = require('../middlewares/index');
-const {createUser, getUsers, getUserById, getUserImage, updateUserProfile, updateUserAccount, deleteUserById} = require('../controllers/users.controller');
+const {
+     createUser, 
+     getUsers, 
+     getUserById, 
+     getUserImage, 
+     searchUser, 
+     updateUserProfile, 
+     updateUserAccount, 
+     deleteUserById
+} = require('../controllers/users.controller');
 
 const router = express.Router();
 
@@ -16,6 +25,12 @@ router.get('/create-user', authJwt.verifyToken, create_user);
  * @method GET /dashboard
 */
 router.get('/home', authJwt.verifyToken, home); 
+
+/**
+ * @description Get search user form
+ * @method GET /search-user
+*/
+router.get('/search', authJwt.verifyToken, searchUser); 
 
 
 /**

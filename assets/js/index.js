@@ -34,29 +34,6 @@ $(document).ready(function(){
      });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Show User image uploaded
 $("#userPhoto").change(function(e) {
      for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
@@ -77,7 +54,7 @@ $("#userPhoto").change(function(e) {
           reader.readAsDataURL(file);
           $("#userPhoto").after(img);
      }
-})
+});
 
 
 // Create user
@@ -114,7 +91,37 @@ $("#add_user").submit(function(event){
      }
 
      $.ajax(request);
-})
+});
+
+
+// Search user
+$("#search_user").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     var cedula = data.get('cedula');
+     console.log(cedula);
+     
+     var request = {
+          "url": `http://localhost:4000/user/search?cedula=${cedula}`,
+          "method": "GET",
+          "data": data,
+          "processData": false,
+          "contentType": false,
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    window.location.replace(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
+                         text: response.message
+                    });
+               }
+          }
+     }
+
+     $.ajax(request);
+});
  
 
 //Update user 

@@ -89,6 +89,20 @@ const getUserImage = async (req, res) => {
 }
 
 
+const searchUser = async (req, res) => {
+     if(req.query.cedula) {
+          const cedula = req.query.cedula;
+          const user = await User.findOne({cedula: cedula});
+
+          if (!user) return res.send({status: 'error', message: 'Usuario no encontrado'});
+
+          return res.status(200).send({status: 'success', url: `/user/${user._id}`}); 
+     }
+     
+     res.render('search_user', {title: "Buscar usuario"});
+     
+}
+
 
 const updateUserProfile = async (req, res) => {
      const data = req.body;
@@ -150,6 +164,7 @@ module.exports = {
      getUsers,
      getUserById,
      getUserImage,
+     searchUser,
      updateUserProfile,
      updateUserAccount,
      deleteUserById

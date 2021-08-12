@@ -322,6 +322,7 @@ a {
 
 
 #add_user .form-group,
+#search_user .form-group,
 #updateUserInfo .form-group,
 #updateUserEmail .form-group,
 #updateUserPasswd .form-group{
