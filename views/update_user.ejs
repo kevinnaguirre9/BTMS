@@ -101,15 +101,15 @@
           </form>
           <br>
           <% if(locals.userCredentials){ %>  
-               <form method="POST" id="updateUserEmail" enctype="multipart/form-data">   
+               <form method="POST" id="updateUserEmail">   
                     <div>
                          <div>
                               <h4>Información de Cuenta</h4>
                          </div>
                          <div class="form-group">
-                              <label for="userEmail">Email</label>
-                              <input type="hidden" name="ueId" value="<%= user._id %>">
-                              <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" class="form-control" value="<%= userCredentials.email %> " required>
+                              <label for="emailToUpdate">Email</label>
+                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="email" name="emailToUpdate" id="emailToUpdate" placeholder="example@gmail.com" class="form-control" value="<%= userCredentials.email %> " required>
                          </div>
                          <div class="form-group">
                               <button type="submit" class="btn btn-success">Actualizar email</button>
@@ -117,23 +117,23 @@
                     </div>
                </form>
                <br>
-               <form method="POST" id="updateUserPasswd" enctype="multipart/form-data">   
+               <form method="POST" id="updateUserPasswd">
                     <div>
                          <div>
                               <h4>Cambiar contraseña</h4>
                          </div>
                          <div class="form-group">    
                               <label for="oldPasswd">Contraseña antigua</label>
-                              <input type="hidden" name="ucId" value="<%= user._id %>">
-                              <input type="text" name="oldPasswd" id="oldPasswd" class="form-control" required>
+                              <input type="hidden" name="id" value="<%= user._id %>">
+                              <input type="password" name="oldPasswd" id="oldPasswd" class="form-control" required>
                          </div>
                          <div class="form-group">
                               <label for="newPasswd">Nueva contraseña</label>
-                              <input type="text" name="newPasswd" id="newPasswd" class="form-control" required>
+                              <input type="password" name="newPasswd" id="newPasswd" class="form-control" required>
                          </div>
                          <div class="form-group">
                               <label for="confPasswd">Confirmar nueva contraseña</label>
-                              <input type="text" name="confPasswd" id="confPasswd" class="form-control" required>
+                              <input type="password" name="confPasswd" id="confPasswd" class="form-control" required>
                          </div>
                          <div class="form-group">
                               <button type="submit" class="btn btn-success">Actualizar contraseña</button>

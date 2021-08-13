@@ -36,21 +36,19 @@ const checkDuplicatePublicData = async (req, res, next) => {
 const checkDuplicateEmail = async (req, res, next) => {
      const data = req.body;
 
-     if(data.email) {
-          let emailExists;
+     let emailExists = false;
 
-          if (data.id) {
-               emailExists = await UserCredential.findOne( {_id: {$ne: data.id}, email: req.body.email} );
-          }else{
-               emailExists = await UserCredential.findOne({email: req.body.email});
+     if(data.email) {
+          emailExists = await UserCredential.findOne({email: data.email});
+     } else if (data.emailToUpdate) {
+          emailExists = await UserCredential.findOne( {_id: {$ne: data.id}, email: data.emailToUpdate} );
+     }
+
+     if(emailExists) {
+          if(req.file) {
+               fs.unlinkSync(req.file.path); // delete file from the server
           }
-          
-          if(emailExists) {
-               if(req.file) {
-                    fs.unlinkSync(req.file.path); // delete file from the server
-               }
-               return res.send({status: 'error', message: 'Email en uso'});
-          }
+          return res.send({status: 'error', message: 'Email en uso'});
      }
 
      next();

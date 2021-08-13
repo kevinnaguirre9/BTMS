@@ -1,7 +1,8 @@
 // Show email and password div based on role option selected in create-user form
 $(document).ready(function(){
      $('#rol').on('change', function() {
-          if ($(this).children("option:selected").text() === 'Administrador' && !document.getElementById('user_email')) {
+          if ($(this).children("option:selected").text() === 'Administrador' 
+               && !document.getElementById('emailToUpdate')) {
                var divEmail = document.getElementById('input_email');
                var divPasswd = document.getElementById('input_password');
                var emailInput = document.createElement("input");
@@ -122,9 +123,10 @@ $("#search_user").submit(function(event){
 
      $.ajax(request);
 });
+
  
 
-//Update user 
+//Update user information
 $("#updateUserInfo").submit(function(event){
      event.preventDefault();
 
@@ -151,6 +153,84 @@ $("#updateUserInfo").submit(function(event){
                     await Swal.fire({
                          icon: 'error',
                          title: 'Oops...',
+                         text: response.message
+                    });
+
+               }
+          }
+     }
+
+     $.ajax(request);
+})
+
+
+// Update user email 
+$("#updateUserEmail").submit(function(event){
+     event.preventDefault();
+
+     var unindexed_array = $(this).serializeArray();
+     var data = {}
+
+     $.map(unindexed_array, function(n, i) {
+          data[n['name']] = n['value']
+     });
+     
+     var request = {
+          "url": `http://localhost:4000/user/account/${data.id}`,
+          "method": "PUT",
+          "data": data,
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    await Swal.fire({
+                         position: 'center',
+                         icon: 'success',
+                         title: `Email actualizado!`,
+                         showConfirmButton: false,
+                         timer: 1500
+                    });
+                    window.location.replace(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
+                         text: response.message
+                    });
+
+               }
+          }
+     }
+
+     $.ajax(request);
+})
+
+
+// Update user password
+$("#updateUserPasswd").submit(function(event){
+     event.preventDefault();
+
+     var unindexed_array = $(this).serializeArray();
+     var data = {}
+
+     $.map(unindexed_array, function(n, i) {
+          data[n['name']] = n['value']
+     });
+     
+     var request = {
+          "url": `http://localhost:4000/user/security/${data.id}`,
+          "method": "PUT",
+          "data": data,
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    await Swal.fire({
+                         position: 'center',
+                         icon: 'success',
+                         title: `Contraseña actualizada!`,
+                         showConfirmButton: false,
+                         timer: 1500
+                    });
+                    window.location.replace(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
                          text: response.message
                     });
 
