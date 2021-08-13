@@ -1,45 +1,147 @@
 <%- include('include/_header')%>
+<div class="d-flex">
+  <div class="bg-primary" id="sidebar-container">
+    <div class="sidebar-logo">
+      BTMS
+    </div>
+    <ul class="sidebar-navigation">
+      <li class="header">Navegación</li>
+      <li>
+        <a href="/btm/btms">
+          <i class="fa fa-temperature-low" aria-hidden="true"></i>Mediciones de temperatura
+        </a>
+      </li>
+      <li>
+        <a href="/user/allUsers">
+          <i class="fa fa-users" aria-hidden="true"></i>Usuarios
+        </a>
+      </li>
+      <li class="header">Acerca de</li>
+      <li>
+        <a href="https://www.ups.edu.ec/" target="_blank">
+          <i class="fa fa-door-open" aria-hidden="true"></i>UPS
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-cog" aria-hidden="true"></i>Configuración
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>Información
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!--Dashboard - content -->
+  <div class="w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
 
-<div class="sidebar-container">
-     <div class="sidebar-logo">
-       BTMS
-     </div>
-     <ul class="sidebar-navigation">
-       <li class="header">Navegación</li>
-       <li>
-         <a href="/btm/btms">
-           <i class="fa fa-temperature-low" aria-hidden="true"></i>Mediciones de temperatura
-         </a>
-       </li>
-       <li>
-         <a href="/user/allUsers">
-           <i class="fa fa-users" aria-hidden="true"></i>Usuarios
-         </a>
-       </li>
-       <li class="header">Acerca de</li>
-       <li>
-         <a href="https://www.ups.edu.ec/" target="_blank">
-           <i class="fa fa-door-open" aria-hidden="true"></i>UPS
-         </a>
-       </li>
-       <li>
-         <a href="#">
-           <i class="fa fa-cog" aria-hidden="true"></i>Configuración
-         </a>
-       </li>
-       <li>
-         <a href="#">
-           <i class="fa fa-info-circle" aria-hidden="true"></i>Información
-         </a>
-       </li>
-     </ul>
+      <div class="container-fluid mr-5">
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="container-fluid  position-relative my-2 d-inline-block">
+          <h1 class=" mb-0">
+              Bienvenido, <%= locals.nombre ? nombre: "Admin" %>
+          </h1>
+      </div>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+             
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/img/user-avatar.png" alt="" class="img-fluid rounded-circle avatar mr-2">  
+              <%= locals.email ? email: "Admin" %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/user/<%= userId %>">Mi perfil</a>
+              <a class="dropdown-item" href="#">Temperatura</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/auth/logout">Cerrar Sesión</a>
+            </div>
+          </li>
+          
+        </ul>
+       
+      </div>
+  </div>
+    </nav>
+    <div class="" id="content">
+      <section class="bg-mix">
+        
+        <div class="container">
+          <div class="card rounded-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6 d-flex stat my-3">
+                  <div class="mx-auto">
+                    <h6 class="text-muted">
+                      Usuarios
+                    </h6>
+                    <h3 class="font-weight-bold">
+                      50
+                    </h3>
+                    <h6 class="text-success">
+                      85%
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-lg-6 d-flex my-3">
+                  <div class="mx-auto">
+                    <h6 class="text-muted">
+                      Usuarios
+                    </h6>
+                    <h3 class="font-weight-bold">
+                      50
+                    </h3>
+                    <h6 class="text-success">
+                      85%
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-grey">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 my-3">
+                    <div class="card rounded-0">
+                        <div class="card header bg-light">
+                            <h6 class="font-weight-bold mb-0">
+                                Números de Usuarios
+                            </h6>
+                        </div>
+                        <div class="card-body chart-gr">
+                          <canvas id="myChart" width="250" height="250"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 my-3">
+
+                </div>
+            </div>
+        </div>
+      </section>
+
+
+    </div>
    </div>
-   
-   <div class="content-container">
+   <!--Dashboard - content/ -->
+</div>
+ 
+   <!--div class="content-container">
    
      <div class="container-fluid">
    
-       <!-- Main component for a primary marketing message or call to action -->
+       <-- Main component for a primary marketing message or call to action ->
        <div class="jumbotron">
           <div class="text-center center-div mt5" id="login">
                <div class="container w-25 border py-5 mt-5">
@@ -53,7 +155,7 @@
        </div>
    
      </div>
-   </div>
+   </div-->
 
 
 <%- include('include/_footer')%>

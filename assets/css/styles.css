@@ -11,6 +11,7 @@
   --light: #adb5bd;
   --border: #dee2e6;
   --border-btn: #edf2f4;
+  --grey: #efefef;
 }
 
 #header nav{
@@ -37,6 +38,19 @@
 /* Css configs for login page*/
 body{
      font-family: 'Poppins', sans-serif;
+}
+#content{
+  overflow-y: auto;
+  height: 100vh;
+  padding-bottom: 5rem;
+}
+.chart-gr{
+  width: 60%;
+  
+  
+}
+.stat{
+  border-right: 1px solid var(--grey);
 }
 
 /*-- LOGIN -- */
@@ -221,10 +235,10 @@ form.sign-in-form{
 
 
 /* Css configs for dashboard*/
-.sidebar-container {
-     position: fixed;
-     width: 220px;
-     height: 100%;
+#sidebar-container {
+     position: relative;
+     min-height: 100vh;
+     padding: .875rem 1.25rem;
      left: 0;
      overflow-x: hidden;
      overflow-y: auto;
@@ -239,7 +253,7 @@ form.sign-in-form{
 .sidebar-logo {
   padding: 10px 15px 10px 30px;
   font-size: 20px;
-  background-color: #2574A9;
+  
 }
 
 .sidebar-navigation {
@@ -247,6 +261,7 @@ form.sign-in-form{
   margin: 0;
   list-style-type: none;
   position: relative;
+  width: 18rem;
 }
 
 .sidebar-navigation li {
@@ -261,6 +276,9 @@ form.sign-in-form{
   padding: 10px 15px 10px 30px;
   display: block;
   color: #fff;
+}
+.avatar{
+  width:35px;
 }
 
 a {
