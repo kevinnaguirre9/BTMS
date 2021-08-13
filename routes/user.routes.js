@@ -11,6 +11,7 @@ const {
      updateUserAccount, 
      deleteUserById
 } = require('../controllers/users.controller');
+const {updateEmail, updatePassword} = require('../controllers/usersCredentials.controller')
 
 const router = express.Router();
 
@@ -74,13 +75,21 @@ router.put('/profile/:userId', [
 ], updateUserProfile);  
 
 /**
- * @description Update user account route
+ * @description Update user email route
  * @method PUT /getUser/:id
 */
 router.put('/account/:userId', [
      authJwt.verifyToken, 
      verifyUser.checkDuplicateEmail
-], updateUserAccount);  
+], updateEmail);  
+
+/**
+ * @description Update user password route
+ * @method PUT /getUser/:id
+*/
+router.put('/security/:userId', [
+     authJwt.verifyToken, 
+], updatePassword); 
 
 /**
  * @description Delete user by ID route
