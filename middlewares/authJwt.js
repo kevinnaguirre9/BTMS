@@ -20,8 +20,7 @@ const verifyToken = async (req, res, next) => {
      const user = await UserCredential.findOne({userId: decoded.id}, {password: 0}).populate("userId");
 
      if(!user) return res.redirect('/auth/login');  // if user does not exists, redirect to login
-     
-     req.userId = user.userId;
+     req.userId = user.userId._id;
      req.email = user.email;
      req.nombre = user.userId.nombres
 
