@@ -2,7 +2,7 @@
 <div class="d-flex">
   <div class="bg-primary" id="sidebar-container">
     <div class="sidebar-logo">
-      BTMS
+      BTMS <i class="fa fa-temperature-low" aria-hidden="true"></i>
     </div>
     <ul class="sidebar-navigation">
       <li class="header">Navegación</li>
@@ -113,11 +113,11 @@
             <div class="row">
                 <div class="col-lg-8 my-3">
                     <div class="card rounded-0">
-                        <div class="card header bg-light">
-                            <h6 class="font-weight-bold mb-0">
-                                Números de Usuarios
-                            </h6>
-                        </div>
+                        <div class="card-header bg-light">
+                        <h6 class="font-weight-bold mb-0">
+                          Temperaturas
+                        </h6>
+                    </div>
                         <div class="card-body chart-gr">
                           <canvas id="myChart" width="250" height="250"></canvas>
                         </div>
@@ -125,6 +125,83 @@
 
                 </div>
                 <div class="col-lg-4 my-3">
+                  <div class="card rounded-0">
+                    <div class="card-header bg-light">
+                        <h6 class="font-weight-bold mb-0">
+                          Datos
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="d-block border-bottom py-2">
+
+                        <div class="align-self-center mb-0">
+                          <h6 class=" mb-0 text-muted ">
+                            Temperatura media
+                          </h6>
+                          <h3 class="font-weight-bold">
+                            26.5 °C
+                          </h3>
+
+                        </div>
+                        
+                        <div>
+
+                        </div>
+                      </div>
+
+                      <div class="d-block border-bottom py-2">
+
+                        <div class="align-self-center mb-0">
+                          <h6 class=" mb-0 text-muted">
+                            Distancia Sensor
+                          </h6>
+                          <h3 class="font-weight-bold">
+                            0.5 m
+                          </h3>
+
+                        </div>
+                        
+                        <div>
+
+                        </div>
+                      </div>
+                      <div class="d-block border-bottom py-2">
+
+                        <div class="align-self-center mb-0">
+                          <h6 class=" mb-0 text-muted">
+                            Raspberry Pi Work
+                          </h6>
+                          <h3 class="font-weight-bold">
+                            5h 10min 
+                          </h3>
+
+                        </div>
+                        
+                        <div>
+
+                        </div>
+                      </div>
+                      <div class="d-block border-bottom py-2">
+
+                        <div class="align-self-center mb-0">
+                          <h6 class=" mb-0 text-muted">
+                            Alerts
+                          </h6>
+                          <h3 class="font-weight-bold">
+                            0.5%
+                          </h3>
+
+                        </div>
+                        
+                        <div>
+
+                        </div>
+                      </div>
+                      <button class="btn btn-primary w-100">
+                        Descargar Reporte
+                      </button>
+                    </div>
+                  </div>
 
                 </div>
             </div>

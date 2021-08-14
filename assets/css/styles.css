@@ -12,8 +12,9 @@
   --border: #dee2e6;
   --border-btn: #edf2f4;
   --grey: #efefef;
+  --principal:  #2868d6 ;
 }
-
+.bg-primary{background-color: var(--principal)!important;}
 #header nav{
   background-color: #06d6a0;
   padding: 1em 0;
@@ -372,4 +373,9 @@ a {
   display: none;
 }
 
+/*Card*/
 
+.card-body h6,h3{
+  text-align: center;
+
+}
