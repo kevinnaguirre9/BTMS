@@ -1,13 +1,15 @@
 const UserCredential = require('../models/UserCredentials');
 
 const updateEmail = async (req, res) => {
-     await UserCredential.findOneAndUpdate({userId: req.params.userId}, {
+     const userId = req.params.userId;
+
+     await UserCredential.findOneAndUpdate({userId: userId}, {
           email: req.body.emailToUpdate
      });
+     
+     // If the user email updated belong to the admin logged, then log out
+     if(req.adminId == userId) return res.status(200).send({status: 'success', logout: true, url:'/auth/logout'});
 
-     //Implement: if email/password updated are the same of current sesion, redirect to /user/logout
-     //else continue logged
-     // we could use express-session to achieve this
      res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
 
@@ -26,10 +28,10 @@ const updatePassword = async(req, res) => {
      await UserCredential.findByIdAndUpdate(userCredentialsFound._id, {
           password: await UserCredential.encryptPassword(confPasswd)
      });
+     
+     // If the user password updated belong to the admin logged, then log out
+     if(req.adminId == userId) return res.status(200).send({status: 'success', logout: true, url:'/auth/logout'});
 
-     //Implement: if email/password updated are the same of current sesion, redirect to /user/logout
-     //else continue logged
-     // we could use express-session to achieve this
      res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
 

@@ -181,13 +181,24 @@ $("#updateUserEmail").submit(function(event){
           "data": data,
           "success": async (response) => {
                if (response.status == 'success') {
-                    await Swal.fire({
-                         position: 'center',
-                         icon: 'success',
-                         title: `Email actualizado!`,
-                         showConfirmButton: false,
-                         timer: 1500
-                    });
+                    if (response.logout) {
+                         await Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: `Email actualizado!`,
+                              text: 'Por favor vuelva a iniciar sesión',
+                              allowOutsideClick: false,
+                              showConfirmButton: true
+                         });
+                    } else {
+                         await Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: `Email actualizado!`,
+                              showConfirmButton: false,
+                              timer: 1500
+                         });
+                    }
                     window.location.replace(response.url);
                } else if (response.status == 'error') {
                     await Swal.fire({
@@ -220,14 +231,25 @@ $("#updateUserPasswd").submit(function(event){
           "data": data,
           "success": async (response) => {
                if (response.status == 'success') {
-                    await Swal.fire({
-                         position: 'center',
-                         icon: 'success',
-                         title: `Contraseña actualizada!`,
-                         showConfirmButton: false,
-                         timer: 1500
-                    });
-                    window.location.replace(response.url);
+                    if (response.logout) {
+                         await Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: 'Contraseña actualizada!',
+                              text: 'Por favor vuelva a iniciar sesión',
+                              allowOutsideClick: false,
+                              showConfirmButton: true
+                         });
+                    } else {
+                         await Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              title: `Contraseña actualizada!`,
+                              showConfirmButton: false,
+                              timer: 1500
+                         });
+                    }
+                    window.location.replace(response.url);     
                } else if (response.status == 'error') {
                     await Swal.fire({
                          icon: 'error',

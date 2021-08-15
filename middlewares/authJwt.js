@@ -17,12 +17,12 @@ const verifyToken = async (req, res, next) => {
 	}
      
      // if valid token, check if the user exists
-     const user = await UserCredential.findOne({userId: decoded.id}, {password: 0}).populate("userId");
+     const user = await UserCredential.findOne({userId: decoded.id}, {password: 0});
 
-     if(!user) return res.redirect('/auth/login');  // if user does not exists, redirect to login
-     req.userId = user.userId._id;
-     req.email = user.email;
-     req.nombre = user.userId.nombres
+     if(!user) return res.redirect('/auth/login');  // if user does not exist, redirect to login
+
+     req.adminId = user.userId;
+     req.adminEmail = user.email;
 
      next();   // if everything ok, continue to next page
 }

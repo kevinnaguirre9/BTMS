@@ -45,7 +45,7 @@
       </button>
       <div class="container-fluid  position-relative my-2 d-inline-block">
           <h1 class=" mb-0">
-              Bienvenido, <%= locals.nombre ? nombre: "Admin" %>
+              Bienvenido, <%= locals.adminName ? adminName : "Admin" %>
           </h1>
       </div>
     
@@ -55,11 +55,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="/img/user-avatar.png" alt="" class="img-fluid rounded-circle avatar mr-2">  
-              <%= locals.email ? email: "Admin" %>
+              <%= locals.adminEmail ? adminEmail: "Admin" %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/user/<%= userId %>">Mi perfil</a>
-              <a class="dropdown-item" href="#">Temperatura</a>
+              <a class="dropdown-item" href="/user/<%= adminId %>">Mi perfil</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/auth/logout">Cerrar Sesión</a>
             </div>
@@ -213,26 +212,6 @@
    </div>
    <!--Dashboard - content/ -->
 </div>
- 
-   <!--div class="content-container">
-   
-     <div class="container-fluid">
-   
-       <-- Main component for a primary marketing message or call to action ->
-       <div class="jumbotron">
-          <div class="text-center center-div mt5" id="login">
-               <div class="container w-25 border py-5 mt-5">
-                    <h3>Bienvenido</h3>
-                    <h5><%= locals.user ? user : "Admin" %></h4>
-                    <a href="/user/<%= userId %>">Perfil</a>
-                    <br>
-                    <a href="/auth/logout">Cerrar sesión</a>
-               </div>
-          </div>
-       </div>
-   
-     </div>
-   </div-->
 
 
 <%- include('include/_footer')%>
