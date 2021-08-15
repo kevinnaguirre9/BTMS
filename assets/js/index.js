@@ -188,6 +188,7 @@ $("#updateUserEmail").submit(function(event){
                               title: `Email actualizado!`,
                               text: 'Por favor vuelva a iniciar sesión',
                               allowOutsideClick: false,
+                              allowEscapeKey: false,
                               showConfirmButton: true
                          });
                     } else {
@@ -238,6 +239,7 @@ $("#updateUserPasswd").submit(function(event){
                               title: 'Contraseña actualizada!',
                               text: 'Por favor vuelva a iniciar sesión',
                               allowOutsideClick: false,
+                              allowEscapeKey: false,
                               showConfirmButton: true
                          });
                     } else {

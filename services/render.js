@@ -1,5 +1,12 @@
 exports.login = (req, res) => {
-     res.render('login', {title: "BTM System"});    
+     let redirectTarget = '/user/home';
+
+     if(req.query.return_to) {
+          redirectTarget = req.query.return_to;
+     }
+     
+     res.render('login', {title: "BTM System", redirectTo: redirectTarget});
+     
 }
 
 
