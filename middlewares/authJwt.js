@@ -29,4 +29,30 @@ const verifyToken = async (req, res, next) => {
      next();   // if everything ok, continue to next page
 }
 
-module.exports = {verifyToken};
+const isLoggedOut = async (req, res, next) => {
+     const token = req.cookies.jwt;
+
+     // check json web token and verify it
+     if(!token) return next();
+     
+     // if token exists, verify if the user with that token has credentials to log in to the system  
+     var decoded;
+     try {
+		decoded = jwt.verify(token, config.SECRET);  
+	} catch {
+		return next(); // if invalid token, go to log in
+	}
+     
+     // if valid token, check if the user exists
+     const user = await UserCredential.findOne({userId: decoded.id}, {password: 0});
+
+     // if user does not exist, go to to login
+     if(!user) return next();
+
+     res.status(200).redirect('/user/home');   // if user is logged in, continue to /home
+}
+
+module.exports = {
+     verifyToken,
+     isLoggedOut
+};

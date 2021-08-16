@@ -9,7 +9,7 @@ const router = express.Router();
  * @description Render Login Route
  * @method GET /login
  */
-router.get('/login', login); 
+router.get('/login', authJwt.isLoggedOut, login); 
 
 /**
  * @description LogIn Route
