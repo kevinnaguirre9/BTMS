@@ -2,23 +2,57 @@
 
 <!-- Search user -->
 
-<header id="header">
-     <nav>
-          <div class="container">
-               <div class="text-center">
-                    <h1 class="nav-brand text-dark">Administración de Usuarios</h1>
-               </div>
-          </div>
-     </nav>
-</header>
 
-<main id="site-main">
+<div class="d-flex">
+     <div class="bg-primary" id="sidebar-container">
+       <div class="sidebar-logo">
+         BTMS <i class="fa fa-temperature-low" aria-hidden="true"></i>
+       </div>
+       <ul class="sidebar-navigation">
+         <li class="header">Navegación</li>
+         <li>
+           <a href="/user/home">
+             <i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard
+           </a>
+         </li>
+         <li>
+           <a href="/user/search">
+             <i class="fa fa-search" aria-hidden="true"></i>Buscar Usuario
+           </a>
+         </li>
+         <li>
+           <a href="/user/create-user">
+               <i class="fa fa-user-plus"  aria-hidden="true"></i>Registrar Usuario
+             
+           </a>
+         </li>
+         <li>
+           <a href="/user/allUsers">
+               <i class="fa fa-users"  aria-hidden="true"></i>Últimos usuarios registrados
+             
+           </a>
+         </li>
+         <li class="header">Acerca de</li>
+         <li>
+           <a href="https://www.ups.edu.ec/" target="_blank">
+             <i class="fa fa-door-open" aria-hidden="true"></i>UPS
+           </a>
+         </li>
+         <li>
+           <a href="#">
+             <i class="fa fa-cog" aria-hidden="true"></i>Configuración
+           </a>
+         </li>
+         <li>
+           <a href="#">
+             <i class="fa fa-info-circle" aria-hidden="true"></i>Información
+           </a>
+         </li>
+       </ul>
+     </div>
+
      <div class="container">
-          <div class="box-nav d-flex justify-between">
-               <div class="filter">
-                    <a href="/user/home"><i class="fas fa-angle-double-left"></i> Home</a>
-               </div>
-          </div>
+          
           <div class="form-title text-center">
                <h2 class="text-dark">Buscar usuario</h2>
                <span>Busque un nuevo usuario a partir de su cédula</span>
@@ -36,6 +70,6 @@
                </div>
           </form>
      </div>
-</main>
+</div>
 
 <%- include('include/_footer') %>

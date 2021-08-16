@@ -239,7 +239,7 @@ form.sign-in-form{
 #sidebar-container {
      position: relative;
      min-height: 100vh;
-     padding: .875rem 1.25rem;
+     /*padding: .875rem 1.25rem*/;
      left: 0;
      overflow-x: hidden;
      overflow-y: auto;
@@ -254,6 +254,7 @@ form.sign-in-form{
 .sidebar-logo {
   padding: 10px 15px 10px 30px;
   font-size: 20px;
+  
   
 }
 
