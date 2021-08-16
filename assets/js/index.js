@@ -83,7 +83,6 @@ $("#add_user").submit(function(event){
                } else if (response.status == 'error') {
                     await Swal.fire({
                          icon: 'error',
-                         title: 'Oops...',
                          text: response.message
                     });
 
@@ -152,7 +151,6 @@ $("#updateUserInfo").submit(function(event){
                } else if (response.status == 'error') {
                     await Swal.fire({
                          icon: 'error',
-                         title: 'Oops...',
                          text: response.message
                     });
 
