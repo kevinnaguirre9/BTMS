@@ -131,7 +131,7 @@ body{
   font-weight: 500;
 }
 
-.btn{
+.btnlogin{
   width: 150px;
   height: 49px;
   border: none;
@@ -146,7 +146,7 @@ body{
   transition: .5s;
 }
 
-.btn:hover{
+.btnlogin:hover{
   background-color: #4d84e2;
 }
 
