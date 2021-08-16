@@ -45,12 +45,10 @@ const createUser = async (req, res) => {
 }
 
 
-
 const getUsers = async (req, res) => {
      const users = await User.find().sort({ createdAt: -1 }).limit(2);
      res.render('users', {title: 'Users', users})
 }
-
 
 
 const getUserById = async (req, res) => {
@@ -75,6 +73,7 @@ const getUserById = async (req, res) => {
                          roles});
      
 }
+
 
 const getUserImage = async (req, res) => {
      const imgKey = req.params.imgKey;
@@ -107,6 +106,16 @@ const searchUser = async (req, res) => {
 const updateUserProfile = async (req, res) => {
      const data = req.body;
      const file = req.file;
+     const userId = req.params.userId;
+
+     // if new image is send, update AWS S3 object
+     let userImgKey = data.imgKey;
+
+     if(file) {
+          await deleteFile(data.imgKey);   // delete previous image
+          const result = await uploadFile(file, userId); // upload new image
+          userImgKey = result.key;
+     }
 
      const update = {
           nombres: data.nombres, 
@@ -116,30 +125,18 @@ const updateUserProfile = async (req, res) => {
           direccion: data.direccion,
           sexo: data.sexo,
           celular: data.celular,
+          imgKey: userImgKey,
           activo: data.estatus === 'true',
           rol: data.rol
      }
      
      // Update public info
-     const updatedUser = await User.findByIdAndUpdate(req.params.userId, update, {
+     const updatedUser = await User.findByIdAndUpdate(userId, update, {
           new: true
      });
 
-     // if new image is send, update aws object
-     if(file) {
-          await deleteFile(data.imgKey);   // delete previous image
-          await uploadFile(file, updatedUser._id); // upload new image
-     }
-
      res.status(200).send({status: 'success', url:'/user/allUsers'}); 
-     //podría ser 204 pero como quiero imprimir el nuevo registro lo dejo en 200
 }
-
-
-const updateUserAccount = async (req, res) => {
-     
-}
-
 
 
 const deleteUserById = async (req, res) => {
@@ -166,6 +163,5 @@ module.exports = {
      getUserImage,
      searchUser,
      updateUserProfile,
-     updateUserAccount,
      deleteUserById
 }
