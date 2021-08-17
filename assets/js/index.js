@@ -57,6 +57,15 @@ $("#userPhoto").change(function(e) {
      }
 });
 
+$(document).ajaxStart(function(){
+     Swal.fire({
+          position: 'center',
+          imageUrl: "/img/loading.gif",
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          allowEscapeKey: false
+     });
+});
 
 // Create user
 $("#add_user").submit(function(event){
