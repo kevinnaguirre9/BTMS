@@ -39,8 +39,6 @@ const createUser = async (req, res) => {
           await newUserCredentials.save();
      }
 
-     fs.unlinkSync(file.path); // delete file from the server
-
      res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
 
@@ -131,7 +129,7 @@ const updateUserProfile = async (req, res) => {
      }
      
      // Update public info
-     const updatedUser = await User.findByIdAndUpdate(userId, update, {
+     await User.findByIdAndUpdate(userId, update, {
           new: true
      });
 
