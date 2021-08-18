@@ -1,6 +1,6 @@
 <%- include('include/_header')%>
 
-<!-- BTMs list -->
+<!-- Measurements list -->
 
 <header id="header">
      <nav>
@@ -32,20 +32,27 @@
                               <th scope="col">Apellidos</th>
                               <th scope="col">Fecha</th>
                               <th scope="col">Hora</th>
-                              <th scope="col">°C</th>
+                              <th scope="col">Celsius (°C)</th>
+                              <th scope="col">Acciones</th>
                          </tr>
                     </thead>
                     <tbody>
-                         <% if(locals.btms){ %>  
-                              <% for(var i=0; i < btms.length; i++) { %>
+                         <% if(locals.measurements){ %>  
+                              <% for(var i=0; i < measurements.length; i++) { %>
                                    <tr>
                                         <th scope="row"><%= i+1 %></th>
-                                        <td><img src="<%= btms[i].uPhotoURL %>" class="rounded-circle" title="<%= btms[i].uNombres %> <%= btms[i].uApellidos %>" style="width: 100px; height: 100px;"/></td>
-                                        <td><%= btms[i].uNombres %></td>
-                                        <td><%= btms[i].uApellidos %></td>
-                                        <td><%= btms[i].mFecha%></td>
-                                        <td><%= btms[i].mHora %></td>
-                                        <td><%= btms[i].bTemp %></td>
+                                        <td><img src="/user/images/<%= measurements[i].userId.imgKey %>" class="rounded-circle" title="<%= measurements[i].userId.nombres %> <%= measurements[i].userId.apellidos %>" style="width: 51px; height: 51px;"/></td>
+                                        <td><%= measurements[i].userId.nombres %></td>
+                                        <td><%= measurements[i].userId.apellidos %></td>
+                                        <td><%= measurements[i].fechaMedicion.toISOString().slice(0, 10) %></td>
+                                        <td><%= measurements[i].fechaMedicion.toISOString().slice(11, 16) %></td>
+                                        <td><%= measurements[i].celsius %></td>
+                                        <td>
+                                             <a href="/btm/measurements/<%= measurements[i].userId._id %>" 
+                                                  class="btn border-shadow update">
+                                                  <span><i class="far fa-eye"></i></span>
+                                             </a>
+                                        </td>
                                    </tr>
                                    <% } %>
                          <% } %>
@@ -60,7 +67,7 @@
      </div>
 </main>
 
-<!-- /BTMs list -->
+<!-- /Measurements list -->
 
 
 <%- include('include/_footer')%>
