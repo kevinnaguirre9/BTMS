@@ -86,6 +86,8 @@ $("#add_user").submit(function(event){
                          icon: 'success',
                          title: `Usuario agregado!`,
                          showConfirmButton: false,
+                         allowOutsideClick: false,
+                         allowEscapeKey: false,
                          timer: 1500
                     });
                     window.location.replace(response.url);
@@ -103,23 +105,19 @@ $("#add_user").submit(function(event){
 });
 
 
-// Search user
+// Search user information
 $("#search_user").submit(function(event){
      event.preventDefault();
 
      var data = new FormData(this);
      var cedula = data.get('cedula');
-     console.log(cedula);
      
      var request = {
           "url": `http://localhost:4000/user/search?cedula=${cedula}`,
           "method": "GET",
-          "data": data,
-          "processData": false,
-          "contentType": false,
           "success": async (response) => {
                if (response.status == 'success') {
-                    window.location.replace(response.url);
+                    window.location.assign(response.url);
                } else if (response.status == 'error') {
                     await Swal.fire({
                          icon: 'error',
@@ -132,7 +130,33 @@ $("#search_user").submit(function(event){
      $.ajax(request);
 });
 
- 
+
+// Search user body temperature measurements
+$("#search_user_btm").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     var cedula = data.get('cedula');
+     
+     var request = {
+          "url": `http://localhost:4000/btm/search?cedula=${cedula}`,
+          "method": "GET",
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    window.location.assign(response.url);
+               } else if (response.status == 'error') {
+                    await Swal.fire({
+                         icon: 'error',
+                         text: response.message
+                    });
+               }
+          }
+     }
+
+     $.ajax(request);
+});
+
+
 
 //Update user information
 $("#updateUserInfo").submit(function(event){
@@ -154,6 +178,8 @@ $("#updateUserInfo").submit(function(event){
                          icon: 'success',
                          title: `Usuario actualizado!`,
                          showConfirmButton: false,
+                         allowOutsideClick: false,
+                         allowEscapeKey: false,
                          timer: 1500
                     });
                     window.location.replace(response.url);
@@ -204,6 +230,8 @@ $("#updateUserEmail").submit(function(event){
                               icon: 'success',
                               title: `Email actualizado!`,
                               showConfirmButton: false,
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
                               timer: 1500
                          });
                     }
@@ -255,6 +283,8 @@ $("#updateUserPasswd").submit(function(event){
                               icon: 'success',
                               title: `Contraseña actualizada!`,
                               showConfirmButton: false,
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
                               timer: 1500
                          });
                     }
@@ -290,6 +320,8 @@ if(window.location.pathname == '/user/allUsers') {
                               icon: 'success',
                               title: `Usuario eliminado!`,
                               showConfirmButton: false,
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
                               timer: 1500
                          });
                          window.location.replace(response.url);

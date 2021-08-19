@@ -1,7 +1,9 @@
 const express = require('express');
+const {authJwt} = require('../middlewares/index');
 const {
      meausureBodyTemp, 
      getBodyTempMeasurements, 
+     searchBtm,
      getBodyTempMeasurementByUserId
 } = require('../controllers/btemps.controller')
 
@@ -17,13 +19,19 @@ router.post('/', meausureBodyTemp);
  * @description Get body temperature measurements
  * @method GET /
 */
-router.get('/measurements', getBodyTempMeasurements); 
+router.get('/search', authJwt.verifyToken, searchBtm); 
+
+/**
+ * @description Get body temperature measurements
+ * @method GET /
+*/
+router.get('/measurements', authJwt.verifyToken, getBodyTempMeasurements); 
 
 /**
  * @description Get user body temperature measurements
  * @method GET /
 */
-router.get('/measurements/:userId', getBodyTempMeasurementByUserId); 
+router.get('/measurements/:userId', authJwt.verifyToken, getBodyTempMeasurementByUserId); 
 
 
 module.exports = {

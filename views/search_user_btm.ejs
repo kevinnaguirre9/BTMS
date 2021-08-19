@@ -6,7 +6,7 @@
      <nav>
           <div class="container">
                <div class="text-center">
-                    <h1 class="nav-brand text-dark">Administración de Usuarios</h1>
+                    <h1 class="nav-brand text-dark">Mediciones de temperatura corporal</h1>
                </div>
           </div>
      </nav>
@@ -20,20 +20,17 @@
                </div>
           </div>
           <br>
-          <div class="box-nav d-flex justify-between">
-               <a href="/user/create-user" class="border-shadow">
-                    <span class="text-gradient">Nuevo usuario<i class="fas fa-user-plus"></i></span>
-               </a>    
-               <a href="/user/allUsers" class="border-shadow">
-                    <span class="text-gradient">Últimos usuarios agregados <i class="fas fa-users"></i></span>
+          <div class="box-nav d-flex justify-between">   
+               <a href="/btm/measurements" class="border-shadow">
+                    <span class="text-gradient">Últimas mediciones de temperatura <i class="fas fa-thermometer-half"></i></span>
                </a>
           </div>
           <div class="form-title text-center">
-               <h2 class="text-dark">Buscar usuario</h2>
-               <span>Busque un nuevo usuario a partir de su cédula</span>
+               <h2 class="text-dark">Buscar mediciones de temperatura por usuario</h2>
+               <!-- <span>Busque un nuevo usuario a partir de su cédula</span> -->
           </div>
 
-          <form method="GET" id="search_user" >
+          <form method="GET" id="search_user_btm" >
                <div>
                     <div class="form-group">
                          <label for="cedula">Cédula</label>
