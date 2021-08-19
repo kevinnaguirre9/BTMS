@@ -24,7 +24,7 @@
 
           <% if(locals.userBodyTempMeasurements.length > 0){ %>  
                <form>   
-                    <table class="table">
+                    <table class="table table-user-btms">
                          <thead class="thead-dark">
                               <tr>
                                    <th scope="col">#</th>
@@ -47,6 +47,9 @@
                          </tbody>
                     </table>
                </form>     
+               <button class="btn btn-primary w-10">
+                    Descargar Reporte
+               </button>
           <% } else { %>
                <div class="card" style="width: 18rem;">
                     <div class="card-body">

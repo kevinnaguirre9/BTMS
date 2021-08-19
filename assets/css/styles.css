@@ -35,6 +35,11 @@
   border-color: #32383e;
 }
 
+.table-user-btms {
+  width: 300px;
+  text-align: center;
+}
+
 
 /* Css configs for login page*/
 body{
