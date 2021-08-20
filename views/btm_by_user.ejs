@@ -1,0 +1,68 @@
+<%- include('include/_header')%>
+
+<!-- Measurements list -->
+
+<header id="header">
+     <nav>
+          <div class="container">
+               <div class="text-center">
+                    <h1 class="nav-brand text-dark">Mediciones de Temperatura Corporal</h1>
+               </div>
+          </div>
+     </nav>
+</header>
+
+<main id="site-main">
+     <div class="container">
+          <div class="box-nav d-flex justify-between">
+               <div class="filter">
+                    <a href="/user/dashboard"><i class="fas fa-angle-double-left"></i> Home</a>
+                    <a href="/btm/search"><i class="fas fa-angle-double-left"></i> Buscar mediciones</a>
+               </div>
+          </div>
+          <br>
+
+          <% if(locals.userBodyTempMeasurements.length > 0){ %>  
+               <form>   
+                    <table class="table table-user-btms">
+                         <thead class="thead-dark">
+                              <tr>
+                                   <th scope="col">#</th>
+                                   <th scope="col">Fecha</th>
+                                   <th scope="col">Hora</th>
+                                   <th scope="col">Celsius (°C)</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              <% for(var i=0; i < userBodyTempMeasurements.length; i++) { %>
+                                   <tr>
+                                        <th scope="row"><%= i+1 %></th>
+                                        <td><%= userBodyTempMeasurements[i].fechaMedicion.toISOString().slice(0, 10) %>
+                                        </td>
+                                        <td><%= userBodyTempMeasurements[i].fechaMedicion.toISOString().slice(11, 16) %>
+                                        </td>
+                                        <td><%= userBodyTempMeasurements[i].celsius %></td>
+                                   </tr>
+                              <% } %>
+                         </tbody>
+                    </table>
+               </form>     
+               <button class="btn btn-primary w-10">
+                    Descargar Reporte
+               </button>
+          <% } else { %>
+               <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Usuario sin mediciones de Temperatura</h5>
+                    </div>
+               </div>
+          <% } %>     
+     </div>
+</main>
+
+<!-- /Measurements list -->
+
+
+<%- include('include/_footer')%>
+
+

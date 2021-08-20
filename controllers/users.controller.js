@@ -2,7 +2,7 @@ const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
 const {uploadFile, getFileStream, deleteFile} = require('../awsS3');
-const fs = require('fs');
+
 
 const createUser = async (req, res) => {
      const data = req.body;
