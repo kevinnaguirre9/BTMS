@@ -47,9 +47,11 @@
                          </tbody>
                     </table>
                </form>     
-               <button class="btn btn-primary w-10">
-                    Descargar Reporte
-               </button>
+               <div>
+                    <a href="/btm/measurements/report/<%= userId %>" class="btn btn-success"><i class="fas fa-file-pdf"></i> Reporte
+                    </a>
+               </div>
+
           <% } else { %>
                <div class="card" style="width: 18rem;">
                     <div class="card-body">
