@@ -9,12 +9,96 @@
 
      <div class="w-100">
           <%- include('include/_navbar')%>
+          <!--ADD USER-->
           <div class="form-title text-center">
                <h2 class="text-dark">Nuevo usuario</h2>
                <span>Cree un nuevo usuario a partir de los siguientes datos</span>
           </div>
-
-           <!-- Form handling -->
+     <div class="container-sm mt-5 ">
+          <form method="POST" id="add_user" enctype="multipart/form-data">  
+               <div class="form-row">
+                    <div class="form-group col-md-4">
+                         <label for="cedula">Cédula</label>
+                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" required>
+                    </div>
+                 <div class="form-group col-md-4">
+                    <label for="nombres">Nombres</label>
+                    <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" autofocus required>
+                 </div>
+                 <div class="form-group col-md-4">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
+                 </div>
+               </div>
+               <div class="form-row">
+                    <div class="form-group col-md-3">
+                         <label for="celular">Celular</label>
+                         <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group col-md-3">
+                         <label for="fechaNacimiento">Fecha de nacimiento</label>
+                         <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                         <label for="sexo">Sexo</label>
+                         <select class="form-control" name="sexo" id="sexo" required>
+                              <option value="Hombre">Hombre</option>
+                              <option value="Mujer">Mujer</option>
+                              <option value="Otro">Otro</option>
+                         </select>
+                       </div>
+                       <div class="form-group col-md-3">
+                         <label for="estatus">Estatus</label>
+                         <select class="form-control" name="estatus" id="estatus" required>
+                              <option value="true">Activo</option>
+                              <option value="false">Inactivo</option>
+                         </select>
+                    </div>
+                    <div class="form-row col-mb-6">
+                    <div class="form-group col-md-12">
+                         <label for="direccion">Direccion</label>
+                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-12" id="roles">
+                         <label for="rol">Rol</label>
+                         <select class="form-control" name="rol" id="rol" required>
+                              <option value="61003cfe2d549829d88d8e55">Usuario normal</option>
+                              <option value="60ff1e315a44b204306db9db">Administrador</option>
+                         </select>
+                    </div>  
+               </div>
+               
+               <div class="form-group col-md-6">
+                    <center> <label for="direccion">Foto de perfil</label></center>
+                   
+                         <div class="profile-pic-div">
+                              
+                           <img src="/img/user-avatar.png" id="img_uploaded">
+                           <input type="file" id="userPhoto" name="userPhoto" accept="image/jpeg, image/png" class="form-control"  required>
+                           <label for="userPhoto" id="uploadBtn">Subir foto</label>
+                         </div>
+               </div>
+              
+                       
+          
+             <div class="form-group" id="adminCredentials">
+               
+               <div>
+                    <h5>Provea email y contraseña para el Administrador</h5>
+               </div>
+               <div class="form-group" id="input_email"></div>
+               <div class="form-group" id="input_password"></div>
+          </div>             
+          <div class="form-group">
+               <button class="btn btn-success" type="submit" value="Submit" id="submit">Guardar</button>
+          </div>
+     </div>
+     </div>
+</form>
+     <!--ADD USER-->
+         
+         <!-- Form handling>
            <form method="POST" id="add_user" enctype="multipart/form-data">   
                <div>
                     <div class="form-group">
@@ -83,12 +167,44 @@
                </div>
                
           </form>
-          <!-- /Form handling -->
+          <-- /Form handling -->
           
      </div>
 </div>
 
 <!-- /Users list -->
+<script>
+const imgDiv = document.querySelector('.profile-pic-div');
+const img = document.querySelector('#img_uploaded');
+const file = document.querySelector('#userPhoto');
+const uploadBtn = document.querySelector('#uploadBtn');
 
+
+imgDiv.addEventListener('mouseenter', function(){
+    uploadBtn.style.display = "block";
+});
+
+
+imgDiv.addEventListener('mouseleave', function(){
+    uploadBtn.style.display = "none";
+});
+
+file.addEventListener('change', function(){
+    
+    const choosedFile = this.files[0];
+
+    if (choosedFile) {
+
+        const reader = new FileReader(); 
+
+        reader.addEventListener('load', function(){
+            img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+
+    }
+});
+</script>
 <%- include('include/_footer')%>
 

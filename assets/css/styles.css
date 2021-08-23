@@ -220,17 +220,6 @@ body{
      padding: .4em 2em;
 }
 
-form{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0rem 5rem;
-  transition: all 0.2s 0.7s;
-  overflow: hidden;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
 form.sign-in-form{
   z-index: 2;
 }
@@ -356,15 +345,48 @@ a {
   margin: .4em 0;
   width: 100%;
   padding: .6em 1em;
-  margin: .5em 0;
+  margin:  0;
+}
+
+
+.profile-pic-div{
+  height: 200px;
+  width: 200px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: none;
 }
 
 #img_uploaded{
-  width: 150px; 
-  height: 150px;
-  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
+#userPhoto{
+  display: none;
+}
+
+#uploadBtn{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: -4%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffff;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
+}
 #label_uphoto{
   background-color: #2574A9;
   color: white;
