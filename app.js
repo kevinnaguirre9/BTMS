@@ -25,6 +25,7 @@ app.set("view engine", "ejs")
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
+app.use('/docs', express.static(path.resolve(__dirname, "docs")))
 
 app.get('/', (req, res) => {
      res.redirect('/auth/login');
