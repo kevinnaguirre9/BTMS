@@ -347,6 +347,17 @@ if(window.location.pathname == '/user/allUsers') {
 }
 
 
+// Add welcome message
+if(window.location.pathname == '/user/home') {
+     var divWelcome = document.getElementById('welcomeAdmin');
+     var wh1 = document.createElement('h1');
+     var h1Text = document.createTextNode('Bienvenido, Admin');
+     wh1.className = "mb-0";
+     wh1.appendChild(h1Text);
+     divWelcome.appendChild(wh1);
+}
+
+
 
 
  
