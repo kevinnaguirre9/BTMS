@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   min-height: 100vh;
-  width: 350px;
+  width: 380px;
   background: #11101d;
   z-index: 100;
   transition: all 0s ease;
@@ -185,7 +185,7 @@
 .sidebar .profile-details{
   position: fixed;
   bottom: 0;
-  width: 350px;
+  width: 380px;
   display: flex;
   align-items: center;
   justify-content: space-between;
