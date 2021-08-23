@@ -36,37 +36,7 @@ $(document).ready(function(){
 });
 
 // Show User image uploaded
-const imgDiv = document.querySelector('.profile-pic-div');
-const img = document.querySelector('#img_uploaded');
-const file = document.querySelector('#userPhoto');
-const uploadBtn = document.querySelector('#uploadBtn');
 
-
-imgDiv.addEventListener('mouseenter', function(){
-    uploadBtn.style.display = "block";
-});
-
-
-imgDiv.addEventListener('mouseleave', function(){
-    uploadBtn.style.display = "none";
-});
-
-file.addEventListener('change', function(){
-    
-    const choosedFile = this.files[0];
-
-    if (choosedFile) {
-
-        const reader = new FileReader(); 
-
-        reader.addEventListener('load', function(){
-            img.setAttribute('src', reader.result);
-        });
-
-        reader.readAsDataURL(choosedFile);
-
-    }
-});
 /*$("#userPhoto").change(function(e) {
      for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
           var file = e.originalEvent.srcElement.files[i];
