@@ -45,7 +45,12 @@ const createUser = async (req, res) => {
 
 const getUsers = async (req, res) => {
      const users = await User.find().sort({ createdAt: -1 }).limit(2);
-     res.render('users', {title: 'Users', users})
+     res.render('users', {
+          title: 'Users', 
+          users,
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     })
 }
 
 
@@ -61,14 +66,19 @@ const getUserById = async (req, res) => {
                title: 'Update user', 
                user,  
                roles,
-               userCredentials
+               userCredentials,
+               adminId: req.adminId,
+               adminEmail: req.adminEmail
           });
      }  
 
      res.status(200).render('update_user', 
                          {title: 'Update user', 
                          user,  
-                         roles});
+                         roles,
+                         adminId: req.adminId,
+                         adminEmail: req.adminEmail
+                    });
      
 }
 
@@ -96,7 +106,11 @@ const searchUser = async (req, res) => {
           return res.status(200).send({status: 'success', url: `/user/${user._id}`}); 
      }
      
-     res.render('search_user', {title: "Buscar usuario"});
+     res.render('search_user', {
+          title: "Buscar usuario",
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     });
      
 }
 

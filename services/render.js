@@ -22,5 +22,9 @@ exports.home =  (req, res) => {
 
 // route for load the add user page
 exports.create_user = (req, res) => { 
-     res.render('create_user', {title: "Register new user"});
+     res.render('create_user', {
+          title: "Register new user",
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     });
 }

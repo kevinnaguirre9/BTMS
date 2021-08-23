@@ -21,7 +21,12 @@ const meausureBodyTemp = async (req, res) => {
 
 const getBodyTempMeasurements = async (req, res) => {
      const measurements = await bodyTempMeasurement.find().populate('userId').sort({ fechaMedicion: -1 }).limit(5);
-     res.render('bTempMsmt', {title: 'Mediciones', measurements});
+     res.render('bTempMsmt', {
+          title: 'Mediciones', 
+          measurements,
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     });
 }
 
 
@@ -35,7 +40,11 @@ const searchBtm = async (req, res) => {
           return res.status(200).send({status: 'success', url: `/btm/measurements/${user._id}`}); 
      }
      
-     res.render('search_user_btm', {title: "Buscar Mediciones"});
+     res.render('search_user_btm', {
+          title: "Buscar Mediciones",
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     });
      
 }
 
@@ -46,7 +55,13 @@ const getBodyTempMeasurementByUserId = async (req, res) => {
                                                                       .sort({ fechaMedicion: -1 })
                                                                       .limit(6);
      
-     res.render('btm_by_user', {title: "Mediciones por usuario", userId, userBodyTempMeasurements});
+     res.render('btm_by_user', {
+          title: "Mediciones por usuario", 
+          userId, 
+          userBodyTempMeasurements,
+          adminId: req.adminId,
+          adminEmail: req.adminEmail
+     });
 }
 
 
