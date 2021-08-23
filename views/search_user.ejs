@@ -4,72 +4,57 @@
 
 
 <div class="d-flex">
-     <div class="bg-primary" id="sidebar-container">
-       <div class="sidebar-logo">
-         BTMS <i class="fa fa-temperature-low" aria-hidden="true"></i>
-       </div>
-       <ul class="sidebar-navigation">
-         <li class="header">Navegación</li>
-         <li>
-           <a href="/user/home">
-             <i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard
-           </a>
-         </li>
-         <li>
-           <a href="/user/search">
-             <i class="fa fa-search" aria-hidden="true"></i>Buscar Usuario
-           </a>
-         </li>
-         <li>
-           <a href="/user/create-user">
-               <i class="fa fa-user-plus"  aria-hidden="true"></i>Registrar Usuario
-             
-           </a>
-         </li>
-         <li>
-           <a href="/user/allUsers">
-               <i class="fa fa-users"  aria-hidden="true"></i>Últimos usuarios registrados
-             
-           </a>
-         </li>
-         <li class="header">Acerca de</li>
-         <li>
-           <a href="https://www.ups.edu.ec/" target="_blank">
-             <i class="fa fa-door-open" aria-hidden="true"></i>UPS
-           </a>
-         </li>
-         <li>
-           <a href="#">
-             <i class="fa fa-cog" aria-hidden="true"></i>Configuración
-           </a>
-         </li>
-         <li>
-           <a href="#">
-             <i class="fa fa-info-circle" aria-hidden="true"></i>Información
-           </a>
-         </li>
-       </ul>
-     </div>
-
-     <div class="container">
-<<<<<<< HEAD
+<div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxs-thermometer'></i>
+      <span class="logo_name">Btms</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/user/home">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="/btm/search">
+            <i class='bx bx-line-chart'aria-hidden="true"></i>
+            <span class="link_name">Mediciones de Temperatura</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Mediciones de Temperatura</a></li>
+          <li><a href="/btm/measurements"><i class='bx bx-table icon'></i>Últimas Mediciones</a></li>
           
-=======
-          <div class="box-nav d-flex justify-between">
-               <div class="filter">
-                    <a href="/user/home"><i class="fas fa-angle-double-left"></i> Home</a>
-               </div>
-          </div>
-          <br>
-          <div class="box-nav d-flex justify-between">
-               <a href="/user/create-user" class="border-shadow">
-                    <span class="text-gradient">Nuevo usuario<i class="fas fa-user-plus"></i></span>
-               </a>    
-               <a href="/user/allUsers" class="border-shadow">
-                    <span class="text-gradient">Últimos usuarios agregados <i class="fas fa-users"></i></span>
-               </a>
-          </div>
->>>>>>> 1052f1fd107626dcfbf67ac8a28330ca8c50ddf5
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="/user/search">
+            <i class='bx bxs-user-detail' aria-hidden="true"></i>
+            <span class="link_name">Usuarios</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Usuarios</a></li>
+          <li><a href="/user/search"><i class='bx bx-search  icon'></i>Buscar</a></li>
+          <li><a href="/user/create-user"><i class='bx bxs-user-plus  icon'></i>Registrar</a></li>
+          <li><a href="/user/allUsers"><i class='bx bx-table icon '></i>Últimos Registros</a></li>
+        </ul>
+      </li>
+      
+     
+</ul>
+  </div>
+
+     <div class="w-100">
+          
           <div class="form-title text-center">
                <h2 class="text-dark">Buscar usuario</h2>
                <span>Busque un nuevo usuario a partir de su cédula</span>

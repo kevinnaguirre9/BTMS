@@ -2,24 +2,60 @@
 
 <!-- Measurements list -->
 
-<header id="header">
-     <nav>
-          <div class="container">
-               <div class="text-center">
-                    <h1 class="nav-brand text-dark">Mediciones de Temperatura Corporal</h1>
-               </div>
-          </div>
-     </nav>
-</header>
+<div class="d-flex">
 
-<main id="site-main">
-     <div class="container">
-          <div class="box-nav d-flex justify-between">
-               <div class="filter">
-                    <a href="/user/home"><i class="fas fa-angle-double-left"></i> Home</a>
-                    <a href="/btm/search"><i class="fas fa-angle-double-left"></i> Buscar mediciones</a>
-               </div>
+     <div class="sidebar">
+          <div class="logo-details">
+            <i class='bx bxs-thermometer'></i>
+            <span class="logo_name">Btms</span>
           </div>
+          <ul class="nav-links">
+            <li>
+              <a href="/user/home">
+                <i class='bx bx-grid-alt' ></i>
+                <span class="link_name">Dashboard</span>
+              </a>
+              <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Dashboard</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="iocn-link">
+                <a href="/btm/search">
+                  <i class='bx bx-line-chart'aria-hidden="true"></i>
+                  <span class="link_name">Mediciones de Temperatura</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+              </div>
+              <ul class="sub-menu">
+                <li><a class="link_name" href="#">Mediciones de Temperatura</a></li>
+                <li><a href="/btm/measurements"><i class='bx bx-table icon'></i>Últimas Mediciones</a></li>
+                
+              </ul>
+            </li>
+            <li>
+              <div class="iocn-link">
+                <a href="/user/search">
+                  <i class='bx bxs-user-detail' aria-hidden="true"></i>
+                  <span class="link_name">Usuarios</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+              </div>
+              <ul class="sub-menu">
+                <li><a class="link_name" href="#">Usuarios</a></li>
+                <li><a href="/user/search"><i class='bx bx-search  icon'></i>Buscar</a></li>
+                <li><a href="/user/create-user"><i class='bx bxs-user-plus  icon'></i>Registrar</a></li>
+                <li><a href="/user/allUsers"><i class='bx bx-table icon '></i>Últimos Registros</a></li>
+              </ul>
+            </li>
+            
+           
+      </ul>
+        </div>
+
+
+     <div class="w-100">
+          
           <br>
 
           <% if(locals.userBodyTempMeasurements.length > 0){ %>  
@@ -60,7 +96,10 @@
                </div>
           <% } %>     
      </div>
-</main>
+
+</div>
+
+     
 
 <!-- /Measurements list -->
 
