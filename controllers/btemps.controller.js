@@ -73,6 +73,11 @@ const generateBtmReportByUser = async (req, res) => {
      const html = fs.readFileSync(path.join(__dirname, '../views/user_btm_template.html'), 'utf-8');
      const filename = `${userId}.pdf`
 
+     userBtm.forEach(data => {
+          data.horaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(10, 15);
+          data.fechaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(0, 9);
+     });
+
      const obj = {
           user: userData,
           measurements: userBtm,

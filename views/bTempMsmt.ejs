@@ -34,8 +34,8 @@
                                         <td><img src="/img/user-avatar.png" class="rounded-circle" title="<%= measurements[i].userId.nombres %> <%= measurements[i].userId.apellidos %>" style="width: 51px; height: 51px;"/></td>
                                         <td><%= measurements[i].userId.nombres %></td>
                                         <td><%= measurements[i].userId.apellidos %></td>
-                                        <td><%= measurements[i].fechaMedicion.toISOString().slice(0, 10) %></td>
-                                        <td><%= measurements[i].fechaMedicion.toISOString().slice(11, 16) %></td>
+                                        <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %></td>
+                                        <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %></td>
                                         <td><%= measurements[i].celsius %></td>
                                         <td>
                                              <a href="/btm/measurements/<%= measurements[i].userId._id %>" 
