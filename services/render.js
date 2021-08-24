@@ -14,6 +14,7 @@ exports.login = (req, res) => {
 exports.home =  (req, res) => {
      res.render('dashboard', {
           title: 'BTMS dashboard',
+          welcome: 'Bienvenido, Admin',
           adminId: req.adminId,
           adminEmail: req.adminEmail
      });
