@@ -8,22 +8,32 @@
 
      <div class="w-100">
           <%- include('include/_navbar')%>
-          <div class="form-title text-center">
-               <h2 class="text-dark">Buscar usuario</h2>
-               <span>Busque un nuevo usuario a partir de su cédula</span>
-          </div>
+          <nav aria-label="breadcrumb">
+               <ol class="breadcrumb" >
+                 <li class="breadcrumb-item"><a href="/user/home">Dashboard</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                 <li class="breadcrumb-item active" aria-current="page">Buscar</li>
+               </ol>
+          </nav> 
+          
+          <div class="container-sm mt-5 w-50">
+               <div class="card">
+                    <div class="card-header">
+                         <h4 class="text-dark">Buscar usuario</h4>
+                    </div>
+                    <div class="card-body">
+                         <form class="my-2 my-lg-0 form-group"  method="GET" id="search_user">
+                              <label>Busque un nuevo usuario a partir de su cédula:</label>
+                              <br>
+                              <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control w-50" required>
+                              <br>
+                              <button type="submit" class="btn btn-primary">Buscar</button>
+                         </form>
+                    </div>
+                  </div>
+              </div>
 
-          <form method="GET" id="search_user" >
-               <div>
-                    <div class="form-group">
-                         <label for="cedula">Cédula</label>
-                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                         <button type="submit" class="btn btn-primary">Buscar</button>
-                    </div>
-               </div>
-          </form>
+         
      </div>
 </div>
 

@@ -10,6 +10,13 @@
      <div class="w-100">
           <%- include('include/_navbar')%>
           <!--ADD USER-->
+          <nav aria-label="breadcrumb">
+               <ol class="breadcrumb" >
+                 <li class="breadcrumb-item"><a href="/user/home">Dashboard</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                 <li class="breadcrumb-item active" aria-current="page">Registro</li>
+               </ol>
+          </nav>  
           <div class="form-title text-center">
                <h2 class="text-dark">Nuevo usuario</h2>
                <span>Cree un nuevo usuario a partir de los siguientes datos</span>
@@ -19,11 +26,11 @@
                <div class="form-row">
                     <div class="form-group col-md-4">
                          <label for="cedula">Cédula</label>
-                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" required>
+                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" autofocus required>
                     </div>
                  <div class="form-group col-md-4">
                     <label for="nombres">Nombres</label>
-                    <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" autofocus required>
+                    <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" required>
                  </div>
                  <div class="form-group col-md-4">
                     <label for="apellidos">Apellidos</label>
