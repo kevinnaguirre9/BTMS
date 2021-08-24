@@ -16,47 +16,53 @@
                  <li class="breadcrumb-item active" aria-current="page">Últimas Mediciones</li>
                </ol>
           </nav> 
+          <div class="form-title text-center">
+               <h3 class="text-dark">Últimas mediciones agregados</h3>
+          </div>
           
           <!-- Form handling -->
-          <form>   
-               <table class="table">
-                    <thead class="thead-dark">
-                         <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Profile</th>
-                              <th scope="col">Nombres</th>
-                              <th scope="col">Apellidos</th>
-                              <th scope="col">Fecha</th>
-                              <th scope="col">Hora</th>
-                              <th scope="col">Celsius (°C)</th>
-                              <th scope="col">Acciones</th>
-                         </tr>
-                    </thead>
-                    <tbody>
-                         <% if(locals.measurements){ %>  
-                              <% for(var i=0; i < measurements.length; i++) { %>
-                                   <tr>
-                                        <th scope="row"><%= i+1 %></th>
-                                        <td><img src="/img/user-avatar.png" class="rounded-circle" title="<%= measurements[i].userId.nombres %> <%= measurements[i].userId.apellidos %>" style="width: 51px; height: 51px;"/></td>
-                                        <td><%= measurements[i].userId.nombres %></td>
-                                        <td><%= measurements[i].userId.apellidos %></td>
-                                        <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %></td>
-                                        <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %></td>
-                                        <td><%= measurements[i].celsius %></td>
-                                        <td>
-                                             <a href="/btm/measurements/<%= measurements[i].userId._id %>" 
-                                                  class="btn border-shadow update">
-                                                  <span><i class="far fa-eye"></i></span>
-                                             </a>
-                                        </td>
-                                   </tr>
-                                   <% } %>
-                         <% } %>
-                         
-                    </tbody>
-               </table>
-          </form>
-
+          <div class="container w-75">
+               <form>   
+                    <table class="table">
+                         <thead class="thead-dark">
+                              <tr>
+                                   <th scope="col">#</th>
+                                   <th scope="col">Profile</th>
+                                   <th scope="col">Nombres</th>
+                                   <th scope="col">Apellidos</th>
+                                   <th scope="col">Fecha</th>
+                                   <th scope="col">Hora</th>
+                                   <th scope="col">Celsius (°C)</th>
+                                   <th scope="col">Acciones</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              <% if(locals.measurements){ %>  
+                                   <% for(var i=0; i < measurements.length; i++) { %>
+                                        <tr>
+                                             <th scope="row"><%= i+1 %></th>
+                                             <td><img src="/img/user-avatar.png" class="rounded-circle" title="<%= measurements[i].userId.nombres %> <%= measurements[i].userId.apellidos %>" style="width: 51px; height: 51px;"/></td>
+                                             <td><%= measurements[i].userId.nombres %></td>
+                                             <td><%= measurements[i].userId.apellidos %></td>
+                                             <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %></td>
+                                             <td><%= measurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %></td>
+                                             <td><%= measurements[i].celsius %></td>
+                                             <td>
+                                                  <a href="/btm/measurements/<%= measurements[i].userId._id %>" 
+                                                       class="btn border-shadow update">
+                                                       <span><i class="far fa-eye"></i></span>
+                                                  </a>
+                                             </td>
+                                        </tr>
+                                        <% } %>
+                              <% } %>
+                              
+                         </tbody>
+                    </table>
+               </form>
+     
+          </div>
+          
 
           <!-- /Form handling -->
 
