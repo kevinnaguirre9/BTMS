@@ -92,13 +92,28 @@ const generateBtmReportByUser = async (req, res) => {
           path: './docs/' + filename
      }
 
-     const pdfCreated = await pdf.create(document, options);
-     
-     res.download(pdfCreated.filename, (err) => {
+     //Create pdf report
+     await pdf.create(document, options);
+
+     const downloadUrl = `/btm/measurements/report/${userId}/download/${filename}`;
+
+     if(req.query.regenerate) return res.redirect(downloadUrl);
+
+     res.send({status: 'success', url: downloadUrl});
+}
+
+const downloadUserBtmReport = async (req, res) => {
+     const {userId, filename} = req.params;
+     const pdfPath = `docs/${filename}`
+
+     //If file doesn't exist anymore, regenerate the report
+     if(!fs.existsSync(pdfPath)) return res.redirect(`/btm/measurements/report/${userId}?regenerate=true`);
+
+     res.download(pdfPath, (err) => {
           if(err) {
-               console.log('there was error in res.downoad!', err)
+               console.log('there was error in res.download!', err)
           }
-          fs.unlinkSync(pdfCreated.filename)
+          fs.unlinkSync(pdfPath);  //delete file
      })
 }
 
@@ -108,5 +123,6 @@ module.exports = {
      getBodyTempMeasurements,
      searchBtm,
      getBodyTempMeasurementByUserId,
-     generateBtmReportByUser
+     generateBtmReportByUser,
+     downloadUserBtmReport
 }

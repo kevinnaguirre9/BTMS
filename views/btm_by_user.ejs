@@ -35,11 +35,20 @@
                               <% } %>
                          </tbody>
                     </table>
-               </form>     
-               <div>
-                    <a href="/btm/measurements/report/<%= userId %>" class="btn btn-success"><i class="fas fa-file-pdf"></i> Reporte
-                    </a>
-               </div>
+               </form>  
+               <br> 
+               <form method="GET" id="getUserReport" >
+                    <div>
+                         <div class="form-group">
+                              <input type="hidden" name="userId" value="<%= userId %>" class="form-control">
+                         </div>
+                         <div class="form-group">
+                              <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Generar Reporte
+                              </button>
+                              <span><i>Puede tomar unos segundos.</i></span>
+                         </div>
+                    </div>
+               </form>  
 
           <% } else { %>
                <div class="card" style="width: 18rem;">

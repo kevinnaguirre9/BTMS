@@ -35,30 +35,6 @@ $(document).ready(function(){
      });
 });
 
-// Show User image uploaded
-
-/*$("#userPhoto").change(function(e) {
-     for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-          var file = e.originalEvent.srcElement.files[i];
-          
-          if(document.getElementById('img_uploaded')){
-               var el = document.getElementById('img_uploaded');
-               el.remove();   
-          }
-
-          var img = document.createElement("img");
-          img.id = "img_uploaded";
-          img.className = "rounded-circle";
-          var reader = new FileReader();
-          reader.onloadend = function() {
-               img.src = reader.result;
-          }
-          reader.readAsDataURL(file);
-          $("#userPhoto").after(img);
-     }
-});*/
-
-
 
 $(document).ajaxStart(function(){
      Swal.fire({
@@ -306,6 +282,34 @@ $("#updateUserPasswd").submit(function(event){
 })
 
 
+// Get user body temperature measurements report
+$("#getUserReport").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     var userId = data.get('userId');
+     
+     var request = {
+          "url": `http://localhost:4000/btm/measurements/report/${userId}`,
+          "method": "GET",
+          "success":(response) => {
+               Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Reporte generado',
+                    html: `<p>Click <a href=${response.url} target="_blank" rel="noopener">aquí</a> si la descarga no inicia.</p>`,
+                    footer: `<a href="/user/home" class="btn btn-success">Ir a la página de inicio</a>`,
+                    showCloseButton: true,
+                    showConfirmButton: false
+               });
+               window.location.assign(response.url);
+          }
+     }
+
+     $.ajax(request);
+});
+
+
 
 // Delete user from users table
 if(window.location.pathname == '/user/allUsers') {
@@ -350,15 +354,7 @@ if(window.location.pathname == '/user/allUsers') {
 }
 
 
-// Add welcome message
-if(window.location.pathname == '/user/home') {
-     var divWelcome = document.getElementById('welcomeAdmin');
-     var wh1 = document.createElement('h1');
-     var h1Text = document.createTextNode('Bienvenido, Admin');
-     wh1.className = "mb-0";
-     wh1.appendChild(h1Text);
-     divWelcome.appendChild(wh1);
-}
+
 
 
 
