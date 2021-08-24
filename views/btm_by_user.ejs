@@ -9,7 +9,13 @@
 
      <div class="w-100">
           <%- include('include/_navbar')%>
-          <br>
+          <nav aria-label="breadcrumb">
+               <ol class="breadcrumb" >
+                 <li class="breadcrumb-item"><a href="/user/home">Dashboard</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                 <li class="breadcrumb-item active" aria-current="page">Buscar</li>
+               </ol>
+          </nav> 
 
           <% if(locals.userBodyTempMeasurements.length > 0){ %>  
                <form>   

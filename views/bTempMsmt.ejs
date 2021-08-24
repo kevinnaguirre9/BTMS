@@ -9,7 +9,13 @@
      <div class="w-100">
           <%- include('include/_navbar')%>
 
-          <br>
+          <nav aria-label="breadcrumb">
+               <ol class="breadcrumb" >
+                 <li class="breadcrumb-item"><a href="/user/home">Dashboard</a></li>
+                 <li class="breadcrumb-item active" aria-current="page">Temperatura</li>
+                 <li class="breadcrumb-item active" aria-current="page">Últimas Mediciones</li>
+               </ol>
+          </nav> 
           
           <!-- Form handling -->
           <form>   
