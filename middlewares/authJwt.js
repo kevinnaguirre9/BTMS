@@ -49,7 +49,10 @@ const isLoggedOut = async (req, res, next) => {
      // if user does not exist, go to to login
      if(!user) return next();
 
-     res.status(200).redirect('/user/home');   // if user is logged in, continue to /home
+     // if user is logged in, and return-to uri exists, redirect to return-to uri
+     if(req.query.return_to) return res.redirect(req.query.return_to);
+
+     res.redirect('/user/home');   // Otherwise redirect to /home
 }
 
 module.exports = {
