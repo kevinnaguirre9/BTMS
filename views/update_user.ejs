@@ -33,106 +33,125 @@
                <div class="tab-pane fade show active" id="Info" role="tabpanel" aria-labelledby="home-tab">
                     <!-- Form handling -->
            <form method="POST" id="updateUserInfo" enctype="multipart/form-data">   
-               <div class="container w-50">
+               <div class="container w-100">
                     <div class="text-center mt-4">
                          <h4>Información del usuario</h4>
                     </div>
-                    <div class="form-row">
-                         <div class="form-group col-md-6">    
-                              <label for="nombres">Nombres</label>
-                              <input type="hidden" name="id" value="<%= user._id %>">
-                              <input type="hidden" name="imgKey" value="<%= user.imgKey %>">
-                              <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
-                              value="<%= user.nombres %>" required>
-                         </div>
-                         <div class="form-group col-md-6">
-                              <label for="apellidos">Apellidos</label>
-                              <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>" required>
-                         </div>
+                    <div class="container">
+                    <div class="row">
+                         <div class="col-md-8">
+                              <div class="form-row">
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">    
+                                        <label for="nombres">Nombres</label>
+                                        <input type="hidden" name="id" value="<%= user._id %>">
+                                        <input type="hidden" name="imgKey" value="<%= user.imgKey %>">
+                                        <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
+                                        value="<%= user.nombres %>" required>
+                                   </div>
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="apellidos">Apellidos</label>
+                                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>" required>
+                                   </div>
+          
+                              </div>
+                              <div class="form-row">
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="cedula">Cédula</label>
+                                        <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
+                                   </div>
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                                        <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" 
+                                        value="<%= user.fechaNacimiento.toISOString().slice(0, 10) %>" required>
+                                   </div>
+                              </div>
+                              <div class="form-row">
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="sexo">Sexo</label>
+                                        <select class="form-control" name="sexo" id="sexo" required>
+                                             <option value="Hombre" <%= user.sexo == "Hombre" ? 'selected' : '' %>>Hombre</option>
+                                             <option value="Mujer" <%= user.sexo == "Mujer" ? 'selected' : '' %>>Mujer</option>
+                                             <option value="Otro" <%= user.sexo == "Otro" ? 'selected' : '' %>>Otro</option>
+                                        </select>
+                                   </div>
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="celular">Celular</label>
+                                        <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" value="<%= user.celular %>" required>
+                                   </div>
+               
+                                 </div>
+                                 <div class="form-row">
+                                   <div class="form-group col-md-12">
+                                        <label for="direccion">Direccion</label>
+                                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control  "  value="<%= user.direccion %>" required>
+                                   </div>
+          
+                              </div>
+                              <div class="form-row">
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="estatus">Estatus</label>
+                                        <select class="form-control" name="estatus" id="estatus" required>
+                                             <option value="true" <%= user.activo == true ? 'selected' : '' %>>Activo</option>
+                                             <option value="false" <%= user.activo == false ? 'selected' : '' %>>Inactivo</option>
+                                        </select>
+                                   </div>
+                                   <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="rol">Rol</label>
+                                        <select class="form-control" name="rol" id="rol" required>
+                                             <% for(var i=0; i < roles.length; i++) { %>
+                                                  <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
+                                             <% } %>
+                                        </select>
+                                   </div>
+                                   
+                              </div>
+                              <div class="form-group" id="adminCredentials">
+                                   <br>
+                                   <div>
+                                        <h5>Provea email y contraseña para el Administrador</h5>
+                                   </div>
+                                   <div class="form-group" id="input_email"></div>
+                                   <div class="form-group" id="input_password"></div>
+                              </div>               
+                             
+          
 
-                    </div>
-                    <div class="form-row">
-                         <div class="form-group col-md-6">
-                              <label for="cedula">Cédula</label>
-                              <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
                          </div>
-                         <div class="form-group col-md-6">
-                              <label for="fechaNacimiento">Fecha de nacimiento</label>
-                              <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" 
-                              value="<%= user.fechaNacimiento.toISOString().slice(0, 10) %>" required>
-                         </div>
-                    </div>
+                         <div class="col-md-4">
+                              <div class="form-row mb-4">
+                                   <div class="form-group col-md-12 text-center">
+                                        <label for="userPhoto">Cambiar foto</label>
+                                        
+                                        <div class="profile-pic-div">
+                                         <input type="file" name="userPhoto" id="userPhoto" class="form-control" 
+                                        accept="image/jpeg, image/png"/>
+                                        <img src="/user/images/<%= user.imgKey %>" id="img_uploaded" class="rounded-circle"/>
+                                        <label for="userPhoto" id="uploadBtn">Subir foto</label>
+                                        </div>
+                                        
+                                   </div>
+               
+                                 </div>
 
-                  <div class="form-row mb-4">
-                    <div class="form-group col-md-12">
-                         <label for="userPhoto">Cambiar foto</label>
-                         
-                         <div class="profile-pic-div">
-                          <input type="file" name="userPhoto" id="userPhoto" class="form-control" 
-                         accept="image/jpeg, image/png"/>
-                         <img src="/user/images/<%= user.imgKey %>" id="img_uploaded" class="rounded-circle"/>
-                         <label for="userPhoto" id="uploadBtn">Subir foto</label>
                          </div>
-                         
-                    </div>
-
-                  </div>
+                       </div>
+                     </div>
+                     
                     
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                         <label for="sexo">Sexo</label>
-                         <select class="form-control" name="sexo" id="sexo" required>
-                              <option value="Hombre" <%= user.sexo == "Hombre" ? 'selected' : '' %>>Hombre</option>
-                              <option value="Mujer" <%= user.sexo == "Mujer" ? 'selected' : '' %>>Mujer</option>
-                              <option value="Otro" <%= user.sexo == "Otro" ? 'selected' : '' %>>Otro</option>
-                         </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                         <label for="celular">Celular</label>
-                         <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" value="<%= user.celular %>" required>
-                    </div>
-
-                  </div>
-                    <div class="form-row">
-                         <div class="form-group col-md-12">
-                              <label for="direccion">Direccion</label>
-                              <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control"  value="<%= user.direccion %>" required>
-                         </div>
-
-                    </div>
-                    <div class="form-row">
-                         <div class="form-group col-md-6">
-                              <label for="estatus">Estatus</label>
-                              <select class="form-control" name="estatus" id="estatus" required>
-                                   <option value="true" <%= user.activo == true ? 'selected' : '' %>>Activo</option>
-                                   <option value="false" <%= user.activo == false ? 'selected' : '' %>>Inactivo</option>
-                              </select>
-                         </div>
-                         <div class="form-group col-md-6">
-                              <label for="rol">Rol</label>
-                              <select class="form-control" name="rol" id="rol" required>
-                                   <% for(var i=0; i < roles.length; i++) { %>
-                                        <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
-                                   <% } %>
-                              </select>
-                         </div>
-                         
-                    </div>
-                    
-                    <div class="form-group" id="adminCredentials">
-                         <br>
-                         <div>
-                              <h5>Provea email y contraseña para el Administrador</h5>
-                         </div>
-                         <div class="form-group" id="input_email"></div>
-                         <div class="form-group" id="input_password"></div>
-                    </div>               
-                    <div class="form-group text-center">
+                  
+                     <div class="form-group text-center mt-5">
                          <button type="submit" class="btn btn-success">Actualizar</button>
                     </div>
+                  
+                    
+
+                    
+
                </div>
+               
           </form>
                </div>
+              
                <div class="tab-pane fade" id="cuenta" role="tabpanel" aria-labelledby="profile-tab">
                     <% if(locals.userCredentials){ %>  
                          <form method="POST" id="updateUserEmail">   
