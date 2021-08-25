@@ -1,3 +1,5 @@
+const Role = require('../models/Role');
+
 exports.login = (req, res) => {
      let redirectTarget = '/user/home';
 
@@ -22,9 +24,11 @@ exports.home =  (req, res) => {
 
 
 // route for load the add user page
-exports.create_user = (req, res) => { 
+exports.create_user = async (req, res) => { 
+     const roles = await Role.find();
      res.render('create_user', {
           title: "Register new user",
+          roles,
           adminId: req.adminId,
           adminEmail: req.adminEmail
      });

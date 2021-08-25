@@ -70,8 +70,9 @@
                     <div class="form-group col-md-12" id="roles">
                          <label for="rol">Rol</label>
                          <select class="form-control" name="rol" id="rol" required>
-                              <option value="61003cfe2d549829d88d8e55">Usuario normal</option>
-                              <option value="60ff1e315a44b204306db9db">Administrador</option>
+                              <% for(var i=0; i < roles.length; i++) { %>
+                                   <option value=<%= roles[i]._id %> <%= roles[i].nombre === 'Básico' ? 'selected' : '' %>><%= roles[i].nombre %></option>
+                              <% } %>
                          </select>
                     </div>  
                </div>
@@ -102,80 +103,7 @@
           </div>
      </div>
      </div>
-</form>
-     <!--ADD USER-->
-         
-         <!-- Form handling>
-           <form method="POST" id="add_user" enctype="multipart/form-data">   
-               <div>
-                    <div class="form-group">
-                         <label for="nombres">Nombres</label>
-                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" autofocus required>
-                    </div>
-                    <div class="form-group">
-                         <label for="apellidos">Apellidos</label>
-                         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                         <label for="cedula">Cédula</label>
-                         <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                         <label for="userPhoto">Subir foto</label>
-                         <input type="file" name="userPhoto" id="userPhoto" class="form-control" 
-                         accept="image/jpeg, image/png" required/>
-                         <img src="/img/user-avatar.png" id="img_uploaded"/>
-                    </div>
-                    <div class="form-group">
-                         <label for="fechaNacimiento">Fecha de nacimiento</label>
-                         <input class="form-control" type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-                    </div>
-                    <div class="form-group">
-                         <label for="direccion">Direccion</label>
-                         <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                         <label for="sexo">Sexo</label>
-                         <select class="form-control" name="sexo" id="sexo" required>
-                              <option value="Hombre">Hombre</option>
-                              <option value="Mujer">Mujer</option>
-                              <option value="Otro">Otro</option>
-                         </select>
-                    </div>
-                    <div class="form-group">
-                         <label for="celular">Celular</label>
-                         <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                         <label for="estatus">Estatus</label>
-                         <select class="form-control" name="estatus" id="estatus" required>
-                              <option value="true">Activo</option>
-                              <option value="false">Inactivo</option>
-                         </select>
-                    </div>
-                    <div class="form-group" id="roles">
-                         <label for="rol">Rol</label>
-                         <select class="form-control" name="rol" id="rol" required>
-                              <option value="61003cfe2d549829d88d8e55">Usuario normal</option>
-                              <option value="60ff1e315a44b204306db9db">Administrador</option>
-                         </select>
-                    </div>       
-                    <div class="form-group" id="adminCredentials">
-                         <br>
-                         <div>
-                              <h5>Provea email y contraseña para el Administrador</h5>
-                         </div>
-                         <div class="form-group" id="input_email"></div>
-                         <div class="form-group" id="input_password"></div>
-                    </div>             
-                    <div class="form-group">
-                         <button class="btn btn-success" type="submit" value="Submit" id="submit">Guardar</button>
-                    </div>
-               </div>
-               
-          </form>
-          <-- /Form handling -->
-          
+</form>          
      </div>
 </div>
 

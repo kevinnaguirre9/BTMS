@@ -20,12 +20,14 @@
                <li class="nav-item">
                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Info" role="tab" aria-controls="Info" aria-selected="true">Información</a>
                </li>
-               <li class="nav-item">
-                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#cuenta" role="tab" aria-controls="cuenta" aria-selected="false">Cuenta</a>
-               </li>
-               <li class="nav-item">
-                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#seguridad" role="tab" aria-controls="seguridad" aria-selected="false">Seguridad</a>
-               </li>
+               <% if(locals.hasCredentials){ %>  
+                    <li class="nav-item">
+                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#cuenta" role="tab" aria-controls="cuenta" aria-selected="false">Cuenta</a>
+                       </li>
+                       <li class="nav-item">
+                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#seguridad" role="tab" aria-controls="seguridad" aria-selected="false">Seguridad</a>
+                       </li>
+               <% } %>
              </ul>
              <div class="tab-content" id="myTabContent">
                <div class="tab-pane fade show active" id="Info" role="tabpanel" aria-labelledby="home-tab">

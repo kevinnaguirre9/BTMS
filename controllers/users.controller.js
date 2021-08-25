@@ -64,6 +64,7 @@ const getUserById = async (req, res) => {
      if(userCredentials) {
           return res.status(200).render('update_user', {
                title: 'Update user', 
+               hasCredentials: true,
                user,  
                roles,
                userCredentials,
