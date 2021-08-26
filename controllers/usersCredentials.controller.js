@@ -8,9 +8,9 @@ const updateEmail = async (req, res) => {
      });
      
      // If the user email updated belong to the admin logged, then log out
-     if(req.adminId == userId) return res.status(200).send({status: 'success', logout: true, url:'/auth/logout'});
+     if(req.adminId == userId) return res.send({status: 'success', url:'/auth/logout'});
 
-     res.status(200).send({status: 'success', url:'/user/allUsers'});
+     res.send({status: 'success', url:'/user/allUsers'});
 }
 
 const updatePassword = async(req, res) => {
@@ -23,16 +23,16 @@ const updatePassword = async(req, res) => {
 
      if (!matchPassword) return res.send({status: 'error', message: 'Contraseña antigua incorrecta'}); 
 
-     if (! (newPasswd === confPasswd)) return res.send({status: 'error', message: 'La nueva contraseña no coincide'}); 
+     if (!(newPasswd === confPasswd)) return res.send({status:'error', message:'La nueva contraseña no coincide'}); 
 
      await UserCredential.findByIdAndUpdate(userCredentialsFound._id, {
           password: await UserCredential.encryptPassword(confPasswd)
      });
      
      // If the user password updated belong to the admin logged, then log out
-     if(req.adminId == userId) return res.status(200).send({status: 'success', logout: true, url:'/auth/logout'});
+     if(req.adminId == userId) return res.send({status: 'success', url:'/auth/logout'});
 
-     res.status(200).send({status: 'success', url:'/user/allUsers'});
+     res.send({status: 'success', url:'/user/allUsers'});
 }
 
 

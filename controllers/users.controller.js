@@ -61,10 +61,17 @@ const getUserById = async (req, res) => {
      const roles = await Role.find();
      const userCredentials = await UserCredential.findOne({userId: userId});
 
+     let logout = 'no-required';
+
+     if(req.params.userId == req.adminId) {
+          logout = 'required';
+     }
+
      if(userCredentials) {
           return res.status(200).render('update_user', {
                title: 'Update user', 
                hasCredentials: true,
+               logout,
                user,  
                roles,
                userCredentials,
