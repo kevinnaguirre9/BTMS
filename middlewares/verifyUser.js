@@ -41,7 +41,7 @@ const checkDuplicateEmail = async (req, res, next) => {
      if(data.email) {
           emailExists = await UserCredential.findOne({email: data.email});
      } else if (data.emailToUpdate) {
-          emailExists = await UserCredential.findOne( {_id: {$ne: data.id}, email: data.emailToUpdate} );
+          emailExists = await UserCredential.findOne( {userId: {$ne: data.id}, email: data.emailToUpdate} );
      }
 
      if(emailExists) {
