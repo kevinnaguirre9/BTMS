@@ -258,17 +258,46 @@ $("#updateUserPasswd").submit(function(event){
 })
 
 
+// Get general body temperature measurements report
+$("#generateReport").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     var startDate = data.get('fechaInicio');
+     var endDate = data.get('fechaFin'); 
+     
+     var request = {
+          "url": `http://localhost:4000/btm/measurements/report/all?startDate=${startDate}&endDate=${endDate}`,
+          "method": "GET",
+          "success": (response) => {
+               Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Reporte generado',
+                    html: `<p>Click <a href=${response.url} target="_blank" rel="noopener">aquí</a> si la descarga no inicia.</p>`,
+                    showCloseButton: true,
+                    showConfirmButton: false
+               });
+               window.location.assign(response.url);
+               $("#modalReport").modal('hide');
+          }
+     }
+
+     $.ajax(request);
+});
+
+
 // Get user body temperature measurements report
-$("#getUserReport").submit(function(event){
+$("#generateUserReport").submit(function(event){
      event.preventDefault();
 
      var data = new FormData(this);
      var userId = data.get('userId');
      
      var request = {
-          "url": `http://localhost:4000/btm/measurements/report/${userId}`,
+          "url": `http://localhost:4000/btm/measurements/${userId}/report`,
           "method": "GET",
-          "success":(response) => {
+          "success": (response) => {
                Swal.fire({
                     position: 'center',
                     icon: 'success',

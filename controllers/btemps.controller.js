@@ -51,13 +51,14 @@ const searchBtm = async (req, res) => {
 
 const getBodyTempMeasurementByUserId = async (req, res) => {
      const userId = req.params.userId;
+     const userData = await User.findById(userId, {nombres: 1, apellidos: 1});
      const userBodyTempMeasurements = await bodyTempMeasurement.find({userId: userId})
                                                                       .sort({ fechaMedicion: -1 })
                                                                       .limit(6);
      
      res.render('btm_by_user', {
           title: "Mediciones por usuario", 
-          userId, 
+          userData, 
           userBodyTempMeasurements,
           adminId: req.adminId,
           adminEmail: req.adminEmail
@@ -65,12 +66,56 @@ const getBodyTempMeasurementByUserId = async (req, res) => {
 }
 
 
+const generateBtmReport = async (req, res) => {
+     let {startDate, endDate} = req.query;
+     startDate = new Date(startDate).toISOString();
+     endDate = `${endDate}T23:59:59`
+     
+     const btm = await bodyTempMeasurement.find({
+          fechaMedicion: {
+               $gte: startDate,
+               $lte: endDate
+          }
+     }).lean();
+
+     const html = fs.readFileSync(path.join(__dirname, '../views/btm_template.html'), 'utf-8');
+     const filename = 'BTMreport.pdf'
+
+     btm.forEach(data => {
+          data.horaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(10, 15);
+          data.fechaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(0, 9);
+     });
+
+     const obj = {
+          measurements: btm,
+          date: new Date().toLocaleDateString('ec-Ec')
+     }
+
+     const document = {
+          html: html,
+          data: {
+              bodyTempMeasurements: obj
+          },
+          path: './docs/' + filename
+     }
+
+     //Create pdf report
+     await pdf.create(document, options);
+
+     const downloadUrl = `/btm/measurements/report/download?filename=${filename}`;
+
+     if(req.query.regenerate) return res.redirect(downloadUrl);
+
+     res.send({status: 'success', url: downloadUrl});
+}
+
+
 const generateBtmReportByUser = async (req, res) => {
      const userId = req.params.userId;
-     const userData = await User.findById(userId).lean();
+     const userData = await User.findById(userId, {nombres: 1, apellidos: 1}).lean();
      const userBtm = await bodyTempMeasurement.find({userId: userId}).sort({ fechaMedicion: -1 }).lean()
 
-     const html = fs.readFileSync(path.join(__dirname, '../views/user_btm_template.html'), 'utf-8');
+     const html = fs.readFileSync(path.join(__dirname, '../views/btm_template.html'), 'utf-8');
      const filename = `${userId}.pdf`
 
      userBtm.forEach(data => {
@@ -95,19 +140,28 @@ const generateBtmReportByUser = async (req, res) => {
      //Create pdf report
      await pdf.create(document, options);
 
-     const downloadUrl = `/btm/measurements/report/${userId}/download/${filename}`;
+     const downloadUrl = `/btm/measurements/report/download?filename=${filename}&userId=${userId}`;
 
      if(req.query.regenerate) return res.redirect(downloadUrl);
 
      res.send({status: 'success', url: downloadUrl});
 }
 
-const downloadUserBtmReport = async (req, res) => {
-     const {userId, filename} = req.params;
-     const pdfPath = `docs/${filename}`
+
+const downloadBtmReport = async (req, res) => {
+     const {filename, userId} = req.query;
+     const pdfPath = `docs/${filename}`;
 
      //If file doesn't exist anymore, regenerate the report
-     if(!fs.existsSync(pdfPath)) return res.redirect(`/btm/measurements/report/${userId}?regenerate=true`);
+     if(!fs.existsSync(pdfPath)) {
+          //Case 1: General report
+          let regenerateUrl = '/btm/measurements/report/all?regenerate=true';
+          //Case 2: Report by user
+          if(userId) {
+               regenerateUrl = `/btm/measurements/${userId}/report?regenerate=true`;
+          }
+          return res.redirect(regenerateUrl);
+     }
 
      res.download(pdfPath, (err) => {
           if(err) {
@@ -123,6 +177,7 @@ module.exports = {
      getBodyTempMeasurements,
      searchBtm,
      getBodyTempMeasurementByUserId,
+     generateBtmReport,
      generateBtmReportByUser,
-     downloadUserBtmReport
+     downloadBtmReport
 }

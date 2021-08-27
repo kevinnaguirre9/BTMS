@@ -17,44 +17,52 @@
                </ol>
           </nav> 
 
-          <% if(locals.userBodyTempMeasurements.length > 0){ %>  
-               <form>   
-                    <table class="table table-user-btms">
-                         <thead class="thead-dark">
-                              <tr>
-                                   <th scope="col">#</th>
-                                   <th scope="col">Fecha</th>
-                                   <th scope="col">Hora</th>
-                                   <th scope="col">Celsius (°C)</th>
-                              </tr>
-                         </thead>
-                         <tbody>
-                              <% for(var i=0; i < userBodyTempMeasurements.length; i++) { %>
+          <% if(locals.userBodyTempMeasurements.length > 0){ %>
+               <div class="form-title text-center">
+                    <h3 class="text-dark">Últimas mediciones de <%= userData.nombres %> <%= userData.apellidos %>
+                    </h3>
+               </div>
+               
+               <div class="container w-75">
+                    <form>   
+                         <table class="table table-user-btms">
+                              <thead class="thead-dark">
                                    <tr>
-                                        <th scope="row"><%= i+1 %></th>
-                                        <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %>
-                                        </td>
-                                        <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %>
-                                        </td>
-                                        <td><%= userBodyTempMeasurements[i].celsius %></td>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col">Celsius (°C)</th>
                                    </tr>
-                              <% } %>
-                         </tbody>
-                    </table>
-               </form>  
-               <br> 
-               <form method="GET" id="getUserReport" >
-                    <div>
-                         <div class="form-group">
-                              <input type="hidden" name="userId" value="<%= userId %>" class="form-control">
+                              </thead>
+                              <tbody>
+                                   <% for(var i=0; i < userBodyTempMeasurements.length; i++) { %>
+                                        <tr>
+                                             <th scope="row"><%= i+1 %></th>
+                                             <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %>
+                                             </td>
+                                             <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %>
+                                             </td>
+                                             <td><%= userBodyTempMeasurements[i].celsius %></td>
+                                        </tr>
+                                   <% } %>
+                              </tbody>
+                         </table>
+                    </form>  
+                    <br> 
+                    <form method="GET" id="generateUserReport" >
+                         <div>
+                              <div class="form-group">
+                                   <input type="hidden" name="userId" value="<%= userData._id %>" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                   <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Generar Reporte
+                                   </button>
+                                   <span><i>Puede tomar unos segundos.</i></span>
+                              </div>
                          </div>
-                         <div class="form-group">
-                              <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Generar Reporte
-                              </button>
-                              <span><i>Puede tomar unos segundos.</i></span>
-                         </div>
-                    </div>
-               </form>  
+                    </form>
+               </div>
+                 
 
           <% } else { %>
                <div class="card" style="width: 18rem;">

@@ -140,21 +140,21 @@
                       </div>
                       <!---->
                       <!-- Button trigger modal -->
-                      <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter">
+                      <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modalReport">
                         Generar Reporte
                       </button>
 
                       <!-- Modal -->
-                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="modalReportTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Reporte</h5>
+                              <h5 class="modal-title" id="modalReportLongTitle">Reporte</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                            <form action=""> 
+                            <form method="GET" id="generateReport"> 
                               <div class="modal-body">
                               <div class="form-row">
                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
@@ -168,8 +168,9 @@
                               </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                              <button type="submit" class="btn btn-primary">Generar</button>
+                              <span><i>Puede tomar unos segundos.</i></span>
                             </div></form>
                             
                           </div>

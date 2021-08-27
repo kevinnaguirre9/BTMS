@@ -5,8 +5,9 @@ const {
      getBodyTempMeasurements, 
      searchBtm,
      getBodyTempMeasurementByUserId,
+     generateBtmReport,
      generateBtmReportByUser,
-     downloadUserBtmReport
+     downloadBtmReport
 } = require('../controllers/btemps.controller')
 
 const router = express.Router();
@@ -36,16 +37,22 @@ router.get('/measurements', authJwt.verifyToken, getBodyTempMeasurements);
 router.get('/measurements/:userId', authJwt.verifyToken, getBodyTempMeasurementByUserId); 
 
 /**
- * @description Generate user body temperature measurements report
+ * @description Generate body temperature measurements report
  * @method GET /
 */
-router.get('/measurements/report/:userId', authJwt.verifyToken, generateBtmReportByUser); 
+router.get('/measurements/report/all', authJwt.verifyToken, generateBtmReport); 
 
 /**
- * @description Download user body temperature measurements report
+ * @description Generate body temperature measurements report by user
  * @method GET /
 */
-router.get('/measurements/report/:userId/download/:filename', authJwt.verifyToken, downloadUserBtmReport);
+router.get('/measurements/:userId/report', authJwt.verifyToken, generateBtmReportByUser); 
+
+/**
+ * @description Download body temperature measurements report
+ * @method GET /
+*/
+router.get('/measurements/report/download', authJwt.verifyToken, downloadBtmReport);
 
 
 module.exports = {
