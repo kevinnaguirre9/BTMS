@@ -20,7 +20,10 @@ const meausureBodyTemp = async (req, res) => {
 
 
 const getBodyTempMeasurements = async (req, res) => {
-     const measurements = await bodyTempMeasurement.find().populate('userId').sort({ fechaMedicion: -1 }).limit(5);
+     const measurements = await bodyTempMeasurement.find().populate('userId', 'nombres apellidos')
+                                                            .sort({ fechaMedicion: -1 })
+                                                            .limit(5);
+                                                              
      res.render('bTempMsmt', {
           title: 'Mediciones', 
           measurements,
