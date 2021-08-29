@@ -44,7 +44,7 @@ const createUser = async (req, res) => {
 
 
 const getUsers = async (req, res) => {
-     const users = await User.find().sort({ createdAt: -1 }).limit(2);
+     const users = await User.find().sort({ createdAt: -1 }).limit(5);
      res.render('users', {
           title: 'Users', 
           users,
