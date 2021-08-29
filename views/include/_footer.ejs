@@ -8,43 +8,46 @@
 
 <!--Dashboard - JS/ -->
 <script>
-let arrow = document.querySelectorAll(".arrow");
-for (var i = 0; i < arrow.length; i++) {
-  arrow[i].addEventListener("click", (e)=>{
- let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
- arrowParent.classList.toggle("showMenu");
-  });
-}
-
-
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=> {
+      let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+      arrowParent.classList.toggle("showMenu");
+    });
+  }
 </script>
+
+
 <!--Dashboard - JS/ -->  
 <script>
-    const data = {
-        labels: [
-          'Red',
-          'Green',
-          'Yellow',
-          'Grey',
-          'Blue'
-        ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [11, 16, 7, 3, 14],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(75, 192, 192)',
-            'rgb(255, 205, 86)',
-            'rgb(201, 203, 207)',
-            'rgb(54, 162, 235)'
-          ]
-        }]
-      };
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'polarArea',
-        data:data,
-        options: {
+  if(window.location.pathname === '/user/home') {
+    const options = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 
+              'application/json;charset=utf-8'
+      }        
+    }
+
+    const fetchRes = fetch('http://localhost:4000/btm/measurements?todayMeasurements=true', options);
+
+    fetchRes
+      .then(res => res.json())
+      .then(resData => {
+        const count = [resData.stats.high, resData.stats.normal, resData.stats.low];
+        const data = {
+          labels: ['Alta (mayor a 37.5 °C)', 'Normal (entre 36 °C y 37 °C)', 'Baja (menor a 36 °C)'],
+          datasets: [{
+            label: 'Measurements Basic Statistics',
+            data: count,
+            backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 192)', 'rgb(255, 205, 86)']
+          }]
+        };
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'polarArea',
+          data: data,
+          options: {
             animations: {
               tension: {
                 duration: 8000,
@@ -62,6 +65,24 @@ for (var i = 0; i < arrow.length; i++) {
             }
           }
         });
+
+        const bodyTemps = resData.stats.bodyTemps
+        
+        const totalBtm = bodyTemps.length;
+        const maxBtm = Math.max(...bodyTemps);
+        const minBtm = Math.min(...bodyTemps);
+
+        const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+        const meanBt = arrAvg(bodyTemps);
+
+        $('#totalBt').text(totalBtm);
+        $('#maxBt').text(`${maxBtm} °C`);
+        $('#minBt').text(`${minBtm} °C`);
+        $('#meanBt').text(`${meanBt} °C`);
+
+      });
+  }  
+
 </script>
 
 </body>

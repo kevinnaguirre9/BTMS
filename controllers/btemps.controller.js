@@ -20,6 +20,38 @@ const meausureBodyTemp = async (req, res) => {
 
 
 const getBodyTempMeasurements = async (req, res) => {
+     if(req.query.todayMeasurements) {
+          const today = new Date();
+          today.setHours(0,0,0,0); // set to 0:00
+
+          const todayMeasurements = await bodyTempMeasurement.find({
+               fechaMedicion: {
+                    $gte: today
+               }
+          }, {celsius: 1});
+
+          const stats = {
+               "high": 0,
+               "normal": 0,
+               "low": 0,
+               "bodyTemps": []
+          }
+          
+          todayMeasurements.forEach(measurement => {
+               stats.bodyTemps.push(measurement.celsius)
+
+               if(measurement.celsius < 36.0 ) {
+                    stats.low += 1
+               } else if(measurement.celsius > 37.5 ) {
+                    stats.high += 1 
+               } else {
+                    stats.normal += 1
+               }
+          })
+          
+          return res.send({stats}); 
+     }
+
      const measurements = await bodyTempMeasurement.find().populate('userId', 'nombres apellidos')
                                                             .sort({ fechaMedicion: -1 })
                                                             .limit(5);
@@ -31,6 +63,7 @@ const getBodyTempMeasurements = async (req, res) => {
           adminEmail: req.adminEmail
      });
 }
+
 
 
 const searchBtm = async (req, res) => {
