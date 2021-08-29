@@ -67,19 +67,17 @@ const getBodyTempMeasurementByUserId = async (req, res) => {
 
 
 const generateBtmReport = async (req, res) => {
-     let {startDate, endDate} = req.query;
-     startDate = new Date(startDate).toISOString();
-     endDate = `${endDate}T23:59:59`
-     
+     const {startDate, endDate, regenerate} = req.query;
+
      const btm = await bodyTempMeasurement.find({
           fechaMedicion: {
-               $gte: startDate,
-               $lte: endDate
+               $gte: `${startDate}T00:00:00`,
+               $lte: `${endDate}T23:59:59`
           }
      }).lean();
 
      const html = fs.readFileSync(path.join(__dirname, '../views/btm_template.html'), 'utf-8');
-     const filename = 'BTMreport.pdf'
+     const filename = 'BTMreport';
 
      btm.forEach(data => {
           data.horaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(10, 15);
@@ -96,15 +94,15 @@ const generateBtmReport = async (req, res) => {
           data: {
               bodyTempMeasurements: obj
           },
-          path: './docs/' + filename
+          path: `./docs/${filename}.pdf`
      }
 
      //Create pdf report
      await pdf.create(document, options);
 
-     const downloadUrl = `/btm/measurements/report/download?filename=${filename}`;
+     const downloadUrl = `/btm/measurements/report/download?filename=${filename}&startDate=${startDate}&endDate=${endDate}`;
 
-     if(req.query.regenerate) return res.redirect(downloadUrl);
+     if(regenerate) return res.redirect(downloadUrl);
 
      res.send({status: 'success', url: downloadUrl});
 }
@@ -116,7 +114,7 @@ const generateBtmReportByUser = async (req, res) => {
      const userBtm = await bodyTempMeasurement.find({userId: userId}).sort({ fechaMedicion: -1 }).lean()
 
      const html = fs.readFileSync(path.join(__dirname, '../views/btm_template.html'), 'utf-8');
-     const filename = `${userId}.pdf`
+     const filename = userId;
 
      userBtm.forEach(data => {
           data.horaMedicion = data.fechaMedicion.toLocaleString('ec-Ec').slice(10, 15);
@@ -134,7 +132,7 @@ const generateBtmReportByUser = async (req, res) => {
           data: {
               bodyTempMeasurements: obj
           },
-          path: './docs/' + filename
+          path: `./docs/${filename}.pdf`
      }
 
      //Create pdf report
@@ -149,13 +147,13 @@ const generateBtmReportByUser = async (req, res) => {
 
 
 const downloadBtmReport = async (req, res) => {
-     const {filename, userId} = req.query;
-     const pdfPath = `docs/${filename}`;
+     const {filename, userId, startDate, endDate} = req.query;
+     const pdfPath = `docs/${filename}.pdf`;
 
      //If file doesn't exist anymore, regenerate the report
      if(!fs.existsSync(pdfPath)) {
           //Case 1: General report
-          let regenerateUrl = '/btm/measurements/report/all?regenerate=true';
+          let regenerateUrl=`/btm/measurements/report/all?startDate=${startDate}&endDate=${endDate}&regenerate=true`;
           //Case 2: Report by user
           if(userId) {
                regenerateUrl = `/btm/measurements/${userId}/report?regenerate=true`;
