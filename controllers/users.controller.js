@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Role = require('../models/Role');
 const UserCredential = require('../models/UserCredentials');
+const bodyTempMeasurement = require('../models/BTemp');
 const {uploadFile, getFileStream, deleteFile} = require('../awsS3');
 
 
@@ -172,6 +173,9 @@ const deleteUserById = async (req, res) => {
      
      // Delete user image from AWS S3
      await deleteFile(userDeleted.imgKey);
+
+     // Delete body temperature measurements
+     await bodyTempMeasurement.deleteMany({userId: userId});
 
      res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
