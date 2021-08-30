@@ -73,7 +73,7 @@
         const minBtm = Math.min(...bodyTemps);
 
         const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-        const meanBt = arrAvg(bodyTemps);
+        const meanBt = +arrAvg(bodyTemps).toFixed(2);
 
         $('#totalBt').text(totalBtm);
         $('#maxBt').text(`${maxBtm} °C`);
