@@ -176,6 +176,8 @@ const deleteUserById = async (req, res) => {
 
      // Delete body temperature measurements
      await bodyTempMeasurement.deleteMany({userId: userId});
+     
+     if(req.adminId == userId) return res.send({status: 'success', url:'/auth/logout'});
 
      res.status(200).send({status: 'success', url:'/user/allUsers'});
 }
