@@ -48,6 +48,8 @@
                                         <label for="nombres">Nombres</label>
                                         <input type="hidden" name="id" value="<%= user._id %>">
                                         <input type="hidden" name="imgKey" value="<%= user.imgKey %>">
+                                        <input type="hidden" name="hasCredentials" 
+                                        value="<%= locals.hasCredentials ? hasCredentials : false %>">
                                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
                                         value="<%= user.nombres %>" required>
                                    </div>

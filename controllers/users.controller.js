@@ -152,9 +152,27 @@ const updateUserProfile = async (req, res) => {
      }
      
      // Update public info
-     await User.findByIdAndUpdate(userId, update, {
-          new: true
-     });
+     const userUpdated = await User.findByIdAndUpdate(userId, update);
+
+     // If Administrators got the Basic role, then delete credentials
+     if(data.hasCredentials === 'true' && data.rol !== userUpdated.rol) {
+          await UserCredential.deleteOne({userId: userId});
+
+          // If Admin whose role was updated to Basic role is logged in, then log out
+          if(req.adminId == userId) return res.send({status: 'success', url:'/auth/logout'});
+     }
+
+     // If email and password are sent to server, admin data is saved
+     if(data.email && data.password) {
+          const newUserCredentials = new UserCredential({
+               email: data.email,
+               password: await UserCredential.encryptPassword(data.password),
+               userId: userId
+          });
+
+          await newUserCredentials.save();
+     }
+
 
      res.status(200).send({status: 'success', url:'/user/allUsers'}); 
 }
