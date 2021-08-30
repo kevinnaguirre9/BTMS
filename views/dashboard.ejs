@@ -12,8 +12,8 @@
     </nav>
     
     <div class="" id="content">
+      <!--
       <section class="bg-mix">
-        
         <div class="container">
           <div class="card rounded-0">
             <div class="card-body">
@@ -21,26 +21,13 @@
                 <div class="col-lg-6 d-flex stat my-3">
                   <div class="mx-auto">
                     <h6 class="text-muted">
-                      Usuarios
+                      Total de Mediciones de hoy
                     </h6>
                     <h3 class="font-weight-bold">
-                      50
+                      Muchas
                     </h3>
                     <h6 class="text-success">
-                      85%
-                    </h6>
-                  </div>
-                </div>
-                <div class="col-lg-6 d-flex my-3">
-                  <div class="mx-auto">
-                    <h6 class="text-muted">
-                      Usuarios
-                    </h6>
-                    <h3 class="font-weight-bold">
-                      50
-                    </h3>
-                    <h6 class="text-success">
-                      85%
+                      100%
                     </h6>
                   </div>
                 </div>
@@ -49,6 +36,7 @@
           </div>
         </div>
       </section>
+      -->
       <section class="bg-grey">
         <div class="container-fluid">
             <div class="row">
@@ -56,7 +44,7 @@
                     <div class="card rounded-0">
                         <div class="card-header bg-light">
                         <h6 class="font-weight-bold mb-0">
-                          Estadísticas de mediciones
+                          Estadísticas de las Mediciones
                         </h6>
                     </div>
                         <div class="card-body chart-gr">
@@ -76,28 +64,10 @@
                       <div class="d-block border-bottom py-2">
 
                         <div class="align-self-center mb-0">
-                          <h6 class=" mb-0 text-muted ">
-                            Temperatura media
-                          </h6>
-                          <h3 class="font-weight-bold">
-                            26.5 °C
-                          </h3>
-
-                        </div>
-                        
-                        <div>
-
-                        </div>
-                      </div>
-
-                      <div class="d-block border-bottom py-2">
-
-                        <div class="align-self-center mb-0">
                           <h6 class=" mb-0 text-muted">
-                            Distancia Sensor
+                            Total de Mediciones
                           </h6>
-                          <h3 class="font-weight-bold">
-                            0.5 m
+                          <h3 class="font-weight-bold" id="totalBt">
                           </h3>
 
                         </div>
@@ -110,10 +80,9 @@
 
                         <div class="align-self-center mb-0">
                           <h6 class=" mb-0 text-muted">
-                            Raspberry Pi Work
+                            Temperatura Corporal Máxima
                           </h6>
-                          <h3 class="font-weight-bold">
-                            5h 10min 
+                          <h3 class="font-weight-bold" id="maxBt">
                           </h3>
 
                         </div>
@@ -126,10 +95,24 @@
 
                         <div class="align-self-center mb-0">
                           <h6 class=" mb-0 text-muted">
-                            Alerts
+                            Temperatura Corporal Mínima
                           </h6>
-                          <h3 class="font-weight-bold">
-                            0.5%
+                          <h3 class="font-weight-bold" id="minBt">
+                          </h3>
+
+                        </div>
+                        
+                        <div>
+
+                        </div>
+                      </div>
+                      <div class="d-block border-bottom py-2">
+
+                        <div class="align-self-center mb-0">
+                          <h6 class=" mb-0 text-muted">
+                            Temperatura Corporal Media
+                          </h6>
+                          <h3 class="font-weight-bold" id="meanBt">
                           </h3>
 
                         </div>

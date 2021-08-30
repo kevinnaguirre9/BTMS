@@ -28,7 +28,10 @@
                          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#seguridad" role="tab" aria-controls="seguridad" aria-selected="false">Seguridad</a>
                        </li>
                <% } %>
-             </ul>
+               <li class="nav-item">
+                    <a class="nav-link" id="dangerZone-tab" data-toggle="tab" href="#dangerZone" role="tab" aria-controls="dangerZone" aria-selected="false">Otras acciones</a>
+               </li>
+          </ul>
              <div class="tab-content" id="myTabContent">
                <div class="tab-pane fade show active" id="Info" role="tabpanel" aria-labelledby="home-tab">
                     <!-- Form handling -->
@@ -45,6 +48,8 @@
                                         <label for="nombres">Nombres</label>
                                         <input type="hidden" name="id" value="<%= user._id %>">
                                         <input type="hidden" name="imgKey" value="<%= user.imgKey %>">
+                                        <input type="hidden" name="hasCredentials" 
+                                        value="<%= locals.hasCredentials ? hasCredentials : false %>">
                                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
                                         value="<%= user.nombres %>" required>
                                    </div>
@@ -204,6 +209,25 @@
                          </div>
                     </div>
                <% } %>
+               <div class="tab-pane fade" id="dangerZone" role="tabpanel" aria-labelledby="dangerZone-tab">
+                    <div class="container w-50">
+                         <form id="deleteUser">
+                              <div>
+                                   <div class="text-center pt-4">
+                                        <h4>Eliminar usuario</h4>
+                                        <br>
+                                        <span>Una vez que elimine el usuario, no habrá vuelta atrás.</span>
+                                   </div>
+                                   <div class="form-group">    
+                                        <input type="hidden" name="id" value="<%= user._id %>">
+                                   </div>
+                                   <div class="form-group">
+                                        <button type="submit" class="btn btn-danger" form="deleteUser">Eliminar</button>
+                                   </div>
+                              </div>
+                         </form>
+                    </div>
+               </div>
                
              </div>
 

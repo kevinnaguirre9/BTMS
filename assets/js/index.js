@@ -136,7 +136,6 @@ $("#search_user_btm").submit(function(event){
 });
 
 
-
 //Update user information
 $("#updateUserInfo").submit(function(event){
      event.preventDefault();
@@ -314,6 +313,48 @@ $("#generateUserReport").submit(function(event){
      $.ajax(request);
 });
 
+
+// Delete user
+$("#deleteUser").submit(function(event){
+     event.preventDefault();
+
+     var data = new FormData(this);
+     var userId = data.get('id');
+     
+     var request = {
+          "url": `http://localhost:4000/user/${userId}`,
+          "method": "DELETE",
+          "success": async (response) => {
+               if (response.status == 'success') {
+                    await Swal.fire({
+                         position: 'center',
+                         icon: 'success',
+                         title: `Usuario eliminado!`,
+                         showConfirmButton: false,
+                         allowOutsideClick: false,
+                         allowEscapeKey: false,
+                         timer: 1500
+                    });
+                    window.location.replace(response.url);
+               }
+          }
+     }
+
+     Swal.fire({
+          title: '¿Está seguro?',
+          text: "No será capáz de revertir esto",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar!',
+          cancelButtonText: 'Cancelar'
+     }).then((result) => {
+          if (result.isConfirmed) {
+               $.ajax(request);
+          }
+     });
+});
 
 
 // Delete user from users table
