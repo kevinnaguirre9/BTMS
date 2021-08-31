@@ -18,80 +18,82 @@
           </nav> 
 
           <% if(locals.userBodyTempMeasurements.length > 0){ %>
-               <div class="form-title text-center">
+               <div class="form-title text-center mb-4">
                     <h3 class="text-dark">Últimas mediciones de <%= userData.nombres %> <%= userData.apellidos %>
                     </h3>
                </div>
-               
-               <div class="container w-75">
-                    <form>   
-                         <table class="table table-user-btms">
-                              <thead class="thead-dark">
-                                   <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Celsius (°C)</th>
-                                   </tr>
-                              </thead>
-                              <tbody>
-                                   <% for(var i=0; i < userBodyTempMeasurements.length; i++) { %>
-                                        <tr>
-                                             <th scope="row"><%= i+1 %></th>
-                                             <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %>
-                                             </td>
-                                             <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %>
-                                             </td>
-                                             <td><%= userBodyTempMeasurements[i].celsius %></td>
-                                        </tr>
-                                   <% } %>
-                              </tbody>
-                         </table>
-                    </form>  
-                    <br> 
+               <center>
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modalReport">
-                         Generar Reporte
-                       </button>
- 
-                       <!-- Modal -->
-                       <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="modalReportTitle" aria-hidden="true">
-                         <div class="modal-dialog modal-dialog-centered" role="document">
-                           <div class="modal-content">
-                             <div class="modal-header">
-                               <h5 class="modal-title" id="modalReportLongTitle">Reporte</h5>
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                               </button>
-                             </div>
-                             <form method="GET" id="generateUserReport"> 
-                               <div class="modal-body">
-                               <div class="form-row">
-                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                   <label for="fechaInicio">Fecha de inicio</label>
-                                   <input type="hidden" name="userId" value="<%= userData._id %>" class="form-control">
-                                   <input class="form-control" type="date" id="fechaInicio" name="fechaInicio"  autofocus required>
-                             </div>
-                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                   <label for="fechaFin">Fecha final</label>
-                                   <input class="form-control" type="date" id="fechaFin" name="fechaFin" required>
-                             </div>
-                               </div>
-                             </div>
-                             <div class="modal-footer">
-                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                               <button type="submit" class="btn btn-primary" form="generateUserReport">Generar</button>
-                               <span><i>Puede tomar unos segundos.</i></span>
-                             </div></form>
-                             
-                           </div>
-                         </div>
-                       </div>
- 
- 
-                    <!---->       
-               </div>
+                    <div class="container w-75">
+                         <form>   
+                              <table class="table table-user-btms">
+                                   <thead class="thead-dark">
+                                        <tr>
+                                             <th scope="col">#</th>
+                                             <th scope="col">Fecha</th>
+                                             <th scope="col">Hora</th>
+                                             <th scope="col">Celsius (°C)</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+                                        <% for(var i=0; i < userBodyTempMeasurements.length; i++) { %>
+                                             <tr>
+                                                  <th scope="row"><%= i+1 %></th>
+                                                  <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(0, 9) %>
+                                                  </td>
+                                                  <td><%= userBodyTempMeasurements[i].fechaMedicion.toLocaleString('ec-Ec').slice(10, 15) %>
+                                                  </td>
+                                                  <td><%= userBodyTempMeasurements[i].celsius %></td>
+                                             </tr>
+                                        <% } %>
+                                   </tbody>
+                              </table>
+                         </form>  
+                         <br> 
+     
+                         <!-- Button trigger modal -->
+                         <button type="button" class="btn btn-primary w-25" data-toggle="modal" data-target="#modalReport">
+                              Generar Reporte
+                            </button>
+      
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="modalReportTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="modalReportLongTitle">Reporte</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form method="GET" id="generateUserReport"> 
+                                    <div class="modal-body">
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="fechaInicio">Fecha de inicio</label>
+                                        <input type="hidden" name="userId" value="<%= userData._id %>" class="form-control">
+                                        <input class="form-control" type="date" id="fechaInicio" name="fechaInicio"  autofocus required>
+                                  </div>
+                                      <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                        <label for="fechaFin">Fecha final</label>
+                                        <input class="form-control" type="date" id="fechaFin" name="fechaFin" required>
+                                  </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary" form="generateUserReport">Generar</button>
+                                    <span><i>Puede tomar unos segundos.</i></span>
+                                  </div></form>
+                                  
+                                </div>
+                              </div>
+                            </div>
+      
+      
+                         <!---->       
+                    </div>
+               </center>
                  
 
           <% } else { %>
