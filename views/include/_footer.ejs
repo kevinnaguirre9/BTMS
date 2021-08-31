@@ -76,9 +76,9 @@
         const meanBt = +arrAvg(bodyTemps).toFixed(2);
 
         $('#totalBt').text(totalBtm);
-        $('#maxBt').text(`${maxBtm} °C`);
-        $('#minBt').text(`${minBtm} °C`);
-        $('#meanBt').text(`${meanBt} °C`);
+        $('#maxBt').text(Number.isFinite(maxBtm) ? `${maxBtm} °C` : '-');
+        $('#minBt').text(Number.isFinite(minBtm) ? `${minBtm} °C` : '-');
+        $('#meanBt').text(!(Number.isNaN(meanBt)) ? `${meanBt} °C` : '-');
 
       });
   }  
