@@ -104,7 +104,7 @@
                                         <label for="rol">Rol</label>
                                         <select class="form-control" name="rol" id="rol" required>
                                              <% for(var i=0; i < roles.length; i++) { %>
-                                                  <option value=<%= roles[i]._id %> <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
+                                                  <option value="<%= roles[i]._id %>" <%= user.rol == roles[i]._id.toString() ? 'selected' : '' %>><%= roles[i].nombre %></option>
                                              <% } %>
                                         </select>
                                    </div>

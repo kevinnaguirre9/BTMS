@@ -155,7 +155,7 @@ const updateUserProfile = async (req, res) => {
      const userUpdated = await User.findByIdAndUpdate(userId, update);
 
      // If Administrators got the Basic role, then delete credentials
-     if(data.hasCredentials === 'true' && data.rol !== userUpdated.rol) {
+     if(data.hasCredentials === 'true' && data.rol !== userUpdated.rol.toString()) {
           await UserCredential.deleteOne({userId: userId});
 
           // If Admin whose role was updated to Basic role is logged in, then log out
