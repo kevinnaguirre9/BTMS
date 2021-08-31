@@ -146,8 +146,16 @@ const generateBtmReport = async (req, res) => {
 
 const generateBtmReportByUser = async (req, res) => {
      const userId = req.params.userId;
+     const {startDate, endDate, regenerate} = req.query;
+
      const userData = await User.findById(userId, {nombres: 1, apellidos: 1}).lean();
-     const userBtm = await bodyTempMeasurement.find({userId: userId}).sort({ fechaMedicion: -1 }).lean()
+     const userBtm = await bodyTempMeasurement.find({
+          userId: userId,
+          fechaMedicion: {
+               $gte: `${startDate}T00:00:00`,
+               $lte: `${endDate}T23:59:59`
+          }
+     }).sort({ fechaMedicion: -1 }).lean()
 
      const html = fs.readFileSync(path.join(__dirname, '../views/btm_template.html'), 'utf-8');
      const filename = userId;
@@ -174,9 +182,9 @@ const generateBtmReportByUser = async (req, res) => {
      //Create pdf report
      await pdf.create(document, options);
 
-     const downloadUrl = `/btm/measurements/report/download?filename=${filename}&userId=${userId}`;
+     const downloadUrl = `/btm/measurements/report/download?filename=${filename}&userId=${userId}&startDate=${startDate}&endDate=${endDate}`;
 
-     if(req.query.regenerate) return res.redirect(downloadUrl);
+     if(regenerate) return res.redirect(downloadUrl);
 
      res.send({status: 'success', url: downloadUrl});
 }
@@ -192,7 +200,7 @@ const downloadBtmReport = async (req, res) => {
           let regenerateUrl=`/btm/measurements/report/all?startDate=${startDate}&endDate=${endDate}&regenerate=true`;
           //Case 2: Report by user
           if(userId) {
-               regenerateUrl = `/btm/measurements/${userId}/report?regenerate=true`;
+               regenerateUrl = `/btm/measurements/${userId}/report?startDate=${startDate}&endDate=${endDate}&regenerate=true`;
           }
           return res.redirect(regenerateUrl);
      }

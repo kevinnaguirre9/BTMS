@@ -49,18 +49,48 @@
                          </table>
                     </form>  
                     <br> 
-                    <form method="GET" id="generateUserReport" >
-                         <div>
-                              <div class="form-group">
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modalReport">
+                         Generar Reporte
+                       </button>
+ 
+                       <!-- Modal -->
+                       <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="modalReportTitle" aria-hidden="true">
+                         <div class="modal-dialog modal-dialog-centered" role="document">
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <h5 class="modal-title" id="modalReportLongTitle">Reporte</h5>
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                               </button>
+                             </div>
+                             <form method="GET" id="generateUserReport"> 
+                               <div class="modal-body">
+                               <div class="form-row">
+                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                   <label for="fechaInicio">Fecha de inicio</label>
                                    <input type="hidden" name="userId" value="<%= userData._id %>" class="form-control">
-                              </div>
-                              <div class="form-group">
-                                   <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Generar Reporte
-                                   </button>
-                                   <span><i>Puede tomar unos segundos.</i></span>
-                              </div>
+                                   <input class="form-control" type="date" id="fechaInicio" name="fechaInicio"  autofocus required>
+                             </div>
+                                 <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                   <label for="fechaFin">Fecha final</label>
+                                   <input class="form-control" type="date" id="fechaFin" name="fechaFin" required>
+                             </div>
+                               </div>
+                             </div>
+                             <div class="modal-footer">
+                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                               <button type="submit" class="btn btn-primary" form="generateUserReport">Generar</button>
+                               <span><i>Puede tomar unos segundos.</i></span>
+                             </div></form>
+                             
+                           </div>
                          </div>
-                    </form>
+                       </div>
+ 
+ 
+                    <!---->       
                </div>
                  
 
@@ -85,7 +115,9 @@
      
 
 <!-- /Measurements list -->
-
+<script>
+     document.getElementById("fechaFin").valueAsDate = new Date();
+</script>
 
 <%- include('include/_footer')%>
 

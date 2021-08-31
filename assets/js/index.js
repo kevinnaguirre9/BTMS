@@ -292,9 +292,11 @@ $("#generateUserReport").submit(function(event){
 
      var data = new FormData(this);
      var userId = data.get('userId');
+     var startDate = data.get('fechaInicio');
+     var endDate = data.get('fechaFin');
      
      var request = {
-          "url": `http://localhost:4000/btm/measurements/${userId}/report`,
+          "url": `http://localhost:4000/btm/measurements/${userId}/report?startDate=${startDate}&endDate=${endDate}`,
           "method": "GET",
           "success": (response) => {
                Swal.fire({
@@ -307,6 +309,7 @@ $("#generateUserReport").submit(function(event){
                     showConfirmButton: false
                });
                window.location.assign(response.url);
+               $("#modalReport").modal('hide');
           }
      }
 
