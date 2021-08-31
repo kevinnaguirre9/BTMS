@@ -159,9 +159,8 @@ body{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  left: 75%;
+  left: 85%;
   width: 50%;
-  transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
   z-index: 5;
@@ -203,7 +202,8 @@ body{
   
 }
  .image {
-  width: 800px;
+  width: 825px;
+  
 }
 .container-log.signin {
   left: 25%;
