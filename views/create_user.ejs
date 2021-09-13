@@ -30,19 +30,20 @@
                          <div class="form-row">
                               <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                    <label for="cedula">Cédula</label>
-                                   <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" autofocus required>
+                                   <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" onkeypress="return valideKey(event);"  autofocus required>
+                              
                               </div>
                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="nombres">Nombres</label>
-                              <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" required>
+                              <input type="text" name="nombres" id="nombres" placeholder="Nombres" maxlength="20"class="form-control" required  onpaste="return false" onkeypress="return soloLetras(event)">
                            </div>
                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="apellidos">Apellidos</label>
-                              <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
+                              <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" maxlength="20" class="form-control" required onpaste="return false" onkeypress="return soloLetras(event)">
                            </div>
                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="celular">Celular</label>
-                              <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" required>
+                              <input type="text" name="celular" id="celular" placeholder="Numero celular"maxlength="10" class="form-control" required onpaste="return false" onkeypress="return valideKey(event);" >
                          </div>
                          </div>
                          <div class="form-row">
@@ -62,7 +63,7 @@
                                  </div>
                                  <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                    <label for="direccion">Direccion</label>
-                                   <input type="text" name="direccion" id="direccion "  placeholder="Dirección" class="form-control col-sm-12 col-xs-12 input-lg"   required>
+                                   <input type="text" name="direccion" id="direccion " maxlength="65" placeholder="Dirección" class="form-control col-sm-12 col-xs-12 input-lg"   required>
                               </div>  
                                  <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                    <label for="estatus">Estatus</label>
@@ -116,7 +117,7 @@
           
 
           <div class="form-group text-center mt-3">
-               <button class="btn btn-success" type="submit" value="Submit" id="submit">Guardar</button>
+               <button class="btn btn-success" type="submit" onclick="validar()" value="Submit" id="submit">Guardar</button>
           </div>
      </div>
      </div>

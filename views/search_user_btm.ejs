@@ -28,7 +28,7 @@
                     <div class="card-body">
                          <form class="my-2 my-lg-0 form-group" method="GET" id="search_user_btm">
                               <label for="cedula">Cédula:</label> 
-                              <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control w-50" autofocus required>
+                              <input onpaste="return false" maxlength="10"  onkeypress="return valideKey(event);"  type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control w-50" autofocus required>
                               <br>
                               <button type="submit" class="btn btn-primary">Buscar</button>
                          </form>

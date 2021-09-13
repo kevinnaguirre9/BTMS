@@ -59,7 +59,7 @@ $("#add_user").submit(function(event){
           "processData": false,
           "contentType": false,
           "success": async (response) => {
-               if (response.status == 'success') {
+               if (response.status == 'success' ) {
                     await Swal.fire({
                          position: 'center',
                          icon: 'success',
