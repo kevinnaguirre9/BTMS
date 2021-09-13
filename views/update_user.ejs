@@ -51,18 +51,18 @@
                                         <input type="hidden" name="hasCredentials" 
                                         value="<%= locals.hasCredentials ? hasCredentials : false %>">
                                         <input type="text" name="nombres" id="nombres" placeholder="Nombres" class="form-control" 
-                                        value="<%= user.nombres %>" required>
+                                        value="<%= user.nombres %>"onkeypress="return soloLetras(event)" onpaste="return false" maxlength="20" required>
                                    </div>
                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                         <label for="apellidos">Apellidos</label>
-                                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>" required>
+                                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" value="<%= user.apellidos %>"onkeypress="return soloLetras(event)"  maxlength="20" onpaste="return false" required>
                                    </div>
           
                               </div>
                               <div class="form-row">
                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                         <label for="cedula">Cédula</label>
-                                        <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" required>
+                                        <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" value="<%= user.cedula %>" onkeypress="return valideKey(event);" maxlength="10" onpaste="return false" required>
                                    </div>
                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                         <label for="fechaNacimiento">Fecha de nacimiento</label>
@@ -81,14 +81,14 @@
                                    </div>
                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                         <label for="celular">Celular</label>
-                                        <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" value="<%= user.celular %>" required>
+                                        <input type="text" name="celular" id="celular" placeholder="Numero celular" class="form-control" value="<%= user.celular %>" onkeypress="return valideKey(event);" maxlength="10" onpaste="return false" required>
                                    </div>
                
                                  </div>
                                  <div class="form-row">
                                    <div class="form-group col-md-12">
                                         <label for="direccion">Direccion</label>
-                                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control  "  value="<%= user.direccion %>" required>
+                                        <input type="text" name="direccion" id="direccion" placeholder="Dirección" class="form-control  "  value="<%= user.direccion %>"  maxlength="65" required>
                                    </div>
           
                               </div>
